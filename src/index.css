@@ -31,6 +31,10 @@
 .registeration{
   width: 100vmin;
 }
+.resetcomponent{
+  display: flex;
+  flex-direction: column;
+}
 
 }
 
@@ -42,6 +46,12 @@
   }
   .signupbtn{
     width: 100%;
+  }
+  .createaccounttext{
+    font-size: 4vh;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
   }
 }
 @media (max-width: 380px){
@@ -63,13 +73,69 @@
     display: flex;
     flex-direction: column;
   }
+  .sectionthree{
+    width: 100vmin;
+
+  }
+  .mail{
+    width: 100vmin;
+
+  }
+  .reenterpassword{
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 /*An Issue is occuring in Responsviness from 390px actually this is due to width but I am not getting able to anylyze that.. */
 @media (max-width: 390px){
    .verification{
     background-color: red;
-
-
    }
+   .mail form div h4{
+   font-size: 25px;
+   }
+   .mail form div h5{
+    font-size: 18px;
+   }
+   .mail form div input{
+  
+     width: 14vw;
+   }
+ 
+}
+
+
+
+/*Reset Password  */
+@media (max-width: 412px){
+  .resetcomponent{
+    display: flex;
+    flex-direction: column;
+
+  }
+  .resetpassword{
+    width: 100vmin;
+
+  }
+  .sectionfour{
+    width: 100vmin;
+  }
+  
+  /*Re-enter Password */
+  .newpassword{
+    width: 100vmin;
+  }
+  .newpassword form .newpasswordContainer{
+    display: flex;
+    flex-direction: column;
+     
+  }
+  .newpassword form .newpasswordContainer div input{
+    width: 250px;
+  }
+  .newpassword form button{
+    width: 90%;
+  }
  
 }
