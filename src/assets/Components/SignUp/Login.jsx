@@ -3,7 +3,7 @@
 const Login = () => {
   return (
     <div className="bg-[#ffffff] w-[410px] flex flex-col items-center justify-center h-[100vh] section">
-        <form className="flex flex-col items-center justify-center">
+        <form onSubmit={(e)=>{e.preventDefault()}} className="flex flex-col items-center justify-center">
             <div className="flex flex-col gap-3" >
                 <h2 className="text-4xl font-bold text-[#19345F]">Sign In</h2>
                 <div id="email">

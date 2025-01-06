@@ -23,6 +23,15 @@
 .signupform{
   width: 100vmin;
 }
+/* */
+.signin{
+  display: flex;
+  flex-direction: column;
+}
+.registeration{
+  width: 100vmin;
+}
+
 }
 
 
@@ -34,4 +43,33 @@
   .signupbtn{
     width: 100%;
   }
+}
+@media (max-width: 380px){
+  #password{
+    
+    display: flex;
+    flex-direction: column;
+  }
+  #setpassword{
+    width: 100%;
+  }
+  #confirmpassword{
+    width: 100%
+  }
+}
+/*Verification Form */
+@media (max-width: 827px){
+  .verification{
+    display: flex;
+    flex-direction: column;
+  }
+}
+/*An Issue is occuring in Responsviness from 390px actually this is due to width but I am not getting able to anylyze that.. */
+@media (max-width: 390px){
+   .verification{
+    background-color: red;
+
+
+   }
+ 
 }
