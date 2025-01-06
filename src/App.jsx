@@ -1,10 +1,10 @@
-import Section from "./assets/Components/Common/Section"
+import Login from "./assets/Components/SignUp/Login"
 
 
 const App = () => {
   return (
-    <div className="flex items-center justify-center">
-      <Section/>
+    <div className="flex items-center justify-center app">
+     <Login/>
       
     </div>
   )
