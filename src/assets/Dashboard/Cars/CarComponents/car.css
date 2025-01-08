@@ -1,0 +1,12 @@
+
+@media (max-width: 494px){
+    #btns button{
+      padding: 5px 18px;
+    }
+}
+@media (max-width: 527px){
+    #btns button{
+        padding: 5px 18px;
+      }
+
+}

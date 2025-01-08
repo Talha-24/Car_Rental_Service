@@ -4,7 +4,7 @@ import Icons from './Header Components/Icons/Icons'
 
 const Header = () => {
   return (
-    <div className='py-8 bg-white flex items-center justify-between w-[100%]  border-2 border-x-gray-500 px-10 sticky'>
+    <div className='py-8 bg-white flex items-center border-[2px] justify-between w-[100%] header px-10'>
         <div className='flex items-center gap-[35px]'>
         <Logo/>
         <SearchBar/>

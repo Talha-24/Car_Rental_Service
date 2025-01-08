@@ -5,13 +5,16 @@ import CarsContainer from '../Cars/CarsContainer'
 
 const Dashboard = () => {
   return (
-    <div className='bg-black'>
-        <Header/>
+   <div className=''>
+        {/* <Header/> */}
+        <div className='flex flex-row'>
         <Sidebar/>
         <CarsContainer/>
+        </div>
+        </div>
         
         
-    </div>
+    
   )
 }
 

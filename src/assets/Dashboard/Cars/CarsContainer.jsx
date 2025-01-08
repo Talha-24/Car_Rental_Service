@@ -1,8 +1,17 @@
-import React from 'react'
+import CarsInfo from "./CarComponents/CarsInfo"
+import CarTypeBtns from "./Others/CarTypeBtns"
 
 const CarsContainer = () => {
   return (
-    <div className='bg-gray-300 absolute top-[50%] left-[50%]'>CarsContainer</div>
+<div className='w-[100%] min-h-[100vh] py-[20px]'>
+<CarTypeBtns/>
+<CarsInfo/>
+<CarsInfo/>
+<CarsInfo/>
+<CarsInfo/>
+
+</div>
+    
   )
 }
 
