@@ -9,6 +9,7 @@ import Login from "./assets/Components/SignUp/Login"
 import SignUp from "./assets/Components/SignUp/SignUp"
 import SelectionComponent from "./assets/Components/User Selection/SelectionComponent"
 import UserSelection from "./assets/Components/User Selection/UserSelection"
+import Dashboard from "./assets/Dashboard/Header/Dashboard"
 import Header from "./assets/Dashboard/Header/Header"
 import Sidebar from "./assets/Dashboard/Header/Sidebar/Sidebar"
 
@@ -19,8 +20,7 @@ import Sidebar from "./assets/Dashboard/Header/Sidebar/Sidebar"
 const App = () => {
   return (
     <div className="app">
-      <Header/>
-      <Sidebar/>
+     <Dashboard/>
     
     </div>
   )
