@@ -215,9 +215,21 @@
 }
 @media (max-width: 709px){
   #svg{
-    width: 87vmin;
     padding-right: 20px;
-    padding-left: 10px;
-
   }
 }
+@media (max-width: 650px){
+  .svg-div{
+    width: 90vmin;
+    padding-right: 20px;
+    padding-left: 10px;
+   
+  }
+  .cardiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 130px;
+  }
+}
+
