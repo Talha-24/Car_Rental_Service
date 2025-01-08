@@ -9,5 +9,4 @@ const SectionThree = () => {
     </div>
   )
 }
-
 export default SectionThree
