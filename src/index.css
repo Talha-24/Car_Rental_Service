@@ -213,3 +213,11 @@
     text-align: center;
   }
 }
+@media (max-width: 709px){
+  #svg{
+    width: 87vmin;
+    padding-right: 20px;
+    padding-left: 10px;
+
+  }
+}

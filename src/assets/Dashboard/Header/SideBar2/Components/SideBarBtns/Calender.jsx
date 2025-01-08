@@ -1,7 +1,7 @@
 
 const Calender = () => {
     return (
-      <div className="flex flex-row gap-[4px] py-[6px] px-[7px] rounded mt-2 text-[#90A3BF]">
+      <div className="flex flex-row justify-around py-[6px] px-[7px] rounded mt-2 text-[#90A3BF]">
          <span id="svg">
          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 2V5" stroke="#90A3BF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>

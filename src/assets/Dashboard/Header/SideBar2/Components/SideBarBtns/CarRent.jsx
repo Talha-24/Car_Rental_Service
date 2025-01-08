@@ -1,15 +1,23 @@
 
 const CarRent = () => {
     return (
-      <div className="flex flex-row gap-[4px] py-[6px] px-[7px] rounded mt-2">
+      <div className="flex flex-row items-center justify-around py-[6px] px-[7px] rounded mt-2">
          <span id="svg">
-         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M10.0427 3.15016L10.0431 3.14985C11.1274 2.27904 12.8676 2.28414 13.968 3.16073C13.9682 3.16084 13.9683 3.16094 13.9684 3.16105L20.5141 8.39756C20.5147 8.39802 20.5152 8.39849 20.5158 8.39895C20.893 8.70711 21.2197 9.18942 21.4305 9.74099C21.6411 10.2922 21.7196 10.8699 21.6463 11.351L20.3874 18.8845C20.3873 18.885 20.3872 18.8855 20.3871 18.8859C20.1375 20.3188 18.7433 21.5 17.3 21.5H6.70002C5.23555 21.5 3.87256 20.3476 3.623 18.8965C3.62294 18.8961 3.62288 18.8958 3.62282 18.8955L2.36319 11.3576L2.36299 11.3565C2.28085 10.8718 2.35458 10.293 2.56471 9.74192C2.77482 9.19094 3.10555 8.70909 3.49187 8.40086L3.49273 8.40016L10.0427 3.15016ZM12 19.25C12.6862 19.25 13.25 18.6862 13.25 18V15C13.25 14.3139 12.6862 13.75 12 13.75C11.3139 13.75 10.75 14.3139 10.75 15V18C10.75 18.6862 11.3139 19.25 12 19.25Z" fill="white" stroke="white"/>
-  </svg>
+         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.51 2.82996H8.49C6 2.82996 5.45 4.06996 5.13 5.58996L4 11H20L18.87 5.58996C18.55 4.06996 18 2.82996 15.51 2.82996Z" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M21.99 19.82C22.1 20.99 21.16 22 19.96 22H18.08C17 22 16.85 21.54 16.66 20.97L16.46 20.37C16.18 19.55 16 19 14.56 19H9.43998C7.99998 19 7.78998 19.62 7.53998 20.37L7.33998 20.97C7.14998 21.54 6.99998 22 5.91998 22H4.03998C2.83998 22 1.89998 20.99 2.00998 19.82L2.56998 13.73C2.70998 12.23 2.99998 11 5.61998 11H18.38C21 11 21.29 12.23 21.43 13.73L21.99 19.82Z" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M4 8H3" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M21 8H20" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M12 3V5" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M10.5 5H13.5" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M6 15H9" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M15 15H18" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+
   
   
          </span>
-         <p className=" text-[#90A3BF]">Car Rent</p>
+         <p className=" text-[#90A3BF]">Rent</p>
           
       </div>
     )
