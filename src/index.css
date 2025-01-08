@@ -7,8 +7,11 @@
  box-sizing: border-box;
 }
 .app{
-  background-color: #f3f4f6;
+  
   color: white;
+}
+.copyright{
+  border-top: 0.1px solid gray;
 }
 @media (max-width: 820px){
 .signup{
@@ -152,7 +155,61 @@
  
 }
 @media (max-width: 504px){
- .availabletext{
-  width: 100vh;
- }
+ 
+}
+
+@media (max-width: 471px){
+  #logo h4{
+    font-size: x-large;
+  }
+}
+@media(min-width: 777px){
+  #input input{
+    width: 380px;
+  }
+
+}
+@media (max-width: 761px) {
+  #input input{
+    display: none;
+  }
+  
+}
+@media (max-width: 500px) {
+ 
+  
+}
+@media (max-width: 650px){
+  #carcontainer{
+    display: flex;
+    flex-direction: column;
+  }
+  .header{
+    padding: 20px;
+  }
+  
+}
+@media (max-width: 500px){
+  .bookingcontainer{
+    margin-top: 60px;
+  }
+}
+@media (max-width: 556px){
+  .parenttt{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 2px;
+    padding-bottom: 1px ;
+  }
+}
+@media (max-width: 350px){
+  .copyright p{
+    font-size: 10px;
+
+  }
+  #logoandquote{
+    text-align: center;
+  }
 }

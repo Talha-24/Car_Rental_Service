@@ -7,7 +7,7 @@ const Car = () => {
 
    
   return (
-    <div className='w-[200px] h-[250px] text-black bg-[#ffffff] rounded-lg flex flex-col justify-between p-[10px]'>
+    <div className='w-[220px] h-[250px] text-black bg-[#ffffff] rounded-lg flex flex-col justify-between p-[10px]'>
      <CarName/>
 <CarImage/>
     <CarProperties/>
