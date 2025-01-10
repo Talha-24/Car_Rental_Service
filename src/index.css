@@ -231,5 +231,49 @@
     align-items: center;
     gap: 130px;
   }
+  .header{
+    padding-top: 30px ;
+    padding-bottom: 30px ;
+  }
+  .siderbar2{
+    width: 300px;
+  }
+  .carscontainer{
+    background-color: rgb(243, 242, 242);
+  }
+  .Footer{
+    display: 100vmin;
+    background-color: blue;
+   
+  }
+  
+  
+}
+.carscontainer::-webkit-scrollbar{
+  display: none;
+ 
+
 }
 
+
+button:active{
+  scale: 0.9;
+
+}
+.header{
+  border-bottom: 1px solid gray;
+}
+@media (max-width: 850px){
+
+  .dd{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 80px;
+  }
+  .dd input{
+    width: 100%;
+  }
+  
+
+}
