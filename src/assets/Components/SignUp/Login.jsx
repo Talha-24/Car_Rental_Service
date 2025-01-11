@@ -20,7 +20,7 @@ const [loginpassword, setloginpassword] = useState('');
         LoginHandler(username,loginpassword);
     }
   return (
-    <div className="bg-[#ffffff] w-[410px] flex flex-col items-center justify-center h-[100vh] section">
+    <div className="bg-[#ffffff] w-[100%] flex flex-col items-center justify-center h-[100vh] section">
       
         <form onSubmit={(e)=>{e.preventDefault()}} className="flex flex-col items-center justify-center">
             <div className="flex flex-col gap-3" >

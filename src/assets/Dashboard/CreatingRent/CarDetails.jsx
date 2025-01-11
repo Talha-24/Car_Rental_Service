@@ -10,8 +10,8 @@ const CarDetails = () => {
 <p>**** 423+ Reviews</p>
 <p className="py-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto qui voluptatum nesciunt officia unde, perferendis.</p>
 <div id="cardetails" className="flex flex-col gap-[20px]">
-<p className="w-[100%] text-[#9CA3AF] inline-block">Typecar <b className="text-[#90A3CC]">sport</b> Capacity <b className="text-[#90A3CC]">two Person</b></p>
-<p className="w-[100%] text-[#9CA3AF] inline-block">Steering <b className="text-[#90A3CC]">manual</b> Fuel <b className="text-[#90A3CC]">petrol</b></p>
+<p className="w-[100%] text-[#9CA3AF] inline-block">Typecar : <b className="text-[#111] font-semibold ">sport</b> Capacity : <b className="text-[#111] font-semibold">2 Person</b></p>
+<p className="w-[100%] text-[#9CA3AF] inline-block">Steering : <b className="text-[#111]  font-semibold">manual</b> Fuel : <b className="text-[#111] font-semibold">petrol</b></p>
 </div>
       </div>
   </div>

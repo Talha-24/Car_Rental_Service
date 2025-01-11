@@ -88,7 +88,7 @@ setconfirmpassword("");
 }
 
 return (
-    <div className=" w-[410px] bg-[#FFFFFF] min-h-[100vh] flex flex-col items-center justify-center px-[70px] registeration">
+    <div className=" w-[100%] bg-[#FFFFFF] min-h-[100vh] flex flex-col items-center justify-center px-[70px] registeration">
         <form onSubmit={(e)=>{e.preventDefault()}} className="flex flex-col gap-[15px] items-center justify-center">
          <h6 className="text-3xl text-[#2D2D2D] font-semibold text-start w-[100%] createaccounttext ">Create Account</h6>
         <div id='inputs'>

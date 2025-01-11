@@ -1,7 +1,7 @@
 
 const Section = () => {
   return (
-    <div className='bg-[#FF6E1C] w-[410px] flex items-center justify-center flex-col py-[200px] h-[100vh] signupform'>
+    <div className='bg-[#FF6E1C] w-[100%] flex items-center justify-center flex-col py-[200px] h-[100vh] signupform'>
         <div id="image">
             <img  className="object-cover w-[100%] h-[50vh] bg-[#FF6E1C]" src="src\assets\images\carone.png" alt="" />
         </div>

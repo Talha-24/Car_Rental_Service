@@ -3,7 +3,7 @@ import SectionFour from './SectionFour'
 
 const ResetComponent = () => {
   return (
-    <div className='flex flex-row items-center  justify-center resetcomponent'>
+    <div className='flex flex-row  w-[100%]   resetcomponent'>
         <SectionFour/>
        <ResetPassword/>
     </div>

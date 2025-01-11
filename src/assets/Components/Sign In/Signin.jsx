@@ -3,7 +3,7 @@ import Section_two from './Section_two'
 
 const Signin = () => {
   return (
-    <div  className='flex flex-row signin'>
+    <div  className='flex flex-row w-[100%] signin'>
       <Section_two/>
       <Registeration/>
 
