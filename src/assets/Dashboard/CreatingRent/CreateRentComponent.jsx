@@ -3,7 +3,7 @@ const CreateRentComponent = () => {
   return (
 <div className="flex flex-row w-[100%]">
     <div className="flex flex-col gap-[10px]">
-      <div className="flex flex-col justify-between items-center bg-[#FF5C00] rounded h-[230px] w-[300px] py-2">
+      <div className="flex flex-col justify-between items-center bg-[#FF5C00] rounded h-[230px] w-[300px] createrent py-2">
         <div className="flex flex-col gap-[20px]">
           <h4 className="text-xl font-semibold text-center text-white">Sports car with the best design and acceleration</h4>
           <p className=" text-white text-center px-10">Safety and comfort while driving a 
