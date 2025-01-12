@@ -22,7 +22,7 @@ function userData(){
 
   return (
     
-    <form onSubmit={(e)=>{e.preventDefault()}} className="w-[700px] min-h-[300px] bg-[#f9f9f9] rounded py-8 flex flex-row justify-around dd">
+    <form onSubmit={(e)=>{e.preventDefault()}} className="w-[80%] min-h-[300px] bg-[#f9f9f9] rounded py-[2em] flex flex-row justify-around dd">
         <div className="flex flex-col gap-[10px]">
             <label htmlFor="" className="text-sm font-semibold">Name</label>
             <input onChange={(e)=>{setusername(e.target.username)}} value={username} className="py-[5px] px-[12px] text-sm  w-[200px] border-[1px] border-black bg-[#F6F7F9] rounded-sm"  placeholder="M. Talha" type="text" />

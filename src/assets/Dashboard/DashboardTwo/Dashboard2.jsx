@@ -11,7 +11,7 @@ const Dashboard2 = () => {
         <SideBar2/>
      <div className="flex flex-row  absolute top-[20%] left-[30%]">
         <div className='flex flex-col flex-end gap-[30px]'>
-          <div className='flex dd'>
+          <div className='flex flex-row gap-[5%] dd w-[100%]'>
         <CreateRentComponent/>
        <CarDetails/>
         </div>
