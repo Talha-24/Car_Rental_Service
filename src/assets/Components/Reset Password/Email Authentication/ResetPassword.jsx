@@ -6,8 +6,8 @@ const ResetPassword = () => {
         <form className="height-[100vh] flex flex-col items-center justify-center">
 
         <div className="text-center w-[100%]">
-            <h6 className="text-3xl text-black font-bold ">Enter mail for reset password</h6>
-            <p className="text-sm text-black text-center py-[20px] px-[40px]">
+            <h6 className="text-[5vmin] text-black font-bold ">Enter mail for reset password</h6>
+            <p className="text-[3vmin] text-black text-center py-[4vmin] px-[5vmin]">
                 Lppellat Lorem ipsum dolor
                  sit, amet consectetur adipisicing 
                  elit. Odio necessitatibus 
@@ -15,12 +15,12 @@ const ResetPassword = () => {
         </div>
 
 
-        <div className=" w-[100%] px-[20px] flex flex-col gap-[30px] py-[20px]">
+        <div className=" w-[100%] px-[20px] flex flex-col gap-[2vmin] py-[20px]">
             <div className="flex flex-col ">
-                <p className="text-black w-[100%] place-items-start">Email</p>
-                <input type="email" required placeholder="johndoe@gmail.com" className="bg-[#F4F2F2] placeholder:text-gray-500; text-black w-[100%] py-[5px] px-[10px] rounded-sm" />
+                <p className="text-[3vmin] my-[1vmin] w-[100%] place-items-start">Email</p>
+                <input type="email" required placeholder="johndoe@gmail.com" className="bg-[#F4F2F2] placeholder:text-gray-500; text-black w-[100%] text-[3vmin] py-[1.5vmin] px-[1.8vmin] rounded-sm" />
             </div>
-            <button className="bg-[#FF5C1E] w-[100%] font-semibold text-sm py-[5px] rounded-sm text-white">Continue</button>
+            <button className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded-sm px-[5%] py-[2%] w-[100%] signupinput font-semibold">Continue</button>
         </div>
 
 

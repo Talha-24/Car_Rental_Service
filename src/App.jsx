@@ -5,19 +5,10 @@
 //Resest Password... Responsiveness Done
 
 import { useState } from "react"
-import Login from "./assets/Components/SignUp/Login"
-import SignUp from "./assets/Components/SignUp/SignUp"
-import Dashboard from "./assets/Dashboard/Header/Dashboard";
-import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
-import Signin from "./assets/Components/Sign In/Signin";
-import Verification from "./assets/Components/Mail Verification/Re/Images/Verification";
-import NewPassword from "./assets/Components/Reset Password/New Authentication/NewPassword";
-import ResetComponent from "./assets/Components/Reset Password/Email Authentication/ResetComponent";
-import RetakingAuthority from "./assets/Components/Reset Password/New Authentication/RetakingAuthority";
 import SelectionComponent from "./assets/Components/User Selection/SelectionComponent";
-
+import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
+import Dashboard from "./assets/Dashboard/Header/Dashboard";
 //
-
 const App = () => {
 const [user,setUser]=useState(null);
 
@@ -32,18 +23,25 @@ const [user,setUser]=useState(null);
     
    }
 
+//Sign Up...
+//Create Accout(Signin)...
+//Reset Component...
+//Retaking Authority...
+
 
 
   return (
     
     <div className="flex items-center justify-center bg-white">
+     {/* <BookingPending/> */}
+     <Dashboard/>
    
-    
+   
 
      
       {/* {!user ? <SignUp LoginHandler={LoginHandler}/> : ''}; */}
 
-      {user == "Admin" ? <Dashboard/> : (user == "User" ?  <Dashboard2/> : <SignUp LoginHandler={LoginHandler}/>)}
+      {/* {user == "Admin" ? <Dashboard/> : (user == "User" ?  <Dashboard2/> : <SignUp LoginHandler={LoginHandler}/>)} */}
      
   
     </div>

@@ -4,7 +4,7 @@ import Social from "./Social Components/Social"
 
 const Socials = () => {
   return (
-    <div id="itemcontainer" className='text-black flex flex-row gap-[6vmin]'>
+    <div id="itemcontainer" className='text-black flex pb-[3vmin] flex-row gap-[6vmin] w-[100%]'>
         <About/>
         <Community/>
         <Social/>

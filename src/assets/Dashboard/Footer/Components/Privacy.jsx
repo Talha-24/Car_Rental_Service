@@ -1,12 +1,12 @@
 
 const Privacy = () => {
   return (
-    <div className='text-black flex flex-row justify-between px-9 py-8 text-sm font-semibold copyright'>
-      <p className='text-black text-sm'>2022,MORENT.All rights reserved</p>
+    <div className='text-black flex flex-row justify-between px-[6vmin] py-[5vmin] text-sm font-semibold copyright'>
+      <p className='text-black text-[2vmin]'>2022,MORENT.All rights reserved</p>
       
-    <div className='flex flex-row gap-[20px] privacytext'>
-      <p className='text-black text-sm'>Privacy & Policy</p>
-      <p className='text-black text-sm'>Terms & Conditions</p>
+    <div className='flex flex-row gap-[5vmin] privacytext'>
+      <p className='text-black text-[2vmin]'>Privacy & Policy</p>
+      <p className='text-black text-[2vmin]'>Terms & Conditions</p>
     </div>
 
     </div>

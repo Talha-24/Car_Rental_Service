@@ -7,9 +7,9 @@ import SideBar2 from './SideBar2/SideBar2'
 
 const Dashboard = () => {
   return (
-   <div className='bg-[#FFFFFF]'>
+   <div className='bg-[#FFFFFF] w-[100%]'>
       <Header/>
- <div className='flex flex-row'>
+ <div className='flex flex-row w-[100%]'>
        <Sidebar/>
        <CarsContainer/>
         </div>  

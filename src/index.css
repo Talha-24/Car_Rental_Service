@@ -194,14 +194,14 @@
     margin-top: 60px;
   }
 }
-@media (max-width: 556px){
+@media (max-width: 620px){
   .parenttt{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 5vmin;
     flex-wrap: wrap;
-    padding-top: 2px;
-    padding-bottom: 1px ;
+    padding-top: 0.4vmin;
+    padding-bottom: 0.1vmin ;
   }
 }
 @media (max-width: 350px){
@@ -284,4 +284,11 @@ button:active{
     width: 100%;
     
   }
+}
+@media (max-width: 564px) {
+  .proceedbtns{
+    font-size: 2vmin;
+   
+  }
+  
 }

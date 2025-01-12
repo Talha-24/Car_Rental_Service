@@ -90,59 +90,61 @@ setconfirmpassword("");
 return (
     <div className=" w-[100%] bg-[#FFFFFF] min-h-[100vh] flex flex-col items-center justify-center px-[70px] registeration">
         <form onSubmit={(e)=>{e.preventDefault()}} className="flex flex-col gap-[15px] items-center justify-center">
-         <h6 className="text-3xl text-[#2D2D2D] font-semibold text-start w-[100%] createaccounttext ">Create Account</h6>
+         <h6 className="text-[5vmin] text-[#2D2D2D] font-bold text-start w-[100%] createaccounttext ">Create Account</h6>
         <div id='inputs'>
             <div id="name" className="w-[100%] flex flex-row gap-[10px]">
                 <div id="firstname" className="w-[50%] ">
-                    <p className="text-sm mb-1 text-black">First Name</p>
+                    <p className="text-[#19345F] text-[3vmin] w-[100%]">First Name</p>
                     <input onChange={(e)=>{
                         setname(e.target.value);
-                    }} value={name} type="text" placeholder="Mohammad" className=" text-sm w-[100%] py-[4px] px-[6px] placeholder:text-[#cbcbcb] rounded-sm text-black bg-[#F4F2F2]" />
+                    }} value={name} type="text" placeholder="Mohammad"  className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%] signupinput" />
 
                 </div>
                 <div id="lastname" className="w-[50%]">
-                    <p className="text-sm mb-1 text-black">Last Name</p>
-                    <input onChange={(e)=>{setsurname(e.target.value)}} value={surname} type="text" placeholder="Talha"  className=" text-sm w-[100%] py-[4px] px-[6px] placeholder:text-[#cbcbcb] rounded-sm text-black bg-[#F4F2F2]" />
+                    <p className="text-[#19345F] text-[3vmin] w-[100%]">Last Name</p>
+                    <input onChange={(e)=>{setsurname(e.target.value)}} value={surname} type="text" placeholder="Talha"   className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%] signupinput" />
 
                 </div>
 
             </div>
-            <div id="email" className="w-[100%]">
-                <p className="text-black mt-2 text-sm mb-1">Email</p>
-                <input onChange={(e)=>{setemail(e.target.value)}} value={email} type="text" placeholder="talhabhatti82542@gmail.com" className="w-[100%] text-sm py-[6px] px-[6px] rounded-sm placeholder:text-[#cbcbcb] text-black bg-[#F4F2F2]" />
+            <div id="email" className="w-[100%] my-[3vmin]">
+                <p className="text-[#19345F] text-[3vmin] w-[100%]">Email</p>
+                <input onChange={(e)=>{setemail(e.target.value)}} value={email} type="text" placeholder="talhabhatti82542@gmail.com"  className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%]" />
 
             </div>
-            <div id="password" className="w-[100%] flex flex-row gap-[10px]">
+            <div id="password" className="w-[100%] flex flex-row gap-[10px] my-[1vmin]">
                 <div id="setpassword" className="w-[50%] ">
-                    <p className="text-sm mb-1 text-black mt-2">Password </p>
-                    <input onChange={(e)=>{setpassword(e.target.value)}} value={password} type="password" placeholder="****************" className=" text-sm w-[100%] py-[4px] px-[6px] placeholder:text-[#cbcbcb] rounded-sm text-black bg-[#F4F2F2]" />
+                    <p className="text-[#19345F] text-[3vmin] w-[100%] my-[0.3vmin]">Password </p>
+                    <input onChange={(e)=>{setpassword(e.target.value)}} value={password} type="password" placeholder="****************" className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%]" />
 
                 </div>
                 <div id="confirmpassword" className="w-[50%]">
-                    <p className="text-sm mb-1 text-black mt-2 confirmpassword">Confirm Password</p>
-                    <input onChange={(e)=>{setconfirmpassword(e.target.value)}} value={confirmpassword} type="password" placeholder="****************"  className=" text-sm w-[100%] py-[4px] px-[6px] placeholder:text-[#cbcbcb] rounded-sm text-black bg-[#F4F2F2]" />
+                    <p className="text-[#19345F] text-[3vmin] w-[100%] confirmpassword my-[0.3vmin]">Confirm Password</p>
+                    <input onChange={(e)=>{setconfirmpassword(e.target.value)}} value={confirmpassword} type="password" placeholder="****************"  className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%]" />
 
                 </div>
 
             </div>
-            
-
         </div>
-        <div id="passwordstrength" className=" w-[100%] flex flex-col  place-items-start mt-[10px]">
-            <div className="flex flex-row items-center"><input className="mr-2 text-blue  w-[9px]" type="radio" name="" id="" />
-        <span className=" text-black text-[12px] ">Contains at least one UpperCase</span> </div>
-        <div className="flex flex-row items-center"><input className="mr-2 text-blue  w-[9px]" type="radio" name="" id="" />
-        <span className=" text-black text-[12px] ">Contains at least one LowerCase</span> </div>
-        <div className="flex flex-row items-center"><input className="mr-2 text-blue  w-[9px]" type="radio" name="" id="" />
-        <span className=" text-black text-[12px] ">Contains at least on Number</span> </div>
-        <div className="flex flex-row items-center"><input className="mr-2 text-blue  w-[9px]" type="radio" name="" id="" />
-        <span className=" text-black text-[12px] ">Passwords are matching</span> </div>
+        <div id="passwordstrength" className=" w-[100%] flex flex-col  place-items-start my-[1vmin]">
+            <div className="flex flex-row items-center">
+                <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
+        <span className="text-[#111111] text-[2vmin] w-[100%]">Contains at least one UpperCase</span> </div>
+        <div className="flex flex-row items-center">
+            <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
+        <span className="text-[#111111] text-[2vmin] w-[100%] my-[0.3vmin]">Contains at least one LowerCase</span> </div>
+        <div className="flex flex-row items-center">
+        <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
+        <span className="text-[#111111] text-[2vmin] w-[100%]">Contains at least on Number</span> </div>
+        <div className="flex flex-row items-center">
+        <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
+        <span className="text-[#111111] text-[2vmin] w-[100%]">Passwords are matching</span> </div>
         </div>
         <div id="buttons" className="w-[100%]">
             <button onClick={()=>{
                 saveData();
-            }} className="w-[100%] bg-[#FF5C00] rounded-sm text-[12px] font-semibold py-[4px]">Sign Up</button>
-            <p className="w-[100%] text-center font-[12px] text-[#929292] text-sm mt-2">Already a member? <a href="" className="text-[#FF5C00] font-semibold"> Sign In</a></p>
+            }} className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded-sm px-[4%] py-[2%] w-[100%] font-semibold signupinput">Sign Up</button>
+            <p className="text-[2.7vmin] text-[#B4B3D1] my-[2vmin] text-right">Already a member? <a href="" className="text-[#FF5C00] font-semibold"> Sign In</a></p>
         </div>
         </form>
     </div>
