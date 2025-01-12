@@ -37,13 +37,13 @@ const [user,setUser]=useState(null);
   return (
     
     <div className="flex items-center justify-center bg-white">
-    <Verification/>
+   
     
 
      
       {/* {!user ? <SignUp LoginHandler={LoginHandler}/> : ''}; */}
 
-      {/* {user == "Admin" ? <Dashboard/> : (user == "User" ?  <Dashboard2/> : <SignUp LoginHandler={LoginHandler}/>)}; */}
+      {user == "Admin" ? <Dashboard/> : (user == "User" ?  <Dashboard2/> : <SignUp LoginHandler={LoginHandler}/>)}
      
   
     </div>

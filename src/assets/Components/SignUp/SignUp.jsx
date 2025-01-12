@@ -7,6 +7,7 @@ const SignUp = ({LoginHandler}) => {
     <div className='flex flex-row items-center justify-center signup w-[100%]'>
         <Section/>
         <Login LoginHandler={LoginHandler} />
+
     </div>
   )
 }
