@@ -12,7 +12,7 @@ const Type = () => {
     }
 
   return (
-    <div className='flex flex-col gap-[4vmin] mt-[2vmin] w-[100%]'>
+    <div className='flex flex-col gap-[4vmin] mt-[2vmin] w-[100%] pr-[2vmin]'>
         <TypeText/>
         <CarName  carname={carnames.carOne} />
         <CarNameTwo carname={carnames.carTwo}/>
