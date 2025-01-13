@@ -24,7 +24,7 @@ const CreateRent = () => {
 
         <form onSubmit={(e) => { e.preventDefault() }} className="w-[100%] min-h-[300px] bg-[#FFFFFF] rounded py-[2em] flex flex-col items-center justify-around dd">
             <div className="w-[100%] min-h-[300px] bg-[#FFFFFF] rounded py-[2em] px-[2vmin] flex flex-row justify-around dd">
-                <div className="flex flex-col gap-[1vmin] w-[50%] px-[6vmin]">
+                <div className="flex flex-col gap-[1vmin] dd parent w-[50%] px-[6vmin]">
                     <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin]">Name</label>
                     <input onChange={(e) => { setusername(e.target.username) }} value={username} className="py-[1vmin] px-[2vmin] text-[2.5vmin]  w-[50%] border-[1px] bg-[#F6F7F9] rounded-[1vmin]" placeholder="M. Talha" type="text" />
                     <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin]">Cnic</label>
@@ -35,12 +35,12 @@ const CreateRent = () => {
                     <input onChange={(e) => { setguarantiercnic(e.target.value) }} value={guarantiercnic} className="py-[1vmin] px-[2vmin] text-[2.5vmin]  w-[50%] border-[1px] bg-[#F6F7F9] rounded-[1vmin]" placeholder="0000000000" type="number" />
                 </div>
 
-                <div className="flex flex-col justify-start gap-[4vmin] w-[50%]">
+                <div className="flex flex-col justify-start gap-[4vmin] dd parent w-[50%]">
                     <div className="flex flex-col mt-2 w-[100%]">
-                        <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin]">Phone No</label>
-                        <input onChange={(e) => { setuserphonenumber(e.target.value) }} value={userphonenumber} className="py-[1vmin] px-[2vmin] text-[2.5vmin]  w-[70%] border-[1px] bg-[#F6F7F9] rounded-[1vmin]" placeholder="0000000000" type="number" />
+                        <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin] ">Phone No</label>
+                        <input onChange={(e) => { setuserphonenumber(e.target.value) }} value={userphonenumber} className="py-[1vmin] px-[2vmin] text-[2.5vmin]  w-[70%] border-[1px] bg-[#F6F7F9] rounded-[1vmin] " placeholder="0000000000" type="number" />
                     </div>
-                    <div className="flex flex-row justify-between items-start w-[100%]">
+                    <div className="flex flex-row  items-center gap-[10vmin] w-[100%]">
                         <div className="flex flex-col gap-[1.5vh] items-start w-[100%]">
                             <p className="text-sm font-semibold">User Cnic</p>
                             <input onChange={(e) => { setusercnicimage(e.target.value) }} value={usercnicimage} className="h-[24px] text-[10px]" type="file" />

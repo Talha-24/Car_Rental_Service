@@ -4,6 +4,7 @@ import SideBar2 from '../Header/SideBar2/SideBar2'
 import Header from '../Header/Header'
 import CarDetails from '../CreatingRent/CarDetails'
 import Footer from '../Footer/Footer'
+import "./RentDetails.css"
 const Dashboard2 = () => {
   return (
     <>
@@ -12,7 +13,7 @@ const Dashboard2 = () => {
      <div className="flex flex-row w-[100%]">
      <SideBar2/>
         <div className='flex flex-col flex-start gap-[4vmin] bg-[#F6F7F9] py-[10vmin] px-[5vmin] w-[100%]'>
-             <div className='flex flex-row dd w-[100%]'>
+             <div className='flex flex-row gap-[10%] dd w-[100%]'>
                <CreateRentComponent/>
                <CarDetails/>
              </div>

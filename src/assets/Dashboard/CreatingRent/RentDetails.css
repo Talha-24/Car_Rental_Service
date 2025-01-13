@@ -1,0 +1,13 @@
+
+@media (max-width: 1120px) {
+    .createrent{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      
+    }
+    .cardetails{
+        width: 100%;
+
+    }
+}

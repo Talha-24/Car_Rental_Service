@@ -1,0 +1,24 @@
+
+@media (max-width: 1120px) {
+    .dd{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 10vmin;
+    }
+    .dd input{
+        width: 100%;
+    }
+    .createrent{
+        width: 100%;
+       
+    }
+    }
+
+@media (max-width: 533px) {
+   .sidebar2{
+    display: none;
+   }
+    
+}
