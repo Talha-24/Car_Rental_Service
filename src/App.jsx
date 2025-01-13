@@ -9,6 +9,8 @@ import SelectionComponent from "./assets/Components/User Selection/SelectionComp
 import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
 import Dashboard from "./assets/Dashboard/Header/Dashboard";
 import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
+import Dashboard3 from "./assets/Dashboard/Dashboard 3/HomeCarRent";
+import HomeCarRent from "./assets/Dashboard/Dashboard 3/HomeCarRent";
 //
 const App = () => {
 const [user,setUser]=useState(null);
@@ -35,7 +37,8 @@ const [user,setUser]=useState(null);
     
     <div className="flex items-center justify-center bg-white">
      {/* <BookingPending/> */}
-     <Dashboard2/>
+     
+     <HomeCarRent/>
    
    
 

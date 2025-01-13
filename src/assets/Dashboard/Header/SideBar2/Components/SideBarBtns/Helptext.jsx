@@ -12,7 +12,7 @@ const Helptext = () => {
   
   
          </span>
-         <p className=" text-[#90A3BF] text-[2.8vmin]">Help Text</p>
+         <p className=" text-[#90A3BF] text-[2.8vmin]">Help Center</p>
           
       </div>
     )
