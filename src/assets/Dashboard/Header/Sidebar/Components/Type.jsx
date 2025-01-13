@@ -12,15 +12,13 @@ const Type = () => {
     }
 
   return (
-    <div className='flex flex-col gap-[25px] mt-5'>
+    <div className='flex flex-col gap-[4vmin] mt-[2vmin] w-[100%]'>
         <TypeText/>
         <CarName  carname={carnames.carOne} />
         <CarNameTwo carname={carnames.carTwo}/>
         <CarNameThree carname={carnames.carThree}/>
         <CarNameFour carname={carnames.carfour} />
         
-       
-       
     </div>
   )
 }

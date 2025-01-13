@@ -5,12 +5,12 @@ import Car7 from './Carsss/Car7'
 import Car8 from './Carsss/Car8'
 const CarsInfo2 = () => {
   return (
-    <div className='py-2  flex flex-row gap-[40px]  px-8' id='carcontainer' >
-        <div className="flex  gap-[20px] flex-row">
+    <div className='py-[1vmin]  flex flex-row gap-[4vmin] w-[100%]  px-[6vmin]' id='carcontainer' >
+        <div className="flex  flex-row items-center gap-[4vmin]">
       <Car5/>
       <Car6/>
       </div>
-      <div className="flex gap-[20px] flex-row">
+      <div className="flex flex-row  items-center gap-[4vmin]">
       <Car7/>
       <Car8/>
       </div>
