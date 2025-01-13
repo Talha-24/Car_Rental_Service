@@ -5,7 +5,7 @@ import Settingtext from "./SideBarBtns/Settingtext"
 const Preference = () => {
   return (
    <>
-         <p className='text-[#94A7CB66]'>Preferences</p>
+         <p className='text-[#94A7CB66] text-[2.5vmin]'>Preferences</p>
  <Settingtext/>
     <Helptext/>
     <Logout/>            

@@ -9,7 +9,7 @@ const Menutext = () => {
     <>
   
   
-           <p className='text-[#94A7CB66]'>Main Menu</p>
+   <p className='text-[#94A7CB66] text-[2.5vmin]'>Main Menu</p>
    <Home/>
     <CarRent/>
     <Insight/>

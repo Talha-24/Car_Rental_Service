@@ -1,7 +1,7 @@
 
 const CreateRentComponent = () => {
   return (
-<div className="flex flex-row w-[100%]">
+<div className="flex flex-row w-[50%]">
     <div className="flex flex-col gap-[2vmin]">
       <div className="flex flex-col justify-between items-center bg-[#FF5C00] rounded min-h-[230px] w-[100%] createrent py-2">
         <div className="flex flex-col gap-[20px]">

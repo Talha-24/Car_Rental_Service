@@ -1,9 +1,9 @@
 
 const Calender = () => {
     return (
-      <div className="flex flex-row justify-around py-[6px] px-[7px] rounded mt-2 text-[#90A3BF]">
+      <div className="flex flex-row  justify-around py-[0.8vmin] px-[.7vmin] rounded-[1vmin] mt-[1vmin] text-[#90A3BF]">
          <span id="svg">
-         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <svg className="h-[4vmin]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 2V5" stroke="#90A3BF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M16 2V5" stroke="#90A3BF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M3.5 9.09009H20.5" stroke="#90A3BF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
@@ -19,7 +19,7 @@ const Calender = () => {
   
   
          </span>
-         <p className=" text-[#90A3BF]  ">Calender</p>
+         <p className=" text-[#90A3BF] text-[2.8vmin] ">Calender</p>
           
       </div>
     )

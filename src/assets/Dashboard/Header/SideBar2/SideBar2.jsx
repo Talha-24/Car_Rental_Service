@@ -10,12 +10,11 @@ import Insight from "./Components/SideBarBtns/Insight"
 import Settingtext from "./Components/SideBarBtns/Settingtext"
 const SideBar2 = () => {
   return (
-    <span className="px-[35px] relative pt-[100px] w-[260px] min-h-[700px] flex flex-col sidebar2 bg-gray-50">
-      <div id='mainmenu' className="">
+    <span className="px-[2vmin] relative pt-[5vmin] w-[20%] min-h-[700px] flex flex-col sidebar2 bg-gray-50">
+      <div id='mainmenu' className="w-[100%]">
     <Menutext/>
    <Preference/>
    
-
       </div>
      
 

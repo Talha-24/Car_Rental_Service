@@ -8,6 +8,7 @@ import { useState } from "react"
 import SelectionComponent from "./assets/Components/User Selection/SelectionComponent";
 import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
 import Dashboard from "./assets/Dashboard/Header/Dashboard";
+import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
 //
 const App = () => {
 const [user,setUser]=useState(null);
@@ -34,7 +35,7 @@ const [user,setUser]=useState(null);
     
     <div className="flex items-center justify-center bg-white">
      {/* <BookingPending/> */}
-     <Dashboard/>
+     <Dashboard2/>
    
    
 
