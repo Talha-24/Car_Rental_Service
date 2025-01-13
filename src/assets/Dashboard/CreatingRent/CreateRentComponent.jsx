@@ -9,7 +9,9 @@ const CreateRentComponent = () => {
           <p className=" text-white text-left px-[4vmin] w-[80%] text-[2vmin]">Safety and comfort while driving a 
           futuristic and elegant sports car</p>
         </div>
-        <img className="w-[80%] h-[80%] my-[4vmin]" src="src\assets\Dashboard\CreatingRent\image 8.png" alt="" />
+        <div className="w-[80%] my-[4vmin]">
+        <img className="w-[100%] h-[100%] " src="src\assets\Dashboard\CreatingRent\image 8.png" alt="" />
+        </div>
     </div>
       <div className="flex flex-row gap-[5%] w-[100%]">
        <img  className="w-[30%]" src="src\assets\Dashboard\CreatingRent\View 1.png" alt="" />

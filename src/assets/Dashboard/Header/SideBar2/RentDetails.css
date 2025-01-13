@@ -16,11 +16,22 @@
     }
     }
 
-@media (max-width: 533px) {
+@media (max-width: 620px) {
    .sidebar2{
     display: none;
    }
-   .dd parent{
+   .dd_parent{
     width: 100%;
+   }
+
+   .dd_parent div{
+    width: 100%;
+    margin-top: 1.5vmin;
+   }
+   .dd_parent div label{
+    font-size: 3.8vmin;
+   }
+   #cnic{
+    height: 10vmin;
    }
 }
