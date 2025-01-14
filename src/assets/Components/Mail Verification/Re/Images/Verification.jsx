@@ -1,4 +1,3 @@
-import Section from "../../../Common/Section"
 import MailVerification from "./MailVerification"
 import SectionThree from "./SectionThree"
 const Verification = () => {

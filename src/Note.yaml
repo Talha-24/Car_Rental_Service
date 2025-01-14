@@ -8,5 +8,11 @@ Authentication:
        .Email Authentication  (ResetComponent.jsx);
        .New Authentication    (Retaking Authority.jsx);
   
+Dashboards: 
+  .Home Car Rent(HomeCarRent.jsx);
+  .Category Car Rent (Dashboard.jsx);
+  .Details Car Rent (Dashboard2.jsx);
+  .Booking Processed Status (BookingPendin.jsx);
+  
 
         */

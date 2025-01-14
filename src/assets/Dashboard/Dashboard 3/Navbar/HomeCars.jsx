@@ -4,7 +4,7 @@ import ShowRoomCar2 from "./ShowRoomCar2"
 
 const HomeCars = () => {
   return (
-    <div className='w-[100%] px-[8vmin] pt-[5vmin] flex flex-col  items-center justify-center   h-[100%]'>
+    <div className='w-[90%] px-[8vmin] pt-[5vmin] flex flex-col  items-center justify-center homecars  h-[100%]'>
       <div id="NavCarDetails" className="bg-[#FF5C00]  flex flex-col w-[100%] rounded-[1vmin] items-start px-[12vmin]">
 
         <div id="text" className="w-[80%] flex flex-col gap-[3vmin] py-[8vmin]">
@@ -25,17 +25,7 @@ const HomeCars = () => {
         <p className=''>Popular Car</p><p className=''>Showroom Car</p>
       </div>
 
-
-
      <PopularCars/>
-
-
-
-
-
-
-
-
       <div className="w-[100%] flex text-center text-[#90A3BF] font-semibold text-[2.5vmin] py-[2vmin]">
         <p className=''>Showroom Car</p>
       </div>

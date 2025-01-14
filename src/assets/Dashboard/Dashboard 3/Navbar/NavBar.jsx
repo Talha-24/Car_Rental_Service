@@ -4,7 +4,7 @@ const NavBar = () => {
     return (
         <span className="px-[2vmin]  pt-[5vmin] w-[20%] min-h-[700px] flex flex-col bg-[#FFFFFF] sidebar2">
             <div id='mainmenu' className="w-[100%] flex flex-col justify-start gap-[20%] h-[100%]">
-                <div>
+                <div className='w-[100%]'>
                     <p className='text-[#94A7CB66] text-[2.5vmin] w-[100%]'>Main Menu</p>
                     <Home />
    
@@ -14,7 +14,7 @@ Preference
      Setting
     Help Center
      */}
-                <div>
+                <div className='w-[100%]'>
                 <p className='text-[#94A7CB66] text-[2.5vmin]'>Preferences</p>
             <div className="flex flex-row justify-around items-center py-[0.8vmin] px-[.7vmin] rounded-[1vmin] mt-[1vmin] w-[100%]">
                         <span id="svg">

@@ -20,6 +20,9 @@
    .sidebar2{
     display: none;
    }
+   .homecars{
+    width: 100%;
+   }
    .dd_parent{
     width: 100%;
    }

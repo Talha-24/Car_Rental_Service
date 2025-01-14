@@ -6,22 +6,17 @@
 
 import { useState } from "react"
 import SelectionComponent from "./assets/Components/User Selection/SelectionComponent";
-import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
-import Dashboard from "./assets/Dashboard/Header/Dashboard";
-import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
-import Dashboard3 from "./assets/Dashboard/Dashboard 3/HomeCarRent";
-import HomeCarRent from "./assets/Dashboard/Dashboard 3/HomeCarRent";
 //
+import SignUp from "./assets/Components/SignUp/SignUp"
 const App = () => {
 const [user,setUser]=useState(null);
 
 
   const LoginHandler=(email,password)=>{
-    if(email == "admin@me.com" && password == "123"){
-      setUser("Admin");
-    }
-    else{
+    if(email == "user@me.com" && password == "123"){
       setUser("User");
+    }else{
+      alert("Invalid Credentials!");
     }
     
    }
@@ -37,15 +32,16 @@ const [user,setUser]=useState(null);
     
     <div className="flex items-center justify-center bg-white">
      {/* <BookingPending/> */}
+  
      
-    <SelectionComponent/>
+     
    
-   
+     {/* <BookingPending/> */}
 
      
       {/* {!user ? <SignUp LoginHandler={LoginHandler}/> : ''}; */}
 
-      {/* {user == "Admin" ? <Dashboard/> : (user == "User" ?  <Dashboard2/> : <SignUp LoginHandler={LoginHandler}/>)} */}
+      {user == "User" ? <SelectionComponent/> : <SignUp LoginHandler={LoginHandler}/>}
      
   
     </div>
