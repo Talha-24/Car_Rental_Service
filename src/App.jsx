@@ -38,7 +38,7 @@ const [user,setUser]=useState(null);
     <div className="flex items-center justify-center bg-white">
      {/* <BookingPending/> */}
      
-     <HomeCarRent/>
+    <SelectionComponent/>
    
    
 

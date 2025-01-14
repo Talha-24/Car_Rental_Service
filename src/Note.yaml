@@ -1,0 +1,12 @@
+/* The Whole App id divided into Following Components:
+
+Authentication: 
+  .User Selection (SelectionComponent.jsx)
+  .Signup (Signin.jsx)
+  .Signin (Signup.jsx)
+  .Reset Password 
+       .Email Authentication  (ResetComponent.jsx);
+       .New Authentication    (Retaking Authority.jsx);
+  
+
+        */

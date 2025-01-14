@@ -1,4 +1,4 @@
-import CarsInfo from "../../Cars/CarComponents/CarsInfo"
+import PopularCars from "./PopularCars/PopularCars"
 import ShowRoomCar from "./ShowRoomCar"
 import ShowRoomCar2 from "./ShowRoomCar2"
 
@@ -8,7 +8,7 @@ const HomeCars = () => {
       <div id="NavCarDetails" className="bg-[#FF5C00]  flex flex-col w-[100%] rounded-[1vmin] items-start px-[12vmin]">
 
         <div id="text" className="w-[80%] flex flex-col gap-[3vmin] py-[8vmin]">
-          <h3 className="text-[4vmin] font-semibold  text-[#FFFFFF]">Easy way to rent a car at a low price</h3>
+          <h3 className="text-[4vmin] font-semibold  text-[#f5f2f2]">Easy way to rent a car at a low price</h3>
           <p className="text-[3vmin]   text-[#FFFFFF]">Providing cheap car rental services and safe and comfortable facilities.</p>
 
           <div id="button"  >
@@ -16,6 +16,7 @@ const HomeCars = () => {
           </div>
         </div>
 
+        
         <div id="image" className="w-[100%] flex flex-row justify-end my-[5vmin]">
           <img className="w-[60vmin]" src="src\assets\Dashboard\Dashboard 3\Navbar\image.png" alt="" />
         </div>
@@ -24,7 +25,17 @@ const HomeCars = () => {
         <p className=''>Popular Car</p><p className=''>Showroom Car</p>
       </div>
 
-      <CarsInfo />
+
+
+     <PopularCars/>
+
+
+
+
+
+
+
+
       <div className="w-[100%] flex text-center text-[#90A3BF] font-semibold text-[2.5vmin] py-[2vmin]">
         <p className=''>Showroom Car</p>
       </div>

@@ -1,4 +1,3 @@
-import React from 'react'
 import SectionFour from '../Reset Password/Email Authentication/SectionFour'
 import UserSelection from './UserSelection'
 
