@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const CreateRent = () => {
+const CreateRent = (propse) => {
 
 
 
@@ -65,7 +65,9 @@ const CreateRent = () => {
                 </div>
             </div>
             <div className="flex items-center justify-center w-[100%]">
-                <button onClick={() => { userData() }} className="py-[1.5vmin] px-[2vmin] w-[20%] bg-[#FF5C00] rounded-[0.7vmin] text-[2.5vmin] text-white">Rent Now!</button>
+                <button onClick={() => { userData();
+                    propse.setselectUser('Booking')
+                 }} className="py-[1.5vmin] px-[2vmin] w-[20%] bg-[#FF5C00] rounded-[0.7vmin] text-[2.5vmin] text-white">Rent Now!</button>
             </div>
 
 

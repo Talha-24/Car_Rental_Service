@@ -8,9 +8,15 @@ import { useState } from "react"
 import SelectionComponent from "./assets/Components/User Selection/SelectionComponent";
 //
 import SignUp from "./assets/Components/SignUp/SignUp"
+import HomeCarRent from "./assets/Dashboard/Dashboard 3/HomeCarRent";
+import Dashboard from "./assets/Dashboard/Header/Dashboard";
+import CreateRentComponent from "./assets/Dashboard/CreatingRent/CreateRentComponent";
+import CreateRent from "./assets/Dashboard/CreatingRent/CreateRent";
+import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
+import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
 const App = () => {
 const [user,setUser]=useState(null);
-
+const [selectUser,setselectUser]=useState(null);
 
   const LoginHandler=(email,password)=>{
     if(email == "user@me.com" && password == "123"){
@@ -40,8 +46,9 @@ const [user,setUser]=useState(null);
 
      
       {/* {!user ? <SignUp LoginHandler={LoginHandler}/> : ''}; */}
-
-      {user == "User" ? <SelectionComponent/> : <SignUp LoginHandler={LoginHandler}/>}
+      {user == "User" ? <SelectionComponent setselectUser={setselectUser} setUser={setUser}/> : (user == null ? <SignUp LoginHandler={LoginHandler}/> : '' ) }
+      {selectUser == "Showroom"? <HomeCarRent/>: (selectUser == "rentacar" ? <Dashboard setselectUser={setselectUser}/> : ( selectUser == "selectacar"? <Dashboard2 setselectUser={setselectUser}/> :( selectUser == "Booking"?<BookingPending/>: '')))}
+     {/* <Dashboard2/> */}
      
   
     </div>

@@ -3,14 +3,15 @@ import Car1 from './Carsss/Car1'
 import Car2 from './Carsss/Car2'
 import Car3 from './Carsss/Car3'
 import Car4 from './Carsss/Car4'
-const CarsInfo = () => {
+const CarsInfo = (propse) => {
   return (
     <div className='py-[1vmin]  flex flex-row  gap-[4vmin]  px-[6vmin] w-[100%]' id='carcontainer' >
 
        <div  className='flex flex-row items-center gap-[4vmin]'>
-       <Car1/>
+       <Car1 setselectUser={propse.setselectUser}/>
        <Car2/>
        </div>
+       
        <div className='flex flex-row items-center gap-[4vmin]'>
       <Car3/>
       <Car4/>

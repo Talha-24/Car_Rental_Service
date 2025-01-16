@@ -1,6 +1,6 @@
 
 
-const Car1 = () => {
+const Car1 = (propse) => {
   return (
     <div className='w-[50%] h-[100%] text-black border-[1px] border-[#dadada]  rounded-lg flex flex-col justify-between p-[10px]'>
      <div id="logo" className='flex flex-row justify-between  items-center'><b>Koienigsegg</b>
@@ -42,7 +42,9 @@ const Car1 = () => {
     <div className='flex flex-col gap-[1vmin]   w-[100%]'>
     <p className='font-bold w-[100%] text-[12px] inline-block'> 33,000/day</p>
    
-    <button className='py-[1vmin] px-[1.4vmin] bg-[#FF5C1E] rounded-[0.5vmin] text-white text-[12px] font-semibold w-[100%]'>Rent Now</button>
+    <button onClick={()=>{
+      propse.setselectUser('selectacar');
+    }} className='py-[1vmin] px-[1.4vmin] bg-[#FF5C1E] rounded-[0.5vmin] text-white text-[12px] font-semibold w-[100%]'>Rent Now</button>
    </div>
 </div>
   )

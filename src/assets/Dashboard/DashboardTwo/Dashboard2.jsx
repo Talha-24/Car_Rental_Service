@@ -5,7 +5,7 @@ import Header from '../Header/Header'
 import CarDetails from '../CreatingRent/CarDetails'
 import Footer from '../Footer/Footer'
 import "./RentDetails.css"
-const Dashboard2 = () => {
+const Dashboard2 = (propse) => {
   return (
     <>
     <div className='w-[100%] flex flex-col'>
@@ -20,7 +20,7 @@ const Dashboard2 = () => {
             <div className='w-[100%]'>
             <h2 className='text-[3vmin] font-semibold'>User Details</h2>
             <p className='text-[2vmin]'>Please enter your details!</p></div>
-           <CreateRent/>
+           <CreateRent setselectUser={propse.setselectUser}/>
           </div>
     </div>
     <Footer/>
