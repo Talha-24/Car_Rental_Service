@@ -9,12 +9,12 @@ const CarsInfo = (propse) => {
 
        <div  className='flex flex-row items-center gap-[4vmin]'>
        <Car1 setselectUser={propse.setselectUser}/>
-       <Car2/>
+       <Car2 setselectUser={propse.setselectUser} />
        </div>
-       
+
        <div className='flex flex-row items-center gap-[4vmin]'>
-      <Car3/>
-      <Car4/>
+      <Car3 setselectUser={propse.setselectUser} />
+      <Car4 setselectUser={propse.setselectUser} />
       </div>
      
       

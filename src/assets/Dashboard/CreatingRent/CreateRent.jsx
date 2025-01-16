@@ -37,7 +37,7 @@ const CreateRent = (propse) => {
 
                     
                     <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin]">Guarantier Name</label>
-                    <input onChange={(e) => { setguarantiername(e.target.value) }} value={guarantiername} className="py-[1vmin] px-[2vmin] text-[2.5vmin]  border-[1px] bg-[#F6F7F9] rounded-[1vmin]" placeholder="Abdul Rauf" type="text" />
+                    <input onChange={(e) => { setguarantiername(e.target.value) }} value={guarantiername} className="py-[1vmin] px-[2vmin] text-[2.5vmin]  border-[1px] bg-[#F6F7F9] rounded-[1vmin]" placeholder="Michael Cholaee" type="text" />
                     </div>
                     <div className="flex flex-col">
                     <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin]">Gruarantier Cnic</label>

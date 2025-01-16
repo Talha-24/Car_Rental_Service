@@ -1,6 +1,7 @@
 import PopularCars from "./PopularCars/PopularCars"
 import ShowRoomCar from "./ShowRoomCar"
 import ShowRoomCar2 from "./ShowRoomCar2"
+import ShowRoomCar3 from "./ShowroomCar3"
 
 const HomeCars = () => {
   return (
@@ -24,8 +25,9 @@ const HomeCars = () => {
       <div className="w-[100%] flex justify-between text-[#90A3BF] font-semibold text-[2.5vmin] py-[2vmin]">
         <p className=''>Popular Car</p><p className=''>Showroom Car</p>
       </div>
+      <ShowRoomCar3 />
 
-     <PopularCars/>
+     {/* <PopularCars/> */}
       <div className="w-[100%] flex text-center text-[#90A3BF] font-semibold text-[2.5vmin] py-[2vmin]">
         <p className=''>Showroom Car</p>
       </div>

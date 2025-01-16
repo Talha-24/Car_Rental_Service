@@ -47,7 +47,7 @@ const [selectUser,setselectUser]=useState(null);
      
       {/* {!user ? <SignUp LoginHandler={LoginHandler}/> : ''}; */}
       {user == "User" ? <SelectionComponent setselectUser={setselectUser} setUser={setUser}/> : (user == null ? <SignUp LoginHandler={LoginHandler}/> : '' ) }
-      {selectUser == "Showroom"? <HomeCarRent/>: (selectUser == "rentacar" ? <Dashboard setselectUser={setselectUser}/> : ( selectUser == "selectacar"? <Dashboard2 setselectUser={setselectUser}/> :( selectUser == "Booking"?<BookingPending/>: '')))}
+      {selectUser == "Showroom"? <HomeCarRent/>: (selectUser == "rentacar" ? <Dashboard setselectUser={setselectUser}/> : ( selectUser == "selectacar"? <Dashboard2 setselectUser={setselectUser}/> :( selectUser == "Booking"?<BookingPending setselectUser={setselectUser} />: '')))}
      {/* <Dashboard2/> */}
      
   
