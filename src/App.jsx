@@ -14,6 +14,8 @@ import CreateRentComponent from "./assets/Dashboard/CreatingRent/CreateRentCompo
 import CreateRent from "./assets/Dashboard/CreatingRent/CreateRent";
 import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
 import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
+import Signin from "./assets/Components/Sign In/Signin";
+import ResetComponent from "./assets/Components/Reset Password/Email Authentication/ResetComponent";
 const App = () => {
 const [user,setUser]=useState(null);
 const [selectUser,setselectUser]=useState(null);
@@ -46,7 +48,7 @@ const [selectUser,setselectUser]=useState(null);
 
      
       {/* {!user ? <SignUp LoginHandler={LoginHandler}/> : ''}; */}
-      {user == "User" ? <SelectionComponent setselectUser={setselectUser} setUser={setUser}/> : (user == null ? <SignUp LoginHandler={LoginHandler}/> : '' ) }
+      {user == "User" ? <SelectionComponent setselectUser={setselectUser} setUser={setUser}/> : (user == null ? <SignUp setUser={setUser} LoginHandler={LoginHandler}/> : (user == "Registeration"? <Signin setUser={setUser}/>: (user == 'Forgotpassword'?  <ResetComponent/> : '') ) ) }
       {selectUser == "Showroom"? <HomeCarRent/>: (selectUser == "rentacar" ? <Dashboard setselectUser={setselectUser}/> : ( selectUser == "selectacar"? <Dashboard2 setselectUser={setselectUser}/> :( selectUser == "Booking"?<BookingPending setselectUser={setselectUser} />: '')))}
      {/* <Dashboard2/> */}
      

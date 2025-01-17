@@ -55,7 +55,7 @@
 import { useState } from "react"
 
 
-const Registeration = () => {
+const Registeration = (propse) => {
    
    
    
@@ -144,7 +144,7 @@ return (
             <button onClick={()=>{
                 saveData();
             }} className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded-sm px-[4%] py-[2%] w-[100%] font-semibold signupinput">Sign Up</button>
-            <p className="text-[2.7vmin] text-[#B4B3D1] my-[2vmin] text-right">Already a member? <a href="" className="text-[#FF5C00] font-semibold"> Sign In</a></p>
+            <p className="text-[2.7vmin] text-[#B4B3D1] my-[2vmin] text-right">Already a member? <p href="" onClick={()=>{propse.setUser(null)}} className="text-[#FF5C00] font-semibold cursor-pointer"> Sign In</p></p>
         </div>
         </form>
     </div>

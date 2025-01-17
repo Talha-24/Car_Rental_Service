@@ -4,12 +4,15 @@ import Signin from "../Sign In/Signin";
 import Dashboard from "../../Dashboard/Header/Dashboard";
 
 
-const Login = ({LoginHandler}) => {
+const Login = (propse) => {
+    console.log(propse);
 //Planning
 /*
 Hooks States
 
 */
+
+
 
 const [username, setUsername] = useState('');
 const [loginpassword, setloginpassword] = useState('');
@@ -17,7 +20,7 @@ const [loginpassword, setloginpassword] = useState('');
     const userLogin=()=>{
         console.log(username);
         console.log(loginpassword);
-        LoginHandler(username,loginpassword);
+        propse.LoginHandler(username,loginpassword);
     }
   return (
     <div className="bg-[#ffffff] w-[100%] flex flex-col items-center justify-center h-[100vh] section">
@@ -34,16 +37,16 @@ const [loginpassword, setloginpassword] = useState('');
                     <input  onChange={(e)=>{setloginpassword(e.target.value)}} value={loginpassword} type="password" placeholder="********"    className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%] signupinput" />
                 </div>
                 <div id="forgotpassword" className="my-[1.2vmin] text-right text-[#FF5C00]">
-                    <p className="underline font-semibold text-[2.8vmin]">Forgot Password</p>
+                    <p onClick={()=>{propse.setUser('Forgotpassword')}} className="underline font-semibold text-[2.8vmin]"><p className="cursor-pointer">Forgot Password</p></p>
                 </div>
 
             </div>
             <div className="w-[100%]">
                 <button id='btn' onClick={()=>{userLogin()
                 }}
-                className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded-sm px-[5%] py-[2.5%] w-[100%] signupinput">Sign in</button>
+                className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded-sm px-[5%] cursor-pointer py-[2.5%] w-[100%] signupinput">Sign in</button>
                 <div className="text-center my-[1.5vmin]">
-                    <p className="text-[2.4vmin] text-[#B4B3D1] my-[10px]">Dont have an account? <a href='/registeration' className="font-semibold text-[#FF5C00]"> Sign Up</a></p>
+                    <p className="text-[2.4vmin] text-[#B4B3D1] my-[10px]">Dont have an account? <b href='' onClick={()=>{propse.setUser("Registeration")}} className="font-semibold text-[#FF5C00] cursor-pointer"> Sign Up</b></p>
                 </div>
             </div>
           

@@ -13,7 +13,7 @@ const Logout = () => {
   
   
          </span>
-         <p className=" text-[#90A3BF] text-[2.8vmin]">Log out</p>
+         <p className=" text-[#90A3BF] text-[2.8vmin]" onClick={()=>{window.location.reload()}}> <a href=""> Log out </a></p>
           
       </div>
     )
