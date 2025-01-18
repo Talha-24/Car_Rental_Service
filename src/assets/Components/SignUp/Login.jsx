@@ -1,7 +1,4 @@
 import { useState } from "react"
-import { Route, Routes } from "react-router-dom";
-import Signin from "../Sign In/Signin";
-import Dashboard from "../../Dashboard/Header/Dashboard";
 
 
 const Login = (propse) => {

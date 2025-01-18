@@ -10,12 +10,11 @@ import SelectionComponent from "./assets/Components/User Selection/SelectionComp
 import SignUp from "./assets/Components/SignUp/SignUp"
 import HomeCarRent from "./assets/Dashboard/Dashboard 3/HomeCarRent";
 import Dashboard from "./assets/Dashboard/Header/Dashboard";
-import CreateRentComponent from "./assets/Dashboard/CreatingRent/CreateRentComponent";
-import CreateRent from "./assets/Dashboard/CreatingRent/CreateRent";
 import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
 import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
 import Signin from "./assets/Components/Sign In/Signin";
 import ResetComponent from "./assets/Components/Reset Password/Email Authentication/ResetComponent";
+import BookingStatus from "./assets/Dashboard/BookingProcessing/BookingStatus/BookingStatus";
 const App = () => {
 const [user,setUser]=useState(null);
 const [selectUser,setselectUser]=useState(null);
@@ -29,28 +28,16 @@ const [selectUser,setselectUser]=useState(null);
     
    }
 
-//Sign Up...
-//Create Accout(Signin)...
-//Reset Component...
-//Retaking Authority...
-
-
-
   return (
     
     <div className="flex items-center justify-center bg-white">
-     {/* <BookingPending/> */}
-  
-     
-     
-   
-     {/* <BookingPending/> */}
+    
 
      
-      {/* {!user ? <SignUp LoginHandler={LoginHandler}/> : ''}; */}
+      
       {user == "User" ? <SelectionComponent setselectUser={setselectUser} setUser={setUser}/> : (user == null ? <SignUp setUser={setUser} LoginHandler={LoginHandler}/> : (user == "Registeration"? <Signin setUser={setUser}/>: (user == 'Forgotpassword'?  <ResetComponent/> : '') ) ) }
-      {selectUser == "Showroom"? <HomeCarRent/>: (selectUser == "rentacar" ? <Dashboard setselectUser={setselectUser}/> : ( selectUser == "selectacar"? <Dashboard2 setselectUser={setselectUser}/> :( selectUser == "Booking"?<BookingPending setselectUser={setselectUser} />: '')))}
-     {/* <Dashboard2/> */}
+      {selectUser == "Showroom"? <HomeCarRent/>: (selectUser == "rentacar" ? <Dashboard setselectUser={setselectUser}/> : ( selectUser == "selectacar"? <Dashboard2 setUser={setUser} setselectUser={setselectUser}/> :( selectUser == "Booking"? <BookingPending setselectUser={setselectUser} />: (selectUser == "BookingStatus"? <BookingStatus setselectUser={setselectUser}/> :  ''))))}
+     
      
   
     </div>

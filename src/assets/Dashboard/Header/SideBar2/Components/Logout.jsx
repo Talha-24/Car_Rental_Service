@@ -1,5 +1,5 @@
 
-const Logout = () => {
+const Logout = (propse) => {
     return (
       <div className="flex flex-row gap-[1vmin] py-[1vmin] px-[1.4vmin] rounded mt-[2.5vmin]">
          <span id="svg">
@@ -13,7 +13,10 @@ const Logout = () => {
   
   
          </span>
-         <p className=" text-[#90A3BF] text-[2.8vmin]" onClick={()=>{window.location.reload()}}> <a href=""> Log out </a></p>
+         <p className=" text-[#90A3BF] text-[2.8vmin] cursor-pointer" onClick={()=>{
+          propse.setUser(null);
+          propse.setselectUser('null');
+          }} > Log out</p>
           
       </div>
     )

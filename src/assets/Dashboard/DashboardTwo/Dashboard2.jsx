@@ -11,7 +11,7 @@ const Dashboard2 = (propse) => {
     <div className='w-[100%] flex flex-col'>
       <Header/>
      <div className="flex flex-row w-[100%]">
-     <SideBar2/>
+     <SideBar2 setUser={propse.setUser} setselectUser={propse.setselectUser}/>
         <div className='flex flex-col flex-start gap-[4vmin] bg-[#F6F7F9] py-[10vmin] px-[5vmin] w-[100%]'>
              <div className='flex flex-row gap-[10%] dd w-[100%]'>
                <CreateRentComponent/>
