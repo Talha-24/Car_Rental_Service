@@ -22,7 +22,7 @@ const BookingStatus = (propse) => {
         </div>
         <div className='flex flex-row gap-[4vmin] w-[100%] justify-center'>
             <button onClick={()=>{propse.setselectUser('Booking')}} className='bg-[#FF5C00] text-white rounded text-[2vmin] py-[1.5vmin] px-[2.4vmin] proceedbtns'>Go Back</button>
-            <button className='bg-[#FF5C00] text-white rounded text-[2vmin] py-[1.5vmin] px-[2.4vmin] proceedbtns'>Book Now!</button>
+            <button onClick={()=>{propse.setselectUser('rentacar')}} className='bg-[#FF5C00] text-white rounded text-[2vmin] py-[1.5vmin] px-[2.4vmin] proceedbtns'>Book Now!</button>
             </div>
 
       </div>

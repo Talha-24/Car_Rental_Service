@@ -52,11 +52,19 @@
 
 
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
 const Registeration = (propse) => {
+    const uppercase = useRef(null);
+    const lowercase = useRef(null);
+    const number = useRef(null);
+    const result = useRef(null);
+    const pass = useRef(null);
+    const cpass= useRef(null);
+    
    
+  
    
    
     /*Every user who will Create an Account his Data will be within an Array of Object:
@@ -83,8 +91,6 @@ setsurname("");
 setemail("");
 setpassword("");
 setconfirmpassword("");
-
-
 }
 
 return (
@@ -115,12 +121,12 @@ return (
             <div id="password" className="w-[100%] flex flex-row gap-[10px] my-[1vmin]">
                 <div id="setpassword" className="w-[50%] ">
                     <p className="text-[#19345F] text-[3vmin] w-[100%] my-[0.3vmin]">Password </p>
-                    <input onChange={(e)=>{setpassword(e.target.value)}} value={password} type="password" placeholder="****************" className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%]" />
+                    <input ref={pass} onChange={(e)=>{setpassword(e.target.value)}} value={password} type="password" placeholder="****************" className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%]" />
 
                 </div>
                 <div id="confirmpassword" className="w-[50%]">
                     <p className="text-[#19345F] text-[3vmin] w-[100%] confirmpassword my-[0.3vmin]">Confirm Password</p>
-                    <input onChange={(e)=>{setconfirmpassword(e.target.value)}} value={confirmpassword} type="password" placeholder="****************"  className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%]" />
+                    <input ref={cpass} onChange={(e)=>{setconfirmpassword(e.target.value)}} value={confirmpassword} type="password" placeholder="****************"  className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%]" />
 
                 </div>
 
@@ -129,16 +135,18 @@ return (
         <div id="passwordstrength" className=" w-[100%] flex flex-col  place-items-start my-[1vmin]">
             <div className="flex flex-row items-center">
                 <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
-        <span className="text-[#111111] text-[2vmin] w-[100%]">Contains at least one UpperCase</span> </div>
+        <span ref={uppercase} className="text-[#111111] text-[2vmin] w-[100%]">Contains at least one UpperCase</span> </div>
         <div className="flex flex-row items-center">
             <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
-        <span className="text-[#111111] text-[2vmin] w-[100%] my-[0.3vmin]">Contains at least one LowerCase</span> </div>
+        <span ref={lowercase} className="text-[#111111] text-[2vmin] w-[100%] my-[0.3vmin]">Contains at least one LowerCase</span> </div>
         <div className="flex flex-row items-center">
         <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
-        <span className="text-[#111111] text-[2vmin] w-[100%]">Contains at least on Number</span> </div>
+        <span 
+        ref={number} className="text-[#111111] text-[2vmin] w-[100%]">Contains at least on Number</span> </div>
         <div className="flex flex-row items-center">
         <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
-        <span className="text-[#111111] text-[2vmin] w-[100%]">Passwords are matching</span> </div>
+        <span 
+        ref={result} className="text-[#111111] text-[2vmin] w-[100%]">Passwords are matching</span> </div>
         </div>
         <div id="buttons" className="w-[100%]">
             <button onClick={()=>{

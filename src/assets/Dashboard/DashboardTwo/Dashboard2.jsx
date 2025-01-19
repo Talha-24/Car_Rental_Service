@@ -1,15 +1,15 @@
 import CreateRentComponent from '../CreatingRent/CreateRentComponent'
 import CreateRent from '../CreatingRent/CreateRent'
 import SideBar2 from '../Header/SideBar2/SideBar2'
-import Header from '../Header/Header'
 import CarDetails from '../CreatingRent/CarDetails'
 import Footer from '../Footer/Footer'
 import "./RentDetails.css"
+import UserHeader from '../Header/UserHeader'
 const Dashboard2 = (propse) => {
   return (
     <>
     <div className='w-[100%] flex flex-col'>
-      <Header/>
+      <UserHeader/>
      <div className="flex flex-row w-[100%]">
      <SideBar2 setUser={propse.setUser} setselectUser={propse.setselectUser}/>
         <div className='flex flex-col flex-start gap-[4vmin] bg-[#F6F7F9] py-[10vmin] px-[5vmin] w-[100%]'>

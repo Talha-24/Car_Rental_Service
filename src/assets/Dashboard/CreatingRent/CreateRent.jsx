@@ -27,7 +27,7 @@ const CreateRent = (propse) => {
                 <div className="flex flex-col gap-[1vmin] dd_parent w-[50%] px-[6vmin]">
                     <div className="flex flex-col">
                     <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin]">Name</label>
-                    <input onChange={(e) => { setusername(e.target.username) }} value={username} className="py-[1vmin] px-[2vmin] text-[2.5vmin]   border-[1px] bg-[#F6F7F9] rounded-[1vmin]" placeholder="M. Talha" type="text" />
+                    <input id='name' onChange={(e) => { setusername(e.target.username) }} value={username} className="py-[1vmin] px-[2vmin] text-[2.5vmin]   border-[1px] bg-[#F6F7F9] rounded-[1vmin]" placeholder="M. Talha" type="text" />
                     </div>
                     <div  className="flex flex-col">
                     <label htmlFor="" className=" text-black inline-block font-semibold text-[2.5vmin]">Cnic</label>
@@ -58,7 +58,7 @@ const CreateRent = (propse) => {
                         </div>
                         <div className="flex flex-col gap-[1.5vh] items-start w-[100%]">
                             <p className="text-sm font-semibold text-[2vmin]">Guarantier Cnic</p>
-                            <input id='cnic' onChange={(e) => { setguarantiercnic(e.target.value) }} value={guarantiercnicimage} className="h-[4vmin]  text-[1.5vmin]" type="file" />
+                            <input id='cnic' onChange={(e) => { setguarantiercnicimage(e.target.value) }} value={guarantiercnicimage} className="h-[4vmin]  text-[1.5vmin]" type="file" />
                         </div>
 
                     </div>
