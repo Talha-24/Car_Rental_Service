@@ -23,7 +23,7 @@ const [selectUser,setselectUser]=useState(null);
     if(email == "user@me.com" && password == "123"){
       setUser("User");
     }else{
-      alert("Invalid Credentials!");
+      alert("Invalid Credentials!.");
     }
     
    }
