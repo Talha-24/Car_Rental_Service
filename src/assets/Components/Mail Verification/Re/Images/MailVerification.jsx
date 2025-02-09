@@ -9,13 +9,13 @@ const MailVerification = () => {
                     <p className="text-center w-[100%] py-[8px] text-black text-[2vmin]">Lorem ipsum tadsf alasdf lasdf asodf la sdf dolor sit amet, elit.</p>
                     
                 </div>
-                <div className="w-[100%] flex flex-row gap-[2vmin-] py-[4vmin] ">
-                   <input readOnly type="number" name="" id=""  className="w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg"/>
-                   <input readOnly type="number" name="" id="" className="w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg" />
-                   <input readOnly type="number" name="" id=""  className="w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg"/>
-                   <input readOnly type="number" name="" id="" className="w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg" />
-                   <input readOnly type="number" name="" id="" className="w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg" />
-                   <input readOnly type="text" className="w-[12vmin] py-[2.5vmin] rounded-lg text-black border-[1px] border-gray-500" />
+                <div className="w-[100%] flex flex-row gap-[2vmin] py-[4vmin] ">
+                   <input  placeholder="-" type="number" name="" id=""  className="placeholder:font-semibold placeholder:text-center w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg"/>
+                   <input  placeholder="-" type="number" name="" id="" className="placeholder:font-semibold placeholder:text-center w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg" />
+                   <input  placeholder="-" type="number" name="" id=""  className="placeholder:font-semibold placeholder:text-center w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg"/>
+                   <input  placeholder="-" type="number" name="" id="" className="placeholder:font-semibold placeholder:text-center w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg" />
+                   <input  placeholder="-" type="number" name="" id="" className="placeholder:font-semibold placeholder:text-center w-[12vmin] py-[2.5vmin] text-black text-center border-[1px] border-gray-500  rounded-lg" />
+                   <input  placeholder="-" type="number" className="placeholder:font-semibold placeholder:text-center w-[12vmin] py-[2.5vmin] rounded-lg text-black border-[1px] border-gray-500" />
 
                 </div>
                 <div className="w-[100%]">
