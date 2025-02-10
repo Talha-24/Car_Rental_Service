@@ -1,9 +1,24 @@
+import axios, { Axios } from "axios"
 import PopularCars from "./PopularCars/PopularCars"
 import ShowRoomCar from "./ShowRoomCar"
 import ShowRoomCar2 from "./ShowRoomCar2"
 import ShowRoomCar3 from "./ShowroomCar3"
+import { useEffect, useState } from "react"
 
 const HomeCars = () => {
+  console.log("Home Car Rent");
+
+
+   
+
+
+
+
+
+
+
+
+
   return (
     <div className='w-[90%] px-[8vmin] pt-[5vmin] flex flex-col  items-center justify-center homecars  h-[100%]'>
       <div id="NavCarDetails" className="bg-[#FF5C00]  flex flex-col w-[100%] rounded-[1vmin] items-start px-[12vmin]">

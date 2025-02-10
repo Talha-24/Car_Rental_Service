@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
 
 import { toast, ToastContainer } from "react-toastify";
 const Login = (propse) => {
-    console.log(propse);
+
+        
+    const navigation=useNavigate();
 //Planning
 /*
 Hooks States
@@ -33,8 +36,13 @@ Hooks States
                 })
             }
             notification(response.data.message);
+            console.log("Data is passing to state");
+            propse.setData(response.data.message);
+            console.log("Data has passed");
             console.log('Login Response:', response.data.message);
             localStorage.setItem("Token : ",response.data.data.token);
+            navigation("/showroomowner")
+
         } catch (error) {
             const notify = (error) => {
                 toast.error(error, {
@@ -50,6 +58,13 @@ Hooks States
                 });
             }
             notify(error.response.data.message);
+            if(error.response.data.message == "User not found."){
+                console.log("Data is passing to state");
+                propse.setData(error.response.data.message);
+                console.log("Data has passed");
+                window.location.href='http://localhost:5173/register';
+
+            }
             console.log("Error : ", error.response.data.message)
             console.error('Login Error:', error.response ? error.response.data : error.message);
         }
@@ -61,39 +76,60 @@ Hooks States
     const [email, setEmail] = useState('');
     const [loginpassword, setloginpassword] = useState('');
 
-    const userLogin = () => {
+    function submitlogin(email,password){
         console.log(email);
-        console.log(loginpassword);
-        propse.LoginHandler(email, loginpassword);
+        console.log(password);
+        propse.LoginHandler(email,password);
+        console.log("Function in Function : ",LoginHandler)
     }
+
+    let turn=true;
+
     return (
         <div className="bg-[#ffffff] w-[100%] flex flex-col items-center justify-center h-[100vh] section">
 
-            <form onSubmit={(e) => { e.preventDefault() }} className="flex flex-col items-center justify-center">
-                <div className="flex flex-col gap-[2vmin]" >
-                    <h2 className="text-[5vmin] font-bold text-[#19345F]">Sign In</h2>
-                    <div id="email">
+            <form onSubmit={(e) => { e.preventDefault() }} className="flex flex-col items-center justify-center w-[60%]">
+                <div className="flex flex-col gap-[2vmin] w-[100%]" >
+                    <h2 className="text-[7vmin] font-semibold font-sans text-[#19345F]">Sign In</h2>
+                    <div id="email" className="w-[100%]">
                         <p className="text-[#19345F] text-[3vmin] w-[100%]">Email</p>
-                        <input onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="Johndoe@gmail.com" className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%] signupinput" />
+                        <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[6vmin] w-[100%] signupinput flex">
+                        <input onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="Johndoe@gmail.com" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
+                        <img className="m-[1.6vmin]" src="src\assets\Components\SignUp\Asset\email.svg" alt="" />
+                        </span>
                     </div>
                     <div id="password">
                         <p className="text-[#19345F] text-[3vmin]">Password</p>
-                        <input onChange={(e) => { setloginpassword(e.target.value) }} value={loginpassword} type="password" placeholder="********" className="bg-[#F4F2F3]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded-sm px-[5%] py-[2.5%] w-[100%] signupinput" />
+                        <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[6vmin] w-[100%] signupinput flex">
+                        <input id='passwordinput' onChange={(e) => { setloginpassword(e.target.value) }} value={loginpassword} type="password" placeholder="**********" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
+                        <img onClick={()=>{
+
+                          let pass= document.querySelector("#passwordinput");
+                          if(turn== true){
+                        pass.type='text'
+                        turn=false;
+                    }
+                    else{
+                        pass.type="password";
+                          turn=true;
+                    }
+
+                        }}  className="m-[1.6vmin]" src="src\assets\Components\SignUp\Asset\eye.svg" alt="" />
+                        </span>
                     </div>
-                    <div id="forgotpassword" className="my-[1.2vmin] text-right text-[#FF5C00]">
-                        <p onClick={() => { propse.setUser('Forgotpassword') }} className="underline font-semibold text-[2.8vmin]"><p className="cursor-pointer">Forgot Password</p></p>
+                    <div id="forgotpassword" className="my-[1.2vmin] mb-[3vmin] text-right text-[#FF5C00]">
+                        <p onClick={() => { 
+                            navigation("forgotpassword");
+                         }} id='forgotpassword' className="underline font-semibold text-[2.8vmin]"><p className="cursor-pointer text-[#FF5C00] font-semibold">Forgot Password</p></p>
 
                     </div>
 
                 </div>
                 <div className="w-[100%]">
-                    <button id='btn' onClick={() => {
-                        userLogin();
-                        handleLogin();
-                    }}
-                        className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded-sm px-[5%] cursor-pointer py-[2.5%] w-[100%] signupinput">Sign in</button>
+                    <button id='btn' onClick={()=>{handleLogin();submitlogin();}}
+                        className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded h-[6vmin] cursor-pointer  w-[100%] signupinput">Sign in</button>
                     <div className="text-center my-[1.5vmin]">
-                        <p className="text-[2.4vmin] text-[#B4B3D1] my-[10px]">Dont have an account? <b href='' onClick={() => { propse.setUser("Registeration") }} className="font-semibold text-[#FF5C00] cursor-pointer"> Sign Up</b></p>
+                       <Link to='/role'> <p  className="text-[2.4vmin]  my-[10px] text-[#312E81]">Don't have an account? <b href='' className="font-semibold text-[#FF5C00] cursor-pointer">Sign Up</b></p></Link>
                     </div>
                 </div>
 

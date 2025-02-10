@@ -6,7 +6,7 @@ const Section_two = () => {
             <img  className="object-cover w-[32%] h-[65%]" src="src\assets\Components\Sign In\images\smallcar.png" alt="" />
             <img className="object-cover w-[68%]" src="src\assets\Components\Sign In\images\bigcar.png" alt="" />
         </div>
-        <div id="text" className="bg-[#FF6E1C] text-center flex flex-col items-center gap-[2vmin]">
+        <div id="text" className="bg-[#FF6E1C] text-center flex flex-col items-center gap-[2vmin] text-white">
             <big className="bg-[#FF6E1C] text-[5vmin] font-semibold">Welcome Abroad</big>
             <p className="bg-[#FF6E1C] text-[2.5vmin]">Just a Showroom of clicks and we Start..</p>
             <img className="bg-[#FF6E1C] w-[6vmin]" src="src\assets\images\Pager.png" alt="" />

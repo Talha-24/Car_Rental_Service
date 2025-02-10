@@ -3,11 +3,10 @@ import Registeration from './Registeration'
 import Section_two from './Section_two'
 
 const Signin = (propse) => {
-  const [role, setrole] = useState('');
   return (
-    <div  className='flex flex-row w-[100%] signin'>
+    <div  className='flex flex-row w-[100%] signin items-center justify-center'>
       <Section_two/>
-      <Registeration setrole={setrole} setUser={propse.setUser} />
+      <Registeration role={propse.role}  setUser={propse.setUser} />
 
     </div>
   )

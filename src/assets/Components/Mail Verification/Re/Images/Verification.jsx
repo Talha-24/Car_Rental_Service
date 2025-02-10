@@ -1,12 +1,12 @@
 import MailVerification from "./MailVerification"
 import SectionThree from "./SectionThree"
-const Verification = () => {
+const Verification = (propse) => {
   return (
     <div className="flex w-[100%] flex-row items-center justify-center verification ">
     
     <SectionThree/>
      
-        <MailVerification/>
+        <MailVerification useremail={propse.useremail} role={propse.role}/>
 
     </div>
   )
