@@ -7,23 +7,45 @@
  box-sizing: border-box;
 }
 .app{
-  
+  background-color: white;
   color: white;
 }
 .copyright{
   border-top: 0.1px solid gray;
 }
+#modal{
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+  color: #FC500C;
 
+}
 #carcontainer::-webkit-scrollbar{
   display: none;
 }
+/* 
+#email{
+  background-color: red;
+  padding: 0px;
+  margin:0px;
+}
+#email span{
+  background-color:yellow;
+  padding: 0px;
+  margin: 0px;
+  gap: 20px;
+}
+#email span input{
+  background-color: blue;
+  width: 100%;
+} */
 
 @font-face{
   font-family: password;
   src: url("src\PlusJakartaSans-Italic-VariableFont_wght.woff2");
 }
-
-
 @media (max-width: 820px){
 .signup{
   display: flex;
@@ -174,14 +196,15 @@
     font-size: x-large;
   }
 }
+/* 
 @media(min-width: 777px){
-  #input input{
-    width: 380px;
+  #input{
+    width: 60vmin;
   }
 
-}
+} */
 @media (max-width: 761px) {
-  #input input{
+  #input {
     display: none;
   }
   
@@ -276,9 +299,6 @@
 button:active{
   scale: 0.98;
 
-}
-.header{
-  border-bottom: 1px solid gray;
 }
 /* @media (max-width: 850px){
 

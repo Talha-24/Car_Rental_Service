@@ -1,13 +1,116 @@
+import { useEffect, useState } from "react";
 import "./RentDetails.css";
-const CarDetails = () => {
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+const CarDetails = (propse) => {
+
+  const [details, setdetails] = useState('')
+  const [bookingDetails, setbookingDetails] = useState('');
+  const [cardetails, setcardetails] = useState(propse.data.Car ?? '');
+
+
+
+  const location = useLocation();
+
+  async function carDetails() {
+    const URL = `http://localhost:5000/api/car/getOne/${location.state.id}`;
+
+    try {
+      let cardetail = await axios.get(URL);
+      console.log(cardetail.data.data);
+      setdetails(cardetail.data.data);
+
+      console.log("Car Details ! ", details);
+
+      toast.info("Suceeded", {
+        autoClose: 500,
+      });
+
+    } catch (error) {
+
+      console.log(error);
+    }
+
+  }
+
+
+  useEffect(() => {
+    ApiHandler();
+  }, [])
+
+
+  const ApiHandler = () => {
+    if (location.pathname == '/showroomowner/bookedcars/cardetails') {
+      console.log("Getting BookedCars")
+      return getBookings();
+    }
+    if (location.pathname == '/showroomowner/homecars/cardetails' || location.pathname == '/showroomowner/favouriteCar/cardetails') {
+      console.log("GettingRentNow");
+      return carDetails();
+    }
+
+
+  }
+
+
+
+
+
+  let id = propse.id ? propse.id.detailsId : '';
+  async function getBookings() {
+    const Token = localStorage.getItem("Token");
+    const URL = `http://localhost:5000/api/booking//getById/${id}`;
+    try {
+      let response = await axios.get(URL, {
+        headers: {
+          Authorization: `Bearer ${Token}`
+        }
+      });
+      propse.setpersonDetails(response.data.data);
+      setbookingDetails(response.data.data.Car);
+      propse.setPictures(response.data.data.Car.pictures);
+    } catch (error) {
+      console.log("GetBookedCar Error", error)
+    }
+
+  }
+
   return (
     <div className="flex flex-row w-[40%] cardetails">
-      <div className="flex flex-col  h-[100%] createrent">
-        <div className="px-[20px] flex flex-col  h-[100%] justify-between items-center bg-[#FFFFFF] border-[1px] border-[#dada] rounded  w-[100%]   py-[1vmin]">
 
+      <div className="bg-white w-[100%] max-h-fit px-[2vmin] py-[3vmin] rounded border-[0.1px] border-[#404042]">
+        <div className="flex justify-between w-[70%] my-[1vmin] text-[2.4vmin]"><p>Fuel Type</p>
+
+          <p id='inputStyling' className="text-[#262627] font-semibold capitalize">{details.fuelType ? details.fuelType : (cardetails ? cardetails.fuelType : bookingDetails.fuelType)}</p>
+        </div>
+        <div className="flex justify-between w-[70%] my-[1vmin] text-[2.4vmin] capitalize"><p>Steering</p>
+
+          <p id='inputStyling' className="text-[#262627] font-semibold ">{details.feature ? details.feature : (cardetails.feature ? cardetails.feature : bookingDetails.feature)}</p>
+
+        </div>
+        <div className="flex justify-between w-[70%] my-[1vmin] text-[2.4vmin] capitalize"><p>Model</p>
+          <p id='inputStyling' className="text-[#262627] font-semibold ">{details.model ? details.model : (cardetails? cardetails.model : bookingDetails.model)}</p>
+        </div>
+        <div className="flex justify-between w-[70%] my-[1vmin] text-[2.4vmin] capitalize"><p>Mileage</p>
+          <p id='inputStyling' className="text-[#262627] font-semibold ">{details.mileage ? details.mileage : (cardetails? cardetails.mileage : bookingDetails.mileage )}</p>
+        </div>
+        <div className="flex justify-between w-[70%] my-[1vmin] text-[2.4vmin] capitalize"><p>Driver Type</p>
+
+          <p id='inputStyling' className="text-[#262627] font-semibold ">{details.driverType ? details.driverType : (cardetails? cardetails.driverType : bookingDetails.driverType)}</p>
+        
+        </div>
+        <div className="flex justify-between w-[70%] my-[1vmin] text-[2.4vmin] capitalize"><p>Location </p>
+          <p id='inputStyling' className="text-[#262627] font-semibold ">{details.location ? details.location : (cardetails?cardetails.location : bookingDetails.location)}</p>
+        </div>
+        <div className="flex flex-row items-center justify-between w-[70%] capitalize"><p className="text-[2vmin]"> <span className='font-semibold text-[3.3vmin]'>Rs:/</span>days </p><p  id='inputStyling'>{details.discountedPrice ? details.discountedPrice : (cardetails? cardetails.discountedPrice : bookingDetails.discountedPrice)}</p>
+        </div>
+      </div>
+      {/* <div className="flex flex-col  h-[40%] createrent">
+        <div className="px-[20px] flex flex-col  h-[100%] justify items-center bg-[#FFFFFF] border-[1px] border-[#dada] rounded  w-[100%]   py-[1vmin]">
           <div className="h-[100%] px-[20px] flex flex-col justify-between items-center bg-[#FFFFFF]   w-[100%]  py-[10vmin]">
             <div className="flex flex-row h-[30%] justify-between items-center w-[100%] ">
-              <h6 className="text-[4vmin] font-semibold text-black">Amar Haroon</h6><svg onClick={(e) => { console.log(e.target) }} width="18" height="20" id='svg' viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <h6 className="text-[4vmin] font-semibold text-black">{details.title}</h6><svg onClick={(e) => { console.log(e.target) }} width="18" height="20" id='svg' viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.62 18.8101C11.28 18.9301 10.72 18.9301 10.38 18.8101C7.48 17.8201 1 13.6901 1 6.6901C1 3.6001 3.49 1.1001 6.56 1.1001C8.38 1.1001 9.99 1.9801 11 3.3401C12.01 1.9801 13.63 1.1001 15.44 1.1001C18.51 1.1001 21 3.6001 21 6.6901C21 13.6901 14.52 17.8201 11.62 18.8101Z" stroke="#90A3BF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </div>
             <div className="py-[1vmin] flex flex-row w-[100%] h-[30%] gap-[1vmin] items-center">
@@ -31,23 +134,21 @@ const CarDetails = () => {
 
 
             </div>
-            <p className="py-[2vmin] h-[30%] w-[100%] text-justify text-[3vmin]">This has become the embodiment of Pakistan outstanding performance, inspired by the most unforgiving proving ground, the race track.</p>
+            <p className="py-[2vmin] h-[30%] w-[100%] text-justify text-[3vmin] inline-block">{details.description}</p>
           </div>
           
           <div id="cardetails" className="flex flex-col py-[4vmin]   w-[100%]">
             <p className="w-[100%] text-[#9CA3AF]  flex flex-row justify-between">Typecar : <b className="text-[#111] font-semibold ">sport</b> Capacity : <b className="text-[#111] font-semibold">2 Person</b></p>
-            <p className="w-[100%] text-[#9CA3AF] flex flex-row justify-between">Steering : <b className="text-[#111]  font-semibold">manual</b> Fuel : <b className="text-[#111] font-semibold">petrol</b></p>
+            <p className="w-[100%] text-[#9CA3AF] flex flex-row justify-between">Steering : <b className="text-[#111]  font-semibold">{details.feature}</b> Fuel : <b className="text-[#111] font-semibold">petrol</b></p>
           </div>
 
           <div className="flex flex-col items-start w-[100%]">
-            <h6 className="text-[4vmin] font-bold">43000/ <span className="text-[2vmin] text-[#9CA3AF]">day</span></h6>
+            <h6 className="text-[4vmin] font-bold">{details.discountedPrice}/ <span className="text-[2vmin] text-[#9CA3AF]">day</span></h6>
             <h5 className="line-through text-[2vmin] text-[#9CA3AF]">45000</h5>
           </div>
 
         </div>
-      </div>
-      <div className="">
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -8,9 +8,9 @@ const Header = () => {
         <div className='flex items-center gap-[10vmin] w-[100%]'>
         <Logo/>
         <SearchBar/>
+        <img src="src\assets\Dashboard\Header\image.png" alt="" />
         </div>
         <Icons/>
-             
     </div>
   )
 }

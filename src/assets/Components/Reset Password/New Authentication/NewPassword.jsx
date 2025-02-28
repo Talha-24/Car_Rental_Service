@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 const NewPassword = () => {
-const navigation=useNavigate();
+  const navigation = useNavigate();
   async function submitpassword() {
     const resetpasslink = `http://localhost:5000/api/auth/reset`;
     const token = localStorage.getItem("OTP Verification Token : ");
@@ -15,16 +15,11 @@ const navigation=useNavigate();
         "token": token,
         "newPassword": confirmpassword,
       })
-        console.log("Hello I am Succeeded");
-        navigation('/showroomOwner');
+      navigation('/showroomOwner');
       toast.success(response.data.message);
-      console.log("Succeeded : ",response);
-
-
+      console.log("Succeeded : ", response);
     } catch (error) {
-
       toast.error(error.response.data.message);
-
     }
 
   }

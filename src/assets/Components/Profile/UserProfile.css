@@ -1,0 +1,68 @@
+
+
+
+#userprofile{
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+    background-color:white;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 5vmin;
+    box-shadow: 0px 4px 10px rgba(0,0,0, 0.1);
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease-in-out;
+    align-content: center;    
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+        scale: 0.8;
+
+    }
+    to{
+        opacity: 1;
+        scale:1;
+
+    }
+}
+
+
+#firstname,#lastname,#email{
+    display: flex;
+    flex-direction: column;
+
+}
+#firstname,#lastname,#email p{
+    outline: none;
+
+}
+#picture{
+    background-size:cover;
+    object-fit:cover;
+}
+#picture img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit:cover;
+}
+#picturedata{
+    padding: 2vmin 0;
+}
+#picturedata button{
+    width: fit-content;
+    height: fit-content;
+    font-size: .8rem;
+    font-weight: bold;
+}
+#picturedata p{
+    font-size: 2.2vmin;
+}
+#profilebuttons{
+    display: flex;
+    flex-direction: row;
+    gap: 2vmin;
+}

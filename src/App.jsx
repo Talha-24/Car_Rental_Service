@@ -1,13 +1,5 @@
-
-//Login
-//Create Account
-//Verification Code Responsivness Done...
-//Resest Password... Responsiveness Done
-
 import { useEffect, useState } from "react"
 import SelectionComponent from "./assets/Components/User Selection/SelectionComponent";
-//
-
 import { ToastContainer } from "react-toastify";
 import SignUp from "./assets/Components/SignUp/SignUp"
 import HomeCarRent from "./assets/Dashboard/Dashboard 3/HomeCarRent";
@@ -16,49 +8,64 @@ import Dashboard2 from "./assets/Dashboard/DashboardTwo/Dashboard2";
 import BookingPending from "./assets/Dashboard/BookingProcessing/BookingPending";
 import Signin from "./assets/Components/Sign In/Signin";
 import ResetComponent from "./assets/Components/Reset Password/Email Authentication/ResetComponent";
-import BookingStatus from "./assets/Dashboard/BookingProcessing/BookingStatus/BookingStatus";
-import { Route, Routes } from "react-router-dom";
+import {  Route, Routes, useLocation } from "react-router-dom";
 import Verification from "./assets/Components/Mail Verification/Re/Images/Verification";
 import RetakingAuthority from "./assets/Components/Reset Password/New Authentication/RetakingAuthority";
-import UserSelection from "./assets/Components/User Selection/UserSelection";
+import CreateShowroom from "./assets/Components/Create Showrooms/CreateShowroom.jsx";
+import HomeCars from "./assets/Dashboard/Dashboard 3/Navbar/HomeCars";
+import CarTypeBtns from "./assets/Dashboard/Cars/Others/CarTypeBtns.jsx";
+import RentCar from "./assets/Dashboard/CreatingRent/RentCar.jsx";
+import FavouriteCars from "./assets/FavouriteCars/FavouriteCars.jsx";
+import ShowroomCars from "./assets/Showroomcars/ShowroomCars.jsx";
+import Notification from "./assets/Notification/Notifications.jsx";
 const App = () => {
 
   const [role, setRole] = useState("");
   const [data, setData] = useState("");
-  const [user, setUser] = useState(null);
-  const [selectUser, setselectUser] = useState(null);
-  const [useremail,setuseremail]=useState('');
-
-  const LoginHandler = (email, password) => {
-    if (email == "shahzaibboota65@gmail.com" && password == "123456789") {
-      setUser("User");
-    }
-  }
-  useEffect(() => {
-
-    console.log("Data by user : ", data);
-  }, [data])
-
+  const [useremail, setuseremail] = useState('');
+  const routeData = useLocation();
   return (
     <>
       <ToastContainer />
-      <div className="flex items-center justify-center bg-white">
+      <div id='app' className='bg-[#FFFFFF] w-[100%] flex flex-col'>
+        <div id='' className='flex flex-row w-[100%] bg-[#F6F7F9]'>
+          <Routes>
+            <Route path="/" element={<SignUp setData={setData}  />} />
+            <Route path="/register" element={<Signin role={role} />} />
+            <Route path="/role" element={<SelectionComponent setRole={setRole} />} />
+            <Route path="/forgotpassword" element={<ResetComponent setuserEmail={setuseremail} useremail={useremail} />} />
+            <Route path="/otpverification" element={<Verification useremail={useremail} role={role} />} />
+            <Route path='/showroomOwner' element={<HomeCarRent />}>
+              <Route path='addshowroom' element={<CreateShowroom />} />
+              <Route path='notification' element={<Notification />} />
+              <Route path='notification/cardetails' element={<Dashboard2 />} />
+              <Route path='showroomcars' element={<CarTypeBtns />} />
+              <Route path='notification' element={<Notification />} />
+              <Route path='notification/addshowroom' element={<CreateShowroom />} />
+              <Route path='showrooms' element={<CarTypeBtns />} />
+              <Route path='showrooms/addshowroom' element={<CreateShowroom />} />
+              <Route path='cars' element={<CarTypeBtns />} />
+              <Route path='cars/rentcar' element={<RentCar />} />
+              <Route path='myorders' element={<CarTypeBtns />} />
+              <Route path='homecars' element={<HomeCars />} />
+              <Route path='homecars/cardetails' element={<Dashboard2 />} />
+              <Route path='homecars/cardetails/bookingpending' element={<BookingPending />} />
+              <Route path='bookedcars' element={<CarTypeBtns />} />
+              <Route path='bookedcars/cardetails' element={<Dashboard2 />} />
+              <Route path='rentcar' element={<RentCar />} />
+              <Route path='homecars/showroomCars' element={<ShowroomCars />} />
+              <Route path='showroomCars/rentcar' element={<RentCar />} />
+              <Route path='favouriteCar' element={<FavouriteCars />} /> {/* <Route path='notifications' element={<Notification/>} /> */}
+              <Route path='favouriteCar/cardetails' element={<Dashboard2 />} />
+            </Route>
+            <Route path="/rentacar" element={<Dashboard />} />
+            <Route path="/resetcomponent" element={<ResetComponent />} />
+            <Route path="/retakingauthority" element={<RetakingAuthority />} />
+          </Routes>
+          {/* <Dashboard></Dashboard> */}
+          {/* {/* <Dashboard/> */}
 
-        {/* {user == "User" ? <SelectionComponent setselectUser={setselectUser} setUser={setUser}/> : (user == null ? <SignUp setUser={setUser} LoginHandler={LoginHandler}/> : (user == "Registeration"? <Signin setUser={setUser}/>: (user == 'Forgotpassword'?  <ResetComponent/> : '') ) ) }
-      {selectUser == "Showroom"? <HomeCarRent/>: (selectUser == "rentacar" ? <Dashboard setselectUser={setselectUser}/> : ( selectUser == "selectacar"? <Dashboard2 setUser={setUser} setselectUser={setselectUser}/> :( selectUser == "Booking"? <BookingPending setselectUser={setselectUser} />: (selectUser == "BookingStatus"? <BookingStatus setselectUser={setselectUser}/> :  ''))))} */}
-        {data == "User not found." ? <Signin /> : ''}
-        <Routes>
-
-          <Route path="/" element={<SignUp setData={setData} LoginHandler={LoginHandler} />} />
-          <Route path="/register" element={<Signin role={role} />} />
-          <Route path="/role" element={<SelectionComponent setRole={setRole} />} />
-          <Route path="/forgotpassword" element={<ResetComponent setuserEmail={setuseremail} useremail={useremail} />} />
-          <Route path="/otpverification" element={<Verification useremail={useremail}  role={role} />} />
-          <Route path="/showroomOwner" element={<HomeCarRent  />} />
-          <Route path="/rentacar" element={<Dashboard />} />
-          <Route path="/resetcomponent" element={<ResetComponent />} />
-          <Route path="/retakingauthority" element={<RetakingAuthority />} />
-        </Routes>
+        </div>
 
       </div>
     </>

@@ -1,0 +1,61 @@
+#Parent{
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   width: 100%;
+   padding: 2vmin;
+   gap: 1vmin;
+   background-color: white;
+}
+#inputs{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    align-items: flex-start;
+    gap: 0.5vmin;
+}
+#inputs label{
+    font-weight: 500;
+}
+#inputs input{
+    width: 90%;
+    height: 7vmin;
+    border-radius: 1vmin;
+    outline: none;
+    padding: 0px 3vmin;
+    border: 1px solid #B3B9C5;
+}
+#inputs input::placeholder{
+    color: #B3B9C5;
+}
+#inputss label{
+    font-size: 3vmin;
+    color: black;
+    font-weight: 500;
+}
+#inputss button{
+    background-color: transparent;
+    border: 1px solid #dadada;
+    display: flex;
+    width: 180px;
+    height: 100px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgb(206, 206, 205);
+}
+#inputss button img{
+    height: 100%;
+    width: 100%;
+}
+button{
+    background-color: #FC500C;
+    width: 10%;
+    align-self: center;
+    color: white;
+    padding: 1.3vmin 3vmin;
+    font-weight: 500;
+    border-radius: 2px;
+}
+h5{
+    font-size: 1.5rem;
+    font-weight: 500;
+}

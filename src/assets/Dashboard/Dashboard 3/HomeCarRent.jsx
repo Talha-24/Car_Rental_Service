@@ -1,17 +1,22 @@
 import Footer from '../Footer/Footer'
-import NavBar from './Navbar/NavBar'
 import HomeCars from './Navbar/HomeCars'
 import UserHeader from '../Header/UserHeader'
+import NavBar from './Navbar/NavBar.jsx'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import CreateShowroom from '../../Components/Create Showrooms/CreateShowroom.jsx'
+import { useRef, useState } from 'react'
+
 const HomeCarRent = () => {
+  const location = useLocation();
   return (
     <div className='bg-[#FFFFFF] w-[100%] flex flex-col'>
-   <UserHeader/>
-<div className='flex flex-row w-[100%] bg-[#F6F7F9]'>
-     <NavBar/>
-     <HomeCars/>
-      </div>  
-     <Footer/>
+      <UserHeader />
+      <div className='flex flex-row w-[100%] bg-[#F6F7F9]'>
+        <NavBar />
+        <Outlet />
       </div>
+      <Footer />
+    </div>
   )
 }
 

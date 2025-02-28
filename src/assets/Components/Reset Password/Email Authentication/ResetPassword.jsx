@@ -62,8 +62,6 @@ const ResetPassword = (propse) => {
           </div>
           <button onClick={() => {
             restpassword();
-            sendEmail();
-
           }} className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded px-[5%] h-[7vmin] w-[98%] signupinput font-semibold self-center">Continue</button>
         </div>
 

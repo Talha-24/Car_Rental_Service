@@ -58,13 +58,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 
 const Registeration = (propse) => {
-console.log("Role : ",propse.role);
+    console.log("Role : ", propse.role);
     const uppercase = useRef(null);
     const lowercase = useRef(null);
     const number = useRef(null);
     const result = useRef(null);
-    const pass = useRef(null);
-    const cpass = useRef(null);
     const navigate = useNavigate();
     /*Every user who will Create an Account his Data will be within an Array of Object:
 For every single new user : new object within an array will be created;  */
@@ -82,19 +80,52 @@ For every single new user : new object within an array will be created;  */
 
 
     function saveData() {
-        setuserData('');
+        DataHandler();
         setuserData({ Name: name, Surname: surname, Email: email, Password: password, Secure_Password: confirmpassword, });
         console.log(userData);
-        // setname("");
-        // setsurname("");
-        // setemail("");
-        // setpassword("");
-        // setconfirmpassword("");
+
+
+
+        setname("");
+        setsurname("");
+        setemail("");
+        setpassword("");
+        setconfirmpassword("");
+
+
     }
 
 
+    useEffect(() => {
+
+
+        if (/[A-Z]/.test(password)) {
+            uppercase.current.style.color = "#FF5C00";
+            uppercase.current.style.fontWeight = '500';
+            return;
+        }
+        if (/[@#$%^&*()_+<>?'|"~`]/.test(password)) {
+            lowercase.current.style.color = '#FF5C00';
+            lowercase.current.style.fontWeight = '500';
+            return;
+        }
+        if (/[0-9]/.test(password)) {
+            number.current.style.color = '#FF5C00';
+            number.current.style.fontWeight = '500';
+            return;
+        }
+        if (password == confirmpassword) {
+            result.current.style.color = '#FF5C00';
+            result.current.style.fontWeight = '500';
+            return;
+        }
+
+    }, [name, surname, email, password, confirmpassword])
+
+
+    let role=localStorage.getItem("role");
     async function DataHandler() {
-        console.log("Data is Uploading....");
+
         try {
             let response = await axios.post('http://localhost:5000/api/auth/register', {
 
@@ -102,9 +133,11 @@ For every single new user : new object within an array will be created;  */
                 "lastName": surname,
                 "email": email,
                 "password": password,
-                "role": propse.role,
+                "role": role,
                 "phoneNumber": "03020886640",
             })
+            localStorage.setItem("Name",name);
+            localStorage.setItem("Email",email);
             let data = response.data;
             const notify = () => {
                 toast.success(data.message, {
@@ -143,13 +176,9 @@ For every single new user : new object within an array will be created;  */
             console.log("Registeration Response : ", error.response ? error : error.message);
 
         }
-
-
-
-
-
     }
-let turn=true;
+
+    let turn = true;
 
     return (
         <div className="w-[100%] bg-[#FFFFFF] h-[100vh] flex flex-col items-center px-[5vmin] justify-center registeration">
@@ -159,8 +188,8 @@ let turn=true;
                     <div id="name" className="w-[100%] flex flex-row gap-[10px]">
                         <div id="firstname" className="w-[50%] ">
                             <p className="text-[#19345F] text-[3vmin] w-[100%]">First Name</p>
-                            <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[7vmin] w-[100%] signupinput flex">
-                                <input onChange={(e) => { setname(e.target.value) }} value={name} type="text" placeholder="john" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
+                            <span className="bg-[#F4F2F2]  placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[7vmin]   signupinput w-[100%] flex  justify-between">
+                                <input onChange={(e) => { setname(e.target.value) }} value={name} type="text" placeholder="john" className="outline-none border-none  bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[90%] signupinput" />
                                 <img className="m-[1.6vmin]" src="src\assets\Components\Sign In\images\contact.svg" alt="" />
                             </span>
 
@@ -189,15 +218,15 @@ let turn=true;
                             <p className="text-[#19345F] text-[3vmin] w-[100%] my-[0.3vmin]">Password </p>
                             <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[7vmin] w-[100%] signupinput flex">
                                 <input id='password1' onChange={(e) => { setpassword(e.target.value) }} value={password} type="password" placeholder="*********" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
-                                <img  onClick={()=>{
-                                    let showpassword=document.querySelector("#password1");
+                                <img onClick={() => {
+                                    let showpassword = document.querySelector("#password1");
                                     console.log(showpassword);
-                                    if(turn == true){      
-                                        showpassword.type='text';
-                                        turn=false;
-                                    }else{
-                                        showpassword.type='password';
-                                        turn=true;
+                                    if (turn == true) {
+                                        showpassword.type = 'text';
+                                        turn = false;
+                                    } else {
+                                        showpassword.type = 'password';
+                                        turn = true;
                                     }
                                 }} className="m-[2vmin] cursor-pointer" src="src\assets\Components\SignUp\Asset\eye.svg" alt="" />
                             </span>
@@ -209,16 +238,15 @@ let turn=true;
                             <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[7vmin] w-[100%] signupinput flex">
 
                                 <input id='confirmpassword1' onChange={(e) => { setconfirmpassword(e.target.value) }} value={confirmpassword} type="password" placeholder="**********" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
-                                <img onClick={()=>{
-
-                                    let showpassword=document.querySelector("#confirmpassword1");
-                                      console.log(showpassword);
-                                    if(turn == true){      
-                                        showpassword.type='text';
-                                        turn=false;
-                                    }else{
-                                        showpassword.type='password';
-                                        turn=true;
+                                <img onClick={() => {
+                                    let showpassword = document.querySelector("#confirmpassword1");
+                                    console.log(showpassword);
+                                    if (turn == true) {
+                                        showpassword.type = 'text';
+                                        turn = false;
+                                    } else {
+                                        showpassword.type = 'password';
+                                        turn = true;
                                     }
                                 }} className="m-[2vmin] cursor-pointer" src="src\assets\Components\SignUp\Asset\eye.svg" alt="" />
                             </span>
@@ -229,29 +257,25 @@ let turn=true;
                 </div>
                 <div id="passwordstrength" className=" w-[100%] flex flex-col  place-items-start my-[1vmin]">
                     <div className="flex flex-row items-center">
-                        <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
-                        <span ref={uppercase} className="text-[2.2vmin] w-[100%] text-[#FF5C00]">Contains at least one UpperCase Letter</span> </div>
+                        <span ref={uppercase} className="text-[2.2vmin] w-[100%] ">Contains at least one UpperCase Letter</span> </div>
                     <div className="flex flex-row items-center">
-                        <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
                         <span ref={lowercase} className="text-[#111111] text-[2.2vmin] w-[100%] my-[0.3vmin]">Contains at least one special character</span> </div>
                     <div className="flex flex-row items-center">
-                        <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
                         <span
-                            ref={number} className="text-[#111111] text-[2.2vmin] w-[100%]">Contains at least on number</span> </div>
+                            ref={number} className="text-[#111111] text-[2.2vmin] w-[100%]">Contains at least on Number</span> </div>
                     <div className="flex flex-row items-center">
-                        <input className="mr-[1vmin] text-blue  w-[1.6vmin]" type="radio" name="" id="" />
                         <span
                             ref={result} className="text-[#111111] text-[2.2vmin] w-[100%]">Passwords are matching</span> </div>
                 </div>
                 <div id="buttons" className="w-[100%]">
                     <button onClick={() => {
                         saveData();
-                        DataHandler();
-                    }} className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded px-[4%] h-[7vmin] w-[100%] font-semibold signupinput">Sign Up</button>
-                      <div className="flex items-center justify-center gap-[1vmin]">
 
-                    <p className="text-[2.7vmin] text-[#B4B3D1] my-[2vmin]">Already a member? </p><p href="" onClick={() => { navigate("/") }} className="text-[#FF5C00] font-semibold cursor-pointer"> Sign In</p>
-                    </div> 
+                    }} className="bg-[#FF5C00]  placeholder:text-gray-400 text-[3vmin] text-white rounded px-[4%] h-[7vmin] w-[100%] font-semibold signupinput">Sign Up</button>
+                    <div className="flex items-center justify-center gap-[1vmin]">
+
+                        <p className="text-[2.7vmin] text-[#B4B3D1] my-[2vmin]">Already a member? </p><p href="" onClick={() => { navigate("/") }} className="text-[#FF5C00] font-semibold cursor-pointer"> Sign In</p>
+                    </div>
                 </div>
             </form>
         </div>

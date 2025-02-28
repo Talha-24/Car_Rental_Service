@@ -1,17 +1,15 @@
 import axios from "axios";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
-
 import { toast, ToastContainer } from "react-toastify";
+import styled from "styled-components";
 const Login = (propse) => {
-
-        
     const navigation=useNavigate();
 //Planning
 /*
 Hooks States
-
-*/const handleLogin = async () => {
+*/
+const handleLogin = async () => {
     const token=`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWQ3MTk2NDVjMWI4ODFkOWI5Mzk5OGYiLCJ0b2tlblZlcnNpb24iOiI1NzMzNjEzNzc0NjYyNDciLCJyb2xlIjoic2hvd3Jvb21Pd25lciIsImlhdCI6MTczOTA3MjM3OH0.9op-sj5tpi9Yf09TGGSeUsJGpBoeiFP2rZUyCXV8cPw`;
         try {
             const response = await axios.post('http://localhost:5000/api/auth/login', {
@@ -36,12 +34,14 @@ Hooks States
                 })
             }
             notification(response.data.message);
-            console.log("Data is passing to state");
             propse.setData(response.data.message);
-            console.log("Data has passed");
-            console.log('Login Response:', response.data.message);
-            localStorage.setItem("Token : ",response.data.data.token);
-            navigation("/showroomowner")
+            console.log('Login Response:', response);
+            localStorage.setItem("Token",response.data.data.token)
+            localStorage.setItem("Role",response.data.data.role)
+            localStorage.setItem("Showroomowner",response.data.data.role == 'superAdmin' ? 'superAdmin' : (response.data.data.role == 'user'? false: true));
+            getUserProfile();
+            // navigation("/showroomowner");
+            {localStorage.getItem("Showroomowner") == 'false' || localStorage.getItem("Showroomowner") == 'true' ? navigation("/showroomowner/homecars") : navigation("/showroomowner/showrooms")};
 
         } catch (error) {
             const notify = (error) => {
@@ -83,6 +83,62 @@ Hooks States
         console.log("Function in Function : ",LoginHandler)
     }
 
+
+    async function getUserProfile() {
+        let token=localStorage.getItem("Token");
+        const URL=`http://localhost:5000/api/auth/viewProfile`;
+
+        try {
+
+            let userdata= await axios.get(URL,{
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+
+            console.log("Succeeded Request : ",userdata);
+            console.log("Setting Username and Email in local Storage...");
+            localStorage.setItem("firstname",userdata.data.data.firstName,);
+            localStorage.setItem("lastname",userdata.data.data.lastName);
+            localStorage.setItem("email",userdata.data.data.email);
+            console.log("Successfully set email and name");
+            // localStorage.setItem("Showroomowner",userdata.data.data.role == 'user' ? false : true);
+            // const showroomowner=localStorage.getItem("Showroomowner");
+            // console.log("Showroomowner",showroomowner);
+            // if(localStorage.getItem("Showroomowner") == 'false'){
+            //     showroomownerbuttonone.current.style.display='none';
+            //     showroomownerbuttontwo.current.style.display='none';
+            // }
+            // if(localStorage.getItem("Showroomowner") == 'true'){
+            //     showroomownerbuttonone.current.style.display='inline-block';
+            //     showroomownerbuttontwo.current.style.display='inline-block';
+            // }
+            
+            
+        } catch (error) {
+            console.log("Profile Error : ",error);
+            
+        }
+
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     let turn=true;
 
     return (
@@ -94,13 +150,13 @@ Hooks States
                     <div id="email" className="w-[100%]">
                         <p className="text-[#19345F] text-[3vmin] w-[100%]">Email</p>
                         <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[6vmin] w-[100%] signupinput flex">
-                        <input onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="Johndoe@gmail.com" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
+                        <input onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="Johndoe@gmail.com" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded  py-[2.5%] px-[5%] w-[100%] signupinput" />
                         <img className="m-[1.6vmin]" src="src\assets\Components\SignUp\Asset\email.svg" alt="" />
                         </span>
                     </div>
-                    <div id="password">
-                        <p className="text-[#19345F] text-[3vmin]">Password</p>
-                        <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[6vmin] w-[100%] signupinput flex">
+                    <div id="password" className="w-[100%]">
+                        <p className="text-[#727272] text-[3vmin]">Password</p>
+                        <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[6vmin] w-[100%] signupinput flex justify-between">
                         <input id='passwordinput' onChange={(e) => { setloginpassword(e.target.value) }} value={loginpassword} type="password" placeholder="**********" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
                         <img onClick={()=>{
 

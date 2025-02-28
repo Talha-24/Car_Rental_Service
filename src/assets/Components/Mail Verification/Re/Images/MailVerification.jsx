@@ -26,10 +26,17 @@ const MailVerification = (propse) => {
 
       });
       console.log("Verification Response : ",);
+
       localStorage.setItem("OTP Verification Token : ", response.data.data.token);
-      if(propse.role == 'showroomOwner' || propse.role == 'user'){
-        navigation("/showroomOwner");
-        toast.success("Welcome to Dashboard🤗");
+       let role=localStorage.getItem("Role");
+      if(role == 'showroomOwner' || role == 'user'){
+        navigation("/");
+        toast.info("Account Created Successfully!",{
+
+          autoClose: 5000,
+          theme: 'dark',
+
+        });
       }else{
         navigation('/retakingauthority');
         toast.success("OTP is Verified!");
