@@ -2,24 +2,35 @@ import axios from "axios";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import Toast from "../../../Toaster/Toaster";
+import serverRequestHandler from "../../../Utils/http";
 
 const NewPassword = () => {
   const navigation = useNavigate();
+
+
   async function submitpassword() {
     const resetpasslink = `http://localhost:5000/api/auth/reset`;
-    const token = localStorage.getItem("OTP Verification Token : ");
-    console.log("Token : ", token);
-    try {
 
-      const response = await axios.post(resetpasslink, {
-        "token": token,
-        "newPassword": confirmpassword,
-      })
-      navigation('/showroomOwner');
-      toast.success(response.data.message);
-      console.log("Succeeded : ", response);
+    const token = localStorage.getItem("OTP Token");
+
+    const endPoint=`/auth/reset`;
+    const body= {
+      "token": token,
+      "newPassword": confirmpassword,
+    }
+
+    const method=`post`;
+
+
+    try {
+      const response = await axios.post(`http://localhost:5000/api`+ endPoint,body,{
+      });
+      // serverRequestHandler(endPoint,method,body);
+      navigation('/showroomowner');
+      Toast("....",response.message);
     } catch (error) {
-      toast.error(error.response.data.message);
+      Toast(error);
     }
 
   }

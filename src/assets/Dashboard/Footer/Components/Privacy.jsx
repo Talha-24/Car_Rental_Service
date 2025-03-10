@@ -1,14 +1,12 @@
 
 const Privacy = () => {
   return (
-    <div className='text-black flex flex-row justify-between px-[6vmin] py-[5vmin] text-sm font-semibold copyright'>
-      <p className='text-black text-[2vmin]'>2022,MORENT.All rights reserved</p>
-      
-    <div className='flex flex-row gap-[5vmin] privacytext'>
-      <p className='text-black text-[2vmin]'>Privacy & Policy</p>
-      <p className='text-black text-[2vmin]'>Terms & Conditions</p>
-    </div>
-
+    <div className='text-black flex flex-row justify-between px-[20px] py-[20px] text-sm font-normal copyright'>
+      <p className='text-[#333333] text-[16px]'>©2022 MORENT.All rights reserved</p>
+      <div className='flex flex-row gap-[25px] privacytext'>
+        <p className='text-[#333333] text-[16px] terms'>Terms & Conditions</p>
+        <p className='text-[#333333] text-[16px]  privacy'>Privacy & Policy</p>
+      </div>
     </div>
   )
 }

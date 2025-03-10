@@ -3,30 +3,13 @@ import styled from "styled-components"
 
 
 export const Parent=styled.div`
-    /* display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    border: 1px solid #dadada;
-    left: 0;
-    position: fixed;
-    background-color: white;
-    width: 97%;
-    z-index: 1000;
-    background-color: blue;
-    height: 100%;
-    padding: 5vmin;
-    .modal { */
-  position: fixed; /* Fixed position to overlay the screen */
-  top: 0;
-  left: 0;
   width: 100%;
   min-height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Black with transparency */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it stays on top */
-  /* padding: 5vmin; */
+  z-index: 1000;
+  background-color: white;
 `
 export const Close=styled.button`
  position: absolute;
@@ -38,7 +21,7 @@ export const Close=styled.button`
     color: black;
     `
 export const P=styled.p`
-font-size: 0.8rem;
+font-size: 10px;
 `
 export const H6=styled.h6`
 font-size: 3.5vmin;
@@ -57,27 +40,30 @@ export const UserData=styled.span`
 `
 
 export const Save=styled.button`
-    background-color: #FC500C;
+    background-color: #FC4500;
     border:1px solid #FC500C;
-    padding: 9px 20px;
     width: fit-content;
     height: fit-content;
     font-size: 2.5vmin;
     font-weight: 500;
-    border-radius: 12vmin;    
-    padding: 1.5vmin 4vmin;
+    border-radius: 12vmin;   
+    font-size: 12px; 
+    padding: 15px 22px;
+    font-weight: bold;
+    text-transform: uppercase;
     `
+
+
 export const Logout=styled.button`
 background-color: white;
     border:1px solid #FC500C;
-    padding: 9px 20px;
     width: fit-content;
     height: fit-content;
-    font-size: 2.5vmin;
-    font-weight: 500;
+    font-size: 12px;
     border-radius: 12vmin;    
-    padding: 1.5vmin 4vmin;
-    color: #FC500C;
+    color: #FC4500;
+    padding: 15px 20px;
+    font-weight: bold;
 `
 
 export const UserDetail=styled.span`
@@ -93,14 +79,26 @@ export const UserProfile=styled.div`
 
 
 export const Input=styled.input`
-
 padding: 2vmin;
 border-radius: 5px;
-border: 1px solid #dadada;
+border: 1px solid #FC4500;
 outline: none;
 width: 100%;
+height: 52px;
+border-radius: 120px;
+margin: 12px 0;
+@media (min-width: 910px){
+width: 350px;
+}
+@media (min-width:1000px ){
+width: 400px}
+@media (min-width: 1100px){
+width: 450px}
+@media (min-width: 1200px){
+width: 470px }
 `
 export const CrossImage=styled.img`
 height: 4vmin;
 width: 4vmin;
+color: red;
 `

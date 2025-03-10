@@ -4,9 +4,8 @@ const BookedCarButtons = ({ setFilter }) => {
 
     return (
         <>
-            <div id="btns" className="w-[100%] flex flex-row gap-[7vmin] px-[5vmin] pb-[8vmin]">
-                <div className="flex flex-row items-center gap-[4vmin]">
-
+            <div id="btns" className="w-[100%]  gap-[20px] px-[20px] pb-[40px]">
+                <div className="flex flex-row flex-wrap items-center gap-[20px]">
                     <button onClick={() => {
                         let accepted = document.querySelector("#accepted");
                         let pending = document.querySelector("#pending");
@@ -16,82 +15,66 @@ const BookedCarButtons = ({ setFilter }) => {
                         pending.style.color = '#FFFFFF';
                         pending.style.border = 'none';
                         accepted.style.backgroundColor = '#FFFF';
-                        accepted.style.color = '#B1BEDC';
-                        accepted.style.border = '1px solid #90A3CD';
-                        cancelled.style.border = '1px solid #90A3CD';
-                        rejected.style.border = '1px solid #90A3CD';
+                        accepted.style.color = '#808080';
+                        accepted.style.border = '1px solid #808080';
+                        cancelled.style.border = '1px solid #808080';
+                        rejected.style.border = '1px solid #808080';
                         cancelled.style.backgroundColor = '#FFFF';
-                        cancelled.style.color = '#B1BEDC';
+                        cancelled.style.color = '#808080';
                         rejected.style.backgroundColor = '#FFFF';
-                        rejected.style.color = '#B1BEDC';
+                        rejected.style.color = '#808080';
                         let completed = document.querySelector("#completed");
                         completed.style.backgroundColor = `#FFFFFF`;
-                        completed.style.color = '#90A3CD';
-                        completed.style.border = '1px solid #90A3CD'
-                        // let completed = document.querySelector("#completed");
-                        // completed.style.backgroundColor = `#FFFFFF`;
-                        // completed.style.color = '#B1BEDC';
+                        completed.style.color = '#808080';
+                        completed.style.border = '1px solid #808080'
                         setFilter("pending");
-                    }} id='pending' className="bg-white text-[#90A3CD] py-[1.2vmin] px-[3vmin] text-[2.5vmin] rounded-full border-[1px] border-[#90A3CD] font-normal">Pending</button>
+                    }} id='pending' className="bg-white text-[#808080]  py-[6px] px-[20px] text-[16px] rounded-full border-[1px] border-[#808080] font-normal">Pending</button>
                     <button onClick={() => {
                         let accepted = document.querySelector("#accepted");
                         let pending = document.querySelector("#pending");
                         let cancelled = document.querySelector("#cancelled");
                         let rejected = document.querySelector("#rejected");
                         pending.style.backgroundColor = '#FFFF';
-                        pending.style.color = '#B1BEDC';
+                        pending.style.color = '#808080';
                         cancelled.style.backgroundColor = '#FFFF';
-                        cancelled.style.color = '#B1BEDC';
+                        cancelled.style.color = '#808080';
                         rejected.style.backgroundColor = '#FFFF';
-                        rejected.style.color = '#B1BEDC';
+                        rejected.style.color = '#808080';
                         accepted.style.backgroundColor = '#FC5C00'
                         accepted.style.color = '#FFFFFF'
                         accepted.style.border = 'none'
-                        pending.style.border = '1px solid #90A3CD';
-                        cancelled.style.border = '1px solid #90A3CD';
-                        rejected.style.border = '1px solid #90A3CD';
+                        pending.style.border = '1px solid #808080';
+                        cancelled.style.border = '1px solid #808080';
+                        rejected.style.border = '1px solid #808080';
                         let completed = document.querySelector("#completed");
                         completed.style.backgroundColor = `#FFFFFF`;
-                        completed.style.color = '#90A3CD';
-                        completed.style.border = '1px solid #90A3CD'
-                        // let completed = document.querySelector("#completed");
-                        // completed.style.backgroundColor = `#FFFFFF`;
-                        // completed.style.color = '#B1BEDC';
-                        // accepted.style.backgroundColor='#FC5C00';
-                        // accepted.style.color='#FFFFFF';
-                        // pending.style.backgroundColor='#FFFF';
-                        // cancelled.style.backgroundColor='#FFFF';
-                        // rejected.style.backgroundColor='#FFFF';
+                        completed.style.color = '#808080';
+                        completed.style.border = '1px solid #808080'
                         setFilter("accepted");
-                    }} id='accepted' className="bg-white text-[#90A3CD] py-[1.2vmin] px-[3vmin] text-[2.5vmin] rounded-full border-[1px] border-[#90A3CD] font-normal">Accepted</button>
-                </div>
-                <div className="flex flex-row items-center gap-[4vmin]">
+                    }} id='accepted' className="bg-white text-[#808080]  py-[6px] px-[20px] text-[16px] rounded-full border-[1px] border-[#808080] font-normal">Accepted</button>
                     <button onClick={() => {
                         let accepted = document.querySelector("#accepted");
                         let pending = document.querySelector("#pending");
                         let cancelled = document.querySelector("#cancelled");
                         let rejected = document.querySelector("#rejected");
                         pending.style.backgroundColor = '#FFFF';
-                        pending.style.color = '#B1BEDC';
+                        pending.style.color = '#808080';
                         cancelled.style.backgroundColor = '#FC5C00';
                         cancelled.style.color = '#FFFFFF';
                         cancelled.style.border = 'none';
-                        accepted.style.border = '1px solid #90A3CD';
-                        pending.style.border = '1px solid #90A3CD';
-                        rejected.style.border = '1px solid #90A3CD';
+                        accepted.style.border = '1px solid #808080';
+                        pending.style.border = '1px solid #808080';
+                        rejected.style.border = '1px solid #808080';
                         rejected.style.backgroundColor = '#FFFF';
-                        rejected.style.color = '#B1BEDC';
+                        rejected.style.color = '#808080';
                         accepted.style.backgroundColor = '#FFFF'
-                        accepted.style.color = '#B1BEDC'
+                        accepted.style.color = '#808080'
                         let completed = document.querySelector("#completed");
                         completed.style.backgroundColor = `#FFFFFF`;
-                        completed.style.color = '#90A3CD';
-                        completed.style.border = '1px solid #90A3CD'
-                        // let completed = document.querySelector("#completed");
-                        // completed.style.backgroundColor = `#FFFFFF`;
-                        // completed.style.color = '#B1BEDC';
+                        completed.style.color = '#808080';
+                        completed.style.border = '1px solid #808080'
                         setFilter("cancelled");
-                    }} id='cancelled' className="bg-white text-[#90A3CD] py-[1.2vmin] px-[3vmin] text-[2.5vmin] rounded-full border-[1px] border-[#90A3CD] font-normal">Cancelled</button>
+                    }} id='cancelled' className="bg-white text-[#808080]  py-[6px] px-[20px] text-[16px] rounded-full border-[1px] border-[#808080] font-normal">Cancelled</button>
 
                     <button onClick={() => {
                         let accepted = document.querySelector("#accepted");
@@ -99,27 +82,23 @@ const BookedCarButtons = ({ setFilter }) => {
                         let cancelled = document.querySelector("#cancelled");
                         let rejected = document.querySelector("#rejected");
                         pending.style.backgroundColor = '#FFFF';
-                        pending.style.color = '#B1BEDC';
+                        pending.style.color = '#808080';
                         cancelled.style.backgroundColor = '#FFFF';
-                        cancelled.style.color = '#B1BEDC';
+                        cancelled.style.color = '#808080';
                         accepted.style.backgroundColor = '#FFFF'
-                        accepted.style.color = '#B1BEDC'
+                        accepted.style.color = '#808080'
                         rejected.style.backgroundColor = '#FC5C00';
                         rejected.style.color = '#FFFFFF';
                         rejected.style.border = 'none';
-                        accepted.style.border = '1px solid #90A3CD';
-                        cancelled.style.border = '1px solid #90A3CD';
-                        pending.style.border = '1px solid #90A3CD';
+                        accepted.style.border = '1px solid #808080';
+                        cancelled.style.border = '1px solid #808080';
+                        pending.style.border = '1px solid #808080';
                         let completed = document.querySelector("#completed");
                         completed.style.backgroundColor = `#FFFFFF`;
-                        completed.style.color = '#90A3CD';
-                        completed.style.border = '1px solid #90A3CD'
-                        // let completed = document.querySelector("#completed");
-                        // completed.style.backgroundColor = `#FFFFFF`;
-                        // completed.style.color = '#B1BEDC';
+                        completed.style.color = '#808080';
+                        completed.style.border = '1px solid #808080'
                         setFilter("rejected");
-                    }} id='rejected' className="bg-white text-[#90A3CD] py-[1.2vmin] px-[3vmin] text-[2.5vmin] rounded-full border-[1px] border-[#90A3CD] font-normal">Rejected</button>
-
+                    }} id='rejected' className="bg-white text-[#808080]  py-[6px] px-[20px] text-[16px] rounded-full border-[1px] border-[#808080] font-normal">Rejected</button>
                     <button onClick={() => {
                         let accepted = document.querySelector("#accepted");
                         let pending = document.querySelector("#pending");
@@ -128,20 +107,20 @@ const BookedCarButtons = ({ setFilter }) => {
                         let completed = document.querySelector("#completed");
                         completed.style.backgroundColor = `#FC5C00`;
                         completed.style.color = '#FFFFFF';
-                        completed.style.border = '1px solid #90A3CD'
+                        completed.style.border = '1px solid #808080'
                         completed.style.border = 'none'
                         pending.style.backgroundColor = '#FFFF';
-                        pending.style.color = '#B1BEDC';
-                        pending.style.border = '1px solid #90A3CD';
+                        pending.style.color = '#808080';
+                        pending.style.border = '1px solid #808080';
                         cancelled.style.backgroundColor = '#FFFF';
-                        cancelled.style.color = '#B1BEDC';
+                        cancelled.style.color = '#808080';
                         rejected.style.backgroundColor = '#FFFFFF';
-                        rejected.style.color = '#B1BEDC';
-                        rejected.style.border =  ' 1px solid #90A3CD';
+                        rejected.style.color = '#808080';
+                        rejected.style.border =  ' 1px solid #808080';
                         accepted.style.backgroundColor = '#FFFF'
-                        accepted.style.color = '#B1BEDC'
+                        accepted.style.color = '#808080'
                         setFilter("completed");
-                    }} id='completed' className="bg-white text-[#90A3CD] py-[1.2vmin] px-[3vmin] text-[2.5vmin] rounded-full border-[1px] border-[#90A3CD] font-normal">Completed</button>
+                    }} id='completed' className="bg-white text-[#808080] py-[6px] px-[20px] text-[16px] rounded-full border-[1px] border-[#808080] font-normal">Completed</button>
 
                 </div>
             </div>

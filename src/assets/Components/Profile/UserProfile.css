@@ -1,5 +1,7 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto:wght@358&display=swap');
+
 
 #userprofile{
     display: flex;
@@ -10,7 +12,7 @@
     height: 100%;
     position: relative;
     padding: 5vmin;
-    box-shadow: 0px 4px 10px rgba(0,0,0, 0.1);
+    /* box-shadow: 0px 4px 10px rgba(0,0,0, 0.1); */
     border-radius: 10px;
     animation: fadeIn 0.3s ease-in-out;
     align-content: center;    
@@ -40,6 +42,8 @@
 
 }
 #picture{
+    height: 130px;
+    width: 130px;
     background-size:cover;
     object-fit:cover;
 }
@@ -55,8 +59,9 @@
 #picturedata button{
     width: fit-content;
     height: fit-content;
-    font-size: .8rem;
-    font-weight: bold;
+    font-size: 1rem;
+    background-color:#FC4500;
+    margin-left: 5px;
 }
 #picturedata p{
     font-size: 2.2vmin;
@@ -65,4 +70,34 @@
     display: flex;
     flex-direction: row;
     gap: 2vmin;
+}
+#backarrow{
+    color: #FC5500;
+    font-size: 24px;
+    align-self: flex-start;
+    margin-bottom: 35px;
+    font-weight: 400;
+    padding-right: 10px;
+    cursor: pointer;
+}
+#firstname,#lastname,#email label{
+    color: #414141;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 358;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+}
+
+@media (max-width: 510px){
+    #profile{
+        flex-direction: column;
+    }
+    #picturedata{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }

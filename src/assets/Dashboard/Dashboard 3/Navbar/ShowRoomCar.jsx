@@ -44,7 +44,7 @@ const ShowRoomCar = () => {
 
             <div className='flex flex-row items-center gap-[4vmin] w-[100%]'>
                 {showroomdata ? showroomdata.map(function (showroom, idx) {
-                    console.log(showroom);
+                    
                     return (
                         <div key={idx} className='w-[25%] h-[100%] border-[1px]   text-black bg-[#ffffff] rounded-lg flex flex-col justify-between p-[10px] '>
 

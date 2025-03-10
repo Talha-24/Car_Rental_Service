@@ -2,10 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import Toast from "../../../../Toaster/Toaster";
+import serverRequestHandler from "../../../../Utils/http";
 
 const MailVerification = (propse) => {
-  console.log("Email in OTP Verification : ", propse.useremail);
-
   const navigation = useNavigate();
   const [digitone, setdigitone] = useState('');
   const [digittwo, setdigittwo] = useState('');
@@ -15,46 +15,40 @@ const MailVerification = (propse) => {
   const [digitsix, setdigitsix] = useState('');
   const [finalOTP, setfinalOTP] = useState('');
   async function sendOTP() {
+    console.log("Send OTP");
     const otp = `${digitone}${digittwo}${digitthree}${digitfour}${digitfive}${digitsix}`;
-    const Live_URL = `http://localhost:5000/api`;
-
-
+    const endPoint= localStorage.getItem("isForgot") == 'true'?   `/auth/verifyForReset`:`/auth/verify`;
+    const body={
+      "token": otp,
+    }
+    const reqType='post';
     try {
-      const response = await axios.post(`${Live_URL}/auth/verifyForReset`, {
-
-        "token": otp,
-
-      });
-      console.log("Verification Response : ",);
-
-      localStorage.setItem("OTP Verification Token : ", response.data.data.token);
+      const response = await serverRequestHandler(endPoint,reqType,body);
+      localStorage.setItem("OTP Token",response.token);
        let role=localStorage.getItem("Role");
-      if(role == 'showroomOwner' || role == 'user'){
+      if(role == 'showroomowner' || role == 'user' || role == 'superAdmin'){
         navigation("/");
         toast.info("Account Created Successfully!",{
-
           autoClose: 5000,
           theme: 'dark',
-
         });
       }else{
-        navigation('/retakingauthority');
+        localStorage.getItem("OTP Token") && !localStorage.getItem("isForgot")? navigation('/login'): localStorage.getItem("isForgot") == 'true' || localStorage.getItem("isForgot") == true ? navigation('/retakingauthority') : '';;
         toast.success("OTP is Verified!");
-
       }
       
     }
     catch (error) {
-      console.log("Error,", error.response.data.message);
-      if (error.response.data.message == 'Invalid verification token.' || error.response.data.message == " Invalid verification token.") {
+
+      Toast(error);
+      if (error == 'Invalid verification token.' || error == " Invalid verification token.") {
         toast.error("You have entered Incorrect OTP, Check your OTP and try again");
-
-
       }
 
     }
 
   }
+
 
   const otprequest = () => {
     resentOTP(propse.useremail);
@@ -66,41 +60,31 @@ const MailVerification = (propse) => {
 
 
   async function resentOTP(email) {
+    const endPoint=`/auth/resendOTP`;
+    const body={
+      "email": localStorage.getItem("email"),
+      "subject": "Resent OTP",
+    };
+    const method='post';
 
+
+      
 
     try {
-      const resentOTP = await axios.post(`http://localhost:5000/api/auth/resendOTP`, {
-        "email": email,
-        "subject": "Resent OTP",
-      });
+      const resentOTP = await serverRequestHandler(endPoint,method,body);
       toast.success("Check your email for OTP Verification");
-      console.log("OTP Success : ", resentOTP);
-
     } catch (error) {
-      console.log("OTP Failure : ", error.response.data.message);
-      toast.error(error.response.data.message);
-
+      console.log("OTP Failure : ", error.response.data.message??'Error');
+      toast.error(error.message);
     }
 
 
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
   function pushotp() {
     sendOTP();
   }
-
 
 
   return (
@@ -109,8 +93,9 @@ const MailVerification = (propse) => {
         <div className="w-[100%] flex flex-col gap-[8px]">
           <h4 className="text-[5vmin] text-black font-bold">Check Your Email</h4>
           <h5 className="text-[3.5vmin] text-[#0c0a27f4] font-medium">Verification Code</h5>
-          <p className="text-center w-[100%] py-[8px] text-black text-[2vmin]">Lorem ipsum tadsf alasdf lasdf asodf la sdf dolor sit amet, elit.</p>
-
+          <p className="text-center w-[100%] py-[8px] text-black text-[2vmin]">OTP Code has successfully send to your email, check your inbox, there you 
+            find an email from Car Rental System, if you could not find it, then search it into spam folder
+          </p>
         </div>
         <div className="w-[100%] flex flex-row gap-[2vmin] py-[4vmin] ">
           <input placeholder="-" onChange={(e) => { setdigitone(e.target.value) }} value={digitone} type="text" inputMode="numeric" name="" id="" pattern="[0-9]" maxlength="1" className="placeholder:font-semibold placeholder:text-center w-[12vmin] py-[2.5vmin] text-black text-center  text-[1.5vw]  border-[1px] border-gray-500  rounded-lg" />
@@ -125,10 +110,13 @@ const MailVerification = (propse) => {
             <p className="w-[100%] text-black text-[3vmin]">Did&apos;t receive code?</p>
             <b className="text-[#FF5C1E] text-[3vmin] "><a onClick={() => {
               // otprequest();
-              resentOTP(propse.useremail);
-            }} className="cursor-pointer">Resent Code</a></b>
+              resentOTP()}} className="cursor-pointer">Resent Code</a></b>
           </div>
+
+
           <button onClick={() => { pushotp() }} className="w-[100%] rounded bg-[#FF5C1E] py-[1.5vmin] text-[3vmin] font-semibold text-white">Verify</button>
+
+
 
         </div>
       </form>

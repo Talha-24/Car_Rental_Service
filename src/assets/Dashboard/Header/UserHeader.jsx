@@ -5,36 +5,44 @@ import UserLogo from './Header Components/UserLogo'
 import { useEffect, useState } from 'react'
 import UserProfile from '../../Components/Profile/UserProfile.jsx'
 import FilterModale from '../../FilteredCars/FilterModale.jsx'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const UserHeader = () => {
 
-
-
+  const navigate = useNavigate();
   const [carsFilter, setcarsFilter] = useState(false);
-  const [profile,setProfile]=useState(false);
-
-const openProfile=()=> setProfile(true);
-const closeProfile=()=> setProfile(false);
-
-
+  const [profile, setProfile] = useState(false);
+  const openProfile = () => setProfile(true);
+  const closeProfile = () => setProfile(false);
   const openFilter = () => setcarsFilter(true);
   const closeFilter = () => setcarsFilter(false);
-  useEffect(() => {
-    console.log("True/False", carsFilter);
-  }, [])
 
-
-
+  let turn = true;
 
   return (
-    <div className='py-[15px]  bg-white flex items-center justify-between w-[100%] header px-[15px]'>
-      <div className='flex items-center gap-[40px] w-[100%]'>
+    <div className='py-[15px] bg-white flex items-center justify-between w-[100%] header px-[15px]'>
+      <div className='flex items-center justify-between gap-[30px]'>
+        <img onClick={() => {
+          let sidebar = document.querySelector("#navbar");
+
+          if (turn == true) {
+            sidebar.style.cssText = 'margin-left: 0px;  transition: margin 1s;'
+            turn = false
+          } else {
+            sidebar.style.cssText = 'margin-left: -336px; transition: margin 1s'; 
+            turn=true;
+
+          }
+
+          console.log("Clicked");
+        }} id='navOptions' className='h-[25px] cursor-pointer' src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2012/10/threelines.png" alt="" />
         <UserLogo />
         <SearchBar openFilter={openFilter} />
-      </div>      
-      <Icons openProfile={openProfile} />
-      {carsFilter && <FilterModale closeFilter={closeFilter}  />}
-      {profile && <UserProfile closeProfile={closeProfile} />}
+      </div>
+      {!localStorage.getItem("Token") ?
+        <NavLink id='signIntext' to='/login' className='text-[#FC4500]  block font-bold underline text-[16px]'>Sign In</NavLink>
+        : <> <Icons openProfile={openProfile} />
+          {profile && <UserProfile closeProfile={closeProfile} />}</>}
     </div>
 
   )

@@ -56,6 +56,7 @@ import axios, { Axios } from "axios";
 import { useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import serverRequestHandler from "../../Utils/http";
 
 const Registeration = (propse) => {
     console.log("Role : ", propse.role);
@@ -64,38 +65,16 @@ const Registeration = (propse) => {
     const number = useRef(null);
     const result = useRef(null);
     const navigate = useNavigate();
-    /*Every user who will Create an Account his Data will be within an Array of Object:
-For every single new user : new object within an array will be created;  */
-    /*Steps:
-    1.Creating useStates for Two-Way Binding
-    2.Take Data in a function through useState Hooks
-    3.Creating a Global Object(JSON.Object) To Store that Particular data;
-    */
     const [name, setname] = useState('');
     const [surname, setsurname] = useState('');
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const [confirmpassword, setconfirmpassword] = useState('');
     const [userData, setuserData] = useState({});
-
-
     function saveData() {
         DataHandler();
         setuserData({ Name: name, Surname: surname, Email: email, Password: password, Secure_Password: confirmpassword, });
-        console.log(userData);
-
-
-
-        setname("");
-        setsurname("");
-        setemail("");
-        setpassword("");
-        setconfirmpassword("");
-
-
     }
-
-
     useEffect(() => {
 
 
@@ -126,21 +105,25 @@ For every single new user : new object within an array will be created;  */
     let role=localStorage.getItem("role");
     async function DataHandler() {
 
-        try {
-            let response = await axios.post('http://localhost:5000/api/auth/register', {
+        let body= {
 
-                "firstName": name,
-                "lastName": surname,
-                "email": email,
-                "password": password,
-                "role": role,
-                "phoneNumber": "03020886640",
-            })
+            "firstName": name,
+            "lastName": surname,
+            "email": email,
+            "password": password,
+            "role": role,
+            "phoneNumber": "03020886640",
+        };
+        
+        let endPoint=`/auth/register`;
+        let reqType=`post`;
+        try {
+            let response = await serverRequestHandler(endPoint,reqType,body);
             localStorage.setItem("Name",name);
             localStorage.setItem("Email",email);
-            let data = response.data;
-            const notify = () => {
-                toast.success(data.message, {
+            let data = response;
+            const notify = (message) => {
+                toast.success(message, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -150,34 +133,24 @@ For every single new user : new object within an array will be created;  */
                     progress: undefined,
                     theme: "colored",
                 });
-            }
-
-            notify(data.message);
+            }            
             navigate('/otpverification')
-            console.log("Request is Successful...", data);
+            notify("OTP Verification Code has been sent to your email");
+        } catch (error) { 
 
-
-        } catch (error) {
-
-            const notify = () => {
-                toast.error(error.response.data.message, {
+            const notify = (error) => {
+                toast.error(error.message, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
-                    closeOnClick: false,
+                    closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "colored",
+                    theme: "dark",
                 });
             }
-            notify();
-            console.log();
-            console.log("Registeration Response : ", error.response ? error : error.message);
-
-        }
-    }
-
+            notify(error);}}
     let turn = true;
 
     return (
@@ -192,7 +165,6 @@ For every single new user : new object within an array will be created;  */
                                 <input onChange={(e) => { setname(e.target.value) }} value={name} type="text" placeholder="john" className="outline-none border-none  bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[90%] signupinput" />
                                 <img className="m-[1.6vmin]" src="src\assets\Components\Sign In\images\contact.svg" alt="" />
                             </span>
-
                         </div>
                         <div id="lastname" className="w-[50%]">
                             <p className="text-[#19345F] text-[3vmin] w-[100%]">Last Name</p>
@@ -200,10 +172,7 @@ For every single new user : new object within an array will be created;  */
                                 <input onChange={(e) => { setsurname(e.target.value) }} value={surname} type="text" placeholder="doe" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
                                 <img className="m-[1.6vmin]" src="src\assets\Components\Sign In\images\contact.svg" alt="" />
                             </span>
-
-
                         </div>
-
                     </div>
                     <div id="email" className="w-[100%] my-[3vmin]">
                         <p className="text-[#19345F] text-[3vmin] w-[100%]">Email</p>
@@ -211,24 +180,26 @@ For every single new user : new object within an array will be created;  */
                             <input onChange={(e) => { setemail(e.target.value) }} value={email} type="text" placeholder="johndoe@gmail.com" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
                             <img className="m-[2vmin]" src="src\assets\Components\SignUp\Asset\email.svg" alt="" />
                         </span>
-
                     </div>
                     <div id="password" className="w-[100%] flex flex-row gap-[10px] my-[1vmin]">
                         <div id="setpassword" className="w-[50%] ">
                             <p className="text-[#19345F] text-[3vmin] w-[100%] my-[0.3vmin]">Password </p>
                             <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[7vmin] w-[100%] signupinput flex">
                                 <input id='password1' onChange={(e) => { setpassword(e.target.value) }} value={password} type="password" placeholder="*********" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
-                                <img onClick={() => {
+                                <img onClick={(e) => {
                                     let showpassword = document.querySelector("#password1");
                                     console.log(showpassword);
                                     if (turn == true) {
                                         showpassword.type = 'text';
                                         turn = false;
+                                        e.target.src=`https://car-rantal-mauve.vercel.app/assets/logo/eye-slash.2.svg`;
+                                       
                                     } else {
                                         showpassword.type = 'password';
                                         turn = true;
+                                        e.target.src=`https://car-rantal-mauve.vercel.app/assets/logo/eye.3.svg`;
                                     }
-                                }} className="m-[2vmin] cursor-pointer" src="src\assets\Components\SignUp\Asset\eye.svg" alt="" />
+                                }} className="m-[2vmin] w-[20px] h-[20px] cursor-pointer" src="src\assets\Components\SignUp\Asset\eye.svg" alt="" />
                             </span>
 
 
@@ -238,17 +209,20 @@ For every single new user : new object within an array will be created;  */
                             <span className="bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded h-[7vmin] w-[100%] signupinput flex">
 
                                 <input id='confirmpassword1' onChange={(e) => { setconfirmpassword(e.target.value) }} value={confirmpassword} type="password" placeholder="**********" className="outline-none bg-[#F4F2F2] placeholder:text-gray-400 text-[3vmin] text-gray-500 rounded px-[5%] py-[2.5%] w-[100%] signupinput" />
-                                <img onClick={() => {
+                                <img onClick={(e) => {
                                     let showpassword = document.querySelector("#confirmpassword1");
                                     console.log(showpassword);
                                     if (turn == true) {
                                         showpassword.type = 'text';
                                         turn = false;
+                                        e.target.src=`https://car-rantal-mauve.vercel.app/assets/logo/eye-slash.2.svg`;
+
                                     } else {
                                         showpassword.type = 'password';
                                         turn = true;
+                                        e.target.src=`https://car-rantal-mauve.vercel.app/assets/logo/eye.3.svg`;
                                     }
-                                }} className="m-[2vmin] cursor-pointer" src="src\assets\Components\SignUp\Asset\eye.svg" alt="" />
+                                }} className="m-[2vmin] w-[20px] h-[20px] cursor-pointer" src="src\assets\Components\SignUp\Asset\eye.svg" alt="" />
                             </span>
 
                         </div>

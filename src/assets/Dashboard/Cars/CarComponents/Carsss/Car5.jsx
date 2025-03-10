@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom"
+import localhost from "../../../../Utils/LocalHost";
 
 
-const Car5 = ({Car}) => {
+const Car5 = ({Car,filter}) => {
 
 
 
@@ -16,12 +17,12 @@ const navigateTo=useNavigate();
 
 
   return (
-    <div className='w-[254px] h-[370px] border-[1px]  border-[#dadada]  text-black bg-[#ffffff] rounded-lg flex flex-col justify-between p-[10px]'>
+    <div className='w-[254px] h-[370px] border-[1px]  border-[#dadada]  text-black rounded-lg flex flex-col justify-between p-[10px]'>
       <div>
     <b className='text-[22px] font-normal capitalize'>{Car.title}</b>
    <p className='font-normal w-[100%] inline-block  text-[20px]'> Rs.{Car.discountedPrice}/day</p>
     </div>
-   <img className="w-[253px] h-[177px] object-contain border-[1px] border-black rounded" src={Car.pictures? 'http://localhost:5000/' + Car.pictures[0] : ''} alt="" />
+   <img className="w-[253px] h-[177px] object-contain border-[1px] border-black rounded" src={Car.pictures? localhost() + Car.pictures[0] : ''} alt="" />
    <div id="carinfo" className='flex flex-row items-center gap-[1vmin]'>
     <div className='flex flex-row items-center justify-evenly w-[100%]'>
 <svg className="w-[3vmin] h-[4vmin]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +56,8 @@ const navigateTo=useNavigate();
    
     <button onClick={()=>{
 
-      navigateTo('rentcar',{state: {data: Car}});
+
+      navigateTo('rentcar',{state: {id: Car._id}});
 
     }} className='py-[1vmin] px-[1.4vmin] bg-[#FF4500] rounded-[0.5vmin] text-white text-[12px] font-semibold w-[62px] h-[37px] self-start'>View</button>
    </div>

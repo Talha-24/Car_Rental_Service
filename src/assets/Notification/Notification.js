@@ -3,13 +3,13 @@ import styled, { keyframes } from "styled-components";
 
 
 export const Main = styled.div`
-min-height: 100vh;
+height: 100vh;
 width: 100%;
 background-color: white;
-padding: 19.7px 49.8px;
-overflow-y: auto;
-
+padding: 19.7px 10px;
+overflow-y: scroll;
 `
+
 
 export const H1 = styled.h1`
 font-size: 5vmin;
@@ -53,10 +53,11 @@ animation-timing-function: ease-in-out;
 padding: 8px 15px;
 `
 export const NotificationContainer = styled.div`
-
-height: 40%;
+min-height: 50%;
 width: 100%;
+padding-top: 30px;
 `
+
 export const Heading = styled.div`
 font-size: 24px;
 color: #FC4500;
@@ -84,7 +85,7 @@ background-color: #008000;
 height: 10px;
 width: 10px;
 border-radius: 50%;
-margin-top: 4px;
+padding-top: 4px;
 `
 export const Circletwo=styled.span`
 background-color: #808080;

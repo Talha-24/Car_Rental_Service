@@ -1,12 +1,12 @@
 
 const About = () => {
   return (
-    <div id="about" className='flex flex-col gap-[4vmin] w-[33%]'>
-    <b className='text-[3.2vmin] font-semibold text-black'>About</b>
-    <p className='text-[2.5vmin] font-semibold text-[#13131399]'>How it Works?</p>
-    <p className='text-[2.5vmin] font-semibold text-[#13131399]'>Features</p>
-    <p className='text-[2.5vmin] font-semibold text-[#13131399]'>Partnership</p>
-    <p className='text-[2.5vmin] font-semibold text-[#13131399]'>Bussiness Relation</p>
+    <div id="about" className='flex flex-col gap-[10px] w-[33%] items-left'>
+    <b className='text-[24px] font-semibold text-black'>About</b>
+    <p className='text-[16px] font-normal text-[#27282d] cursor-pointer'>How it works?</p>
+    <p className='text-[16px] font-normal text-[#27282d] cursor-pointer'>Features</p>
+    <p className='text-[16px] font-normal text-[#27282d] cursor-pointer'>Partnership</p>
+    <p className='text-[16px] font-normal text-[#27282d] cursor-pointer'>Bussiness Relation</p>
   </div>
   )
 }

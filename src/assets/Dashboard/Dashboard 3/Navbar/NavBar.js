@@ -6,12 +6,13 @@ height: 3vmin;
 `
 
 export const Setting=styled.p`
-font-size:3vmin;
+font-size: 16px;
 font-weight: 500;
 `
 export const Help=styled.p`
-font-size: 3vmin;
+font-size: 16px;
 font-weight: 500;
+width: 100%;
 `
 
 

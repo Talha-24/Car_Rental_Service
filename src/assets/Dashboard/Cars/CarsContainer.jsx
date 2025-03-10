@@ -1,4 +1,3 @@
-import CarsInfo2 from "./CarComponents/CarInfo2"
 import CarsInfo from "./CarComponents/CarsInfo"
 import CarTypeBtns from "./Others/CarTypeBtns"
 import "./CarContainer.css";
@@ -8,7 +7,6 @@ const CarsContainer = (propse) => {
 <CarTypeBtns/>
 
 <CarsInfo setselectUser={propse.setselectUser}/>
-<CarsInfo2 setselectUser={propse.setselectUser}/> 
 
 
 </div>

@@ -1,46 +1,29 @@
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { TiHome } from "react-icons/ti";
+import { useState } from "react";
 const Home = () => {
-  const homenavigation = useNavigate('');
-  
+  const homenavigation = useNavigate();
+  const [color, setColor] = useState('#BAC6D7');
+
+
+
+  const style = {
+    fontSize: '1.4rem',
+    color: color,
+    hover: 'blue',
+  }
+
+
 
   return (
-    <div id='homebtn' onClick={() => {
-      let showroomcars=document.querySelector("#showroomcars");
-      let myorders=document.querySelector("#myorders");
-   showroomcars.style.backgroundColor='#FFFFFF';
-   myorders.style.backgroundColor='#FFFFFF';
-      let home = document.querySelector("#homebtn");
-      let showroom = document.querySelector("#showroomparent");
-      let booked = document.querySelector("#bookedcars");
-      let bookedcarText = document.querySelector("#bookedcartext");
-      let addshowroomtext = document.querySelector("#addshowroomtext");
-      let hometext = document.querySelector("#hometext");
-    
-      console.log(home, showroom, booked);
-      booked.style.backgroundColor = '#FFF';
-      home.style.backgroundColor = '#FC5c00';
-      home.style.color = '#d8d9dc';
-      showroom.style.backgroundColor = '#FFF';
-      hometext.style.color = '#FFFFFF';
-      bookedcarText.style.color = '#97B3C3';
-      addshowroomtext.style.color = '#97B3C3';
-      let createRent = document.querySelector("#createrent");
-      let createrenttext = document.querySelector("#createrenttext");
-      createRent.style.backgroundColor = '#FFFFFF';
-      createrenttext.style.color = '#97B3C3';
-    
-      homenavigation('');
-    }} className="flex flex-row  items-center gap-[1vmax] bg-[#FF5C00]  py-[0.8vmin] px-[.8vmin] rounded-[1vmin] mt-[1vmin]  w-[100%] cursor-pointer">
-      <span id="svg">
-        <svg className="w-[1.7vmax] h-[1.9vmax]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.0427 3.15016L10.0431 3.14985C11.1274 2.27904 12.8676 2.28414 13.968 3.16073C13.9682 3.16084 13.9683 3.16094 13.9684 3.16105L20.5141 8.39756C20.5147 8.39802 20.5152 8.39849 20.5158 8.39895C20.893 8.70711 21.2197 9.18942 21.4305 9.74099C21.6411 10.2922 21.7196 10.8699 21.6463 11.351L20.3874 18.8845C20.3873 18.885 20.3872 18.8855 20.3871 18.8859C20.1375 20.3188 18.7433 21.5 17.3 21.5H6.70002C5.23555 21.5 3.87256 20.3476 3.623 18.8965C3.62294 18.8961 3.62288 18.8958 3.62282 18.8955L2.36319 11.3576L2.36299 11.3565C2.28085 10.8718 2.35458 10.293 2.56471 9.74192C2.77482 9.19094 3.10555 8.70909 3.49187 8.40086L3.49273 8.40016L10.0427 3.15016ZM12 19.25C12.6862 19.25 13.25 18.6862 13.25 18V15C13.25 14.3139 12.6862 13.75 12 13.75C11.3139 13.75 10.75 14.3139 10.75 15V18C10.75 18.6862 11.3139 19.25 12 19.25Z" fill="white" stroke="white" />
-        </svg>
+    <NavLink to='homecars' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >
+      {/* <div className="flex flex-row h-[50px] w-[100%]  px-[20px] items-center  rounded-[0.4rem] mt-[0.5rem] gap-[12px] cursor-pointer "> */}
+        <span id="svg">
+        </span>
+        <p>Home</p>
 
-      </span>
-      <Link to='homecars' id='hometext' className="text-[#FFFFFF] font-semibold text-[1.4vmax] self-right w-[100%]">Home</Link>
-
-    </div>
+      {/* </div> */}
+    </NavLink>
   )
 }
 

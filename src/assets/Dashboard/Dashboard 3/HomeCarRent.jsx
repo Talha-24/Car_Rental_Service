@@ -11,8 +11,9 @@ const HomeCarRent = () => {
   return (
     <div className='bg-[#FFFFFF] w-[100%] flex flex-col'>
       <UserHeader />
-      <div className='flex flex-row w-[100%] bg-[#F6F7F9]'>
+      <div id='homebox' className='flex flex-row min-w-[100%] px-[10px] bg-[#F6F7F9]'>
         <NavBar />
+        {!localStorage.getItem("Token")? <HomeCars/>: ''}
         <Outlet />
       </div>
       <Footer />

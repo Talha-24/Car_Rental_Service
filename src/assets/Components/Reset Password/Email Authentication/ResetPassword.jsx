@@ -2,56 +2,52 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import serverRequestHandler from "../../../Utils/http";
+import Toast from "../../../Toaster/Toaster";
 
 const ResetPassword = (propse) => {
-  console.log("Email Storing Variable",propse.setuserEmail);
-
-
   const navigation = useNavigate();
-
-
-
-  const Live_URL=`http://localhost:5000/api/auth/forgot`;
-  async function sendEmail() {
-
-
-    try {
-
-      const response = await axios.post(Live_URL, {
-        email: propse.useremail,
-      })
-      console.log("Response : ",response);
-      toast.success("OTP Verification Code is Sent to your email successfully!");
-      navigation("/otpverification");
-
-    } catch (error) {
-
-      console.log("Error : is here.... ", error);
-      toast.error(error.response.data.message);
-
-    }
-
+  const isVerified = localStorage.getItem("Message");
+  const endPoint = `/auth/forgot`;
+  const body = {
+    email: propse.useremail,
   }
+
+
+  const method = 'post';
+
+  async function sendEmail() {
+    try {
+      const response = await serverRequestHandler(endPoint, method, body);
+      Toast('OTP Verification Code is Sent to your email successfully!');
+      localStorage.setItem("isForgot",true);
+      localStorage.setItem("Email",propse.useremail);
+      navigation("/otpverification");
+    } catch (error) {
+      Toast(error.error?.message??error.message?? "Error");
+    }
+  }
+
+
   const restpassword = () => {
     sendEmail();
   }
+
+
 
   return (
 
     <div className="flex flex-col bg-[#ffffff] items-center justify-center h-[100vh] w-[100%] resetpassword">
       <form onSubmit={(e) => { e.preventDefault() }} className="h-[100vh] w-[80%] flex flex-col items-center justify-center">
-
         <div className="text-center w-[100%]">
           <h6 className="text-[6vmin] text-[#333333] font-bold">Enter mail for reset password</h6>
           <p className="text-[2.2vmin] text-[#333333] py-[0.1vmin] px-[5vmin]">
-            Lppellat Lorem ipsum dolor
-            sit, amet consectetur adipisicing
-            elit. Odio necessitatibus
-            c porro. reprehenderit.</p>
+           It is always recommended to notedown your password
+           in your notebook or anything else. Actually, loos of password
+           from memory  is the symbol that you are highly realing on the technology.
+           Cut down the technology from your life and start relaying on your mind.
+            </p>
         </div>
-
-
-
         <div className=" w-[100%] px-[20px] flex flex-col gap-[4vmin] py-[20px]">
           <div className="flex flex-col ">
             <p className="text-[3vmin] my-[1vmin] w-[100%] place-items-start">Email</p>

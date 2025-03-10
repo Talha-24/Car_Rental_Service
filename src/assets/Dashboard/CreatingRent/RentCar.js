@@ -119,19 +119,21 @@ width:100%;
 
 `
 export const InputButton=styled.div`
-width: 15vmin;
-height: 15vmin;
-background-color: #1C1C1C;
-box-shadow: 0px 0px 5px gray;
+width: 120px;
+height: 50px;
+background-color: #dadada;
 color: white;
 text-align: center;
+display: flex; 
+align-items: center;
+justify-content: center;
 `
 export const ImageContainer=styled.span`
 width: 80%;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 gap: 10px;
-border: 1px solid #F4F2F2;
+border-radius: 4px;
 `
 export const Button=styled.button`
 font-size: 2.4vmin;

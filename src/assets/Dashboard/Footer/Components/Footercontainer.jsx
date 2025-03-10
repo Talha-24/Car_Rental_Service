@@ -3,7 +3,7 @@ import Socials from './Socials'
 
 const Footercontainer = () => {
   return (
-    <div className='flex flex-row py-[5vmax] w-[100%] px-[6vmin] parenttt'>
+    <div className='flex flex-row px-[16px] py-[10px] w-[100%]  parenttt'>
       <LogoandQuote/>
       <Socials/>
       </div>

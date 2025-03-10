@@ -6,10 +6,15 @@ import { Help, Setting, SVG } from './NavBar'
 import { BrowserRouter, Link, useLocation, useNavigate } from 'react-router-dom'
 import { Logout } from '../../../Components/Profile/UserProfile'
 import CreateRentText from '../../Header/SideBar2/Components/SideBarBtns/CreateRentText'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Showroomownerbuttons from './Showroomownerbuttons'
 import SuperAdminBtn from './SuperAdminBtn'
-
+import NavButton from '../../Header/SideBar2/Components/SideBarBtns/NavButton'
+import { TiHome } from "react-icons/ti";
+import { FaCarTunnel} from 'react-icons/fa6'
+import { FaHeadset } from 'react-icons/fa6'
+import { IoMdSettings } from "react-icons/io";
+import NavIcons from "../../../Components/../Dashboard/Icons/NavIcons.jsx"
 
 
 
@@ -18,75 +23,78 @@ const NavBar = () => {
     const navigate = useNavigate();
     const showroomownerbuttonone = useRef(null);
     const showroomownerbuttontwo = useRef(null);
-    if (localStorage.getItem("Showroomowner") == 'true') {
-        console.log("Showroom owner");
-    }
-    if (localStorage.getItem("Showroomowner") == 'false') {
-        console.log("User");
-    }
- 
-    const navbar=useRef(null);
-    const location=useLocation();
-   console.log(".............",location.pathname)
+    const navbar = useRef(null);
+    const location = useLocation();
+   const [showroomtext,setshowroomtext]=useState('Add Showroom');
+   useEffect(()=>{
+    setshowroomtext(localStorage.getItem("Showroomstatus") == 'approved' && localStorage.getItem("Showroomowner") == 'true' || localStorage.getItem("Showroomowner") == true ? 'My Showroom' : 'Add Showroom');
+   })
+    const ButtonData = [
+        {
+            label: 'Home',
+            icon: <TiHome fontSize='22px'  className='inactive' />,
+            to: 'homecars',
+        },
+        {
+            label: 'Booked Cars',
+            icon: <FaCarTunnel className='inactive' />,
+            to: 'bookedcars'
+        },
+        {
+            label: showroomtext,
+            icon: <FaCarTunnel className='inactive' />,
+            to: 'addshowroom',
+        },
+        
+    ]
 
+  
+    const details=[{
+           label: 'Setting',
+           icon: <IoMdSettings />           ,
+           to: 'setting'
+    },{
+        label: 'Help & Center',
+        icon: <FaHeadset />,
+        to: 'tel:+923420305622',
 
-
-
+    }]
 
     return (
         <>
-        <span ref={navbar} className="px-[30px]  pt-[5vmin] w-[333px] min-h-[700px] flex flex-col bg-[#FFFFFF] sidebar2">
-            <div id='mainmenu' className="w-[100%] flex flex-col justify-start gap-[10%] h-[100%]">
-                <div className='w-[100%]'>
-                    {localStorage.getItem("Showroomowner") == 'true' || localStorage.getItem("Showroomowner") == 'false' ? <>
-                        <p className='text-[#94A7CB66] text-[2.5vmin] w-[100%]'>Main Menu</p></>: ''}
-                    
+            <span ref={navbar} id='navbar' className="px-[30px]  w-[334px] min-h-[700px]  flex flex-col bg-[#FFFFFF] sidebar2">
+                <div id='mainmenu' className="w-[100%] flex flex-col justify-start gap-[10%] h-[100%]">
+                    <div className='w-[100%] flex flex-col gap-[8px]'>
+                    <NavIcons/>
+                        {localStorage.getItem("Showroomowner") == 'true' || localStorage.getItem("Showroomowner") == 'false' ? <>
+                            {ButtonData.map(function(btn,key){
+                                return(
+                            <NavButton key={key} to={btn.to} label={btn.label} icon={btn.icon} />
+                                )
 
-                    {localStorage.getItem("Showroomowner") == 'true' || localStorage.getItem("Showroomowner") == 'false' ? <>
-                        <Home />
-                    <BookedCars />
-                    <AddShowroom />
-                    </> : ''}
+                            })}
 
-                   
-                    {localStorage.getItem("Showroomowner") == 'true' ? <Showroomownerbuttons /> : ''}
-                    {localStorage.getItem("Showroomowner") == 'superAdmin' ? <SuperAdminBtn /> : ''}
-                </div>
-                {/* 
-Preference
-     Setting
-    Help Center
-     */}
-                <div className='w-[100%]'>
-                    <div className="flex flex-row justify-start ml-[4vmin] items-center py-[0.8vmin] px-[.7vmin] rounded-[1vmin] mt-[1vmin] w-[100%]">
-                        <Setting onClick={() => { console.log("Hello") }} className=" text-[#90A3BF] text-[2.8vmin] cursor-pointer">Setting</Setting>
 
+                        </> : ''}
+                        {localStorage.getItem("Showroomowner") == 'true' && localStorage.getItem("Showroomstatus") == 'approved' ? <Showroomownerbuttons /> : ''}
+                        {localStorage.getItem("Showroomowner") == 'superAdmin' ? <SuperAdminBtn /> : ''}
+                        {localStorage.getItem("Showroomowner") == 'superAdmin'|| localStorage.getItem("Showroomowner") == 'false' || localStorage.getItem("Showroomowner") == 'true'? <>
+                           {details.map(function(btn,key){
+                            return(
+                                <NavButton key={key} label={btn.label} icon={btn.icon} to={btn.to} />
+                            )
+                           })}
+                        </> : '' }
                     </div>
-                    <div className="flex ml-[4vmin] flex-row w-[100%] justify-start items-center gap-[2vmin] py-[0.8vmin] px-[.7vmin] rounded-[1vmin] mt-[1vmin]">
-
-                        <SVG id="svg">
-                            <img src="src\assets\Dashboard\Dashboard 3\Navbar\help.png" alt="" />
-                        </SVG>
-
-                        <Help className=" text-[#90A3BF] text-[2.8vmin] cursor-pointer">Help Center</Help>
-
-                    </div>
-                    <p onClick={() => {
-                        navigate('/');
-                    }}>Logout</p>
-
-
                 </div>
 
-            </div>
 
 
-
-        </span> 
+            </span>
         </>
 
 
-        
+
 
     )
 }
