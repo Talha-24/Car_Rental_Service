@@ -1,10 +1,12 @@
-import Section_two from "../../../Sign In/Section_two"
 import MailVerification from "./MailVerification"
+import Slider from "../../../Slider/Slider";
 const Verification = (propse) => {
+
+
   return (
     <div className="flex w-[100%] flex-row items-center justify-center verification ">
-      <Section_two/>
-      <MailVerification useremail={propse.useremail} role={propse.role} />
+      <Slider />
+      <MailVerification  />
     </div>
   )
 }

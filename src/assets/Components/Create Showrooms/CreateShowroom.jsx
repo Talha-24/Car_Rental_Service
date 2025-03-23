@@ -1,17 +1,14 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react'
 import "./CreateShowroom.css";
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import { Input } from './CreateShowroom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import serverRequestHandler from '../../Utils/http';
-import Toast from '../../Toaster/Toaster';
-import InputMask from 'react-input-mask';
+import { Toast } from "../../Utils/Toasthot";
 import imageUpload from '../../Utils/UploadImage';
 import localhost from '../../Utils/LocalHost';
-
-
-
+import { EndPoint, obj } from '../../Utils/RoutesPaths';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
 const CreateShowroom = () => {
   const [showroomdetails, setshowroomdetails] = useState({});
   const [ID, setId] = useState('');
@@ -19,255 +16,307 @@ const CreateShowroom = () => {
   const [isReadonly, setisReadonly] = useState(false);
   const navigate = useNavigate('');
   const location = useLocation();
-  async function addShowroom() {
-    const endPoint = `/showroom`;
-    const method = `post`;
-    const body = {
-      "showRoomName": showroomname,
-      "location": showroomlocation,
-      "showRoomPicture": showroompicture,
-      "phone": ownerphonenumber,
+  const schema = yup.object({
+    showRoomPicture: yup.string().required(),
+    phone: yup.string().required().matches(/^[0-9]{7,11}$/, "Phone must ranges from 7-11"),
+    location: yup.string().required(),
+    showRoomName: yup.string().required().min(3, "*Showroom Name is too short").matches(/^[A-Za-z<>./,@\s]+$/i, "* Must includes only Uppercase and Lowercase Letters")
+  }).required();
+
+
+
+  const stopValidation = async () => {
+    return (
+      {
+        values: {},
+        errors: {},
+      }
+    )
+  }
+
+
+
+
+  const { register, formState: { errors }, handleSubmit, setValue, clearErrors, getValues } = useForm({
+
+    resolver: location.pathname == '/showroomowner/showrooms/addshowroom' ? stopValidation() : yupResolver(schema)
+
+
+  });
+
+
+  const onSubmit = (data) => {
+
+
+    let showroomStatus = localStorage.getItem("Showroomstatus");
+    if (showroomStatus == 'pending' || showroomStatus == 'approved') {
+      updateMyShowroom();
+    } else {
+      addShowroom(data);
     }
+  }
+
+
+  async function addShowroom(data) {
+
     try {
-      let response = await serverRequestHandler(endPoint, method, body);
+      let response = await serverRequestHandler(EndPoint.addshowroom, `post`, data);
       setshowroomdetails(response);
-      toast.success(" ✔ Showroom Created Successfully, wait for approval ✨");
+      Toast.success(" ✔ Showroom Created Successfully, wait for approval ✨");
       localStorage.setItem("Showroomid", response._id);
       localStorage.setItem("Showroomowner", true);
+      localStorage.setItem("Role", "owner");
       getshowroomdetails();
       navigate(-1);
     } catch (error) {
-      Toast(error.message);
+      Toast.error(error.message ?? error);
     }
 
 
   }
-  const [showroomname, setShowroomname] = useState('');
-  const [showroomlocation, setShowroomlocation] = useState('');
-  const [ownerphonenumber, setOwnerphonenumber] = useState('');
-  const [showroompicture, setshowroompicture] = useState('');
-  const image = useRef(null);
+
+  const [imageFormat, setimageFormat] = useState('');
+  const [imageSize, setimageSize] = useState('');
   const showImage = useRef(null);
-  const [showroomnameError, setshowroomError] = useState('');
-  const [showroomlocationError, setshowroomlocationError] = useState('');
-  const [ownerphonenumberError, setownerphonenumberError] = useState('');
-  const [showroompictureError, setshowroompictureError] = useState('');
-
-  const detailsHandler = () => {
-    addShowroom();
-    setshowroomError('');
-    setshowroomlocationError('');
-    setownerphonenumberError('');
-  }
-
-  const formHandling = () => {
-    setshowroomError('');
-    setownerphonenumberError('');
-    setshowroomError('')
-    if (!/[A-Za-z0-9!@#$%^&*]/.test(showroomname)) {
-      setshowroomError('* Mandatory, field is required');
-      return;
-    }
-    if (showroomname.length < 5) {
-      setshowroomError('* Length, is too short');
-      return;
-    }
-    if (!/[A-Za-z0-9!@#$%^&*]/.test(showroomlocation)) {
-      setshowroomError('');
-      setshowroomlocationError('* Mandatory, field is required');
-      return;
-    }
-    if (!/[0-9!@#$%^&*]/.test(ownerphonenumber)) {
-      setshowroomlocationError('');
-      setownerphonenumberError('* Mandatory, field is required');
-      return;
-    }
-    if (ownerphonenumber < 10) {
-      setownerphonenumberError('* Phone number is too short');
-      return;
-    }
-
-  }
-
-
   const handleImage = (e) => {
     const file = e.target.files[0];
+    const size = file.size / 1024;
+    setimageSize(Math.floor(size));
+    if (size > 1024) {
+      let mb = size / 1024;
+      setimageSize(Math.floor(mb));
+    }
+    setimageFormat(e.target.files[0].type.split("/")[1]);
     const formdata = new FormData();
     formdata.append('file', file);
     UploadImage();
     async function UploadImage() {
       try {
         let response = await imageUpload(formdata);
-        setshowroompicture(response);
-        buttons.current.style.display = 'flex';
+        Toast.success("✔ File is uploaded successfully!");
+        setValue("showRoomPicture",response, { shouldValidate: true });
+        clearErrors("showRoomPicture")
       } catch (error) {
-        Toast('❌ File is not uploaded!');
       }
-
     }
-
-
-
-
-
   }
 
-  useEffect(() => {
-    getshowroomdetails();
-  }, [])
-
-  useEffect(() => {
-
-    formHandling();
-
-  }, [showroomname, showroomlocation, ownerphonenumber])
 
   const [showroomstatus, setshowroomstatus] = useState('');
 
   async function getshowroomdetails() {
-    const method = `get`;
-    const endPoint = `/showroom/get/userShowRoom`;
     try {
-      let response = await serverRequestHandler(endPoint, method);
-      setOwnerphonenumber(response.phone)
-      setShowroomlocation(response.location);
-      setShowroomname(response.showRoomName);
-      setshowroompicture(response.showRoomPicture);
+      let response = await serverRequestHandler(EndPoint.usershowroom, `get`);
+      setValue("phone", response.phone)
+      setValue("location", response.location);
+      setValue("showRoomName", response.showRoomName);
+      setValue("showRoomPicture",response.showRoomPicture);
       setId(response._id);
       localStorage.setItem("Showroomid", response._id);
       setshowroomstatus(response.status);
       localStorage.setItem("Showroomstatus", response.status);
-
+      Toast.success("Showroom retrieved successfully 🤗");
     } catch (error) {
-
+      Toast.error(error.message ?? error);
     }
-
   }
 
   const buttons = useRef(null);
 
 
 
-  useEffect(() => {
-    getshowroomdetails();
-
-  }, []);
-
-
   const [locations, setlocations] = useState(null);
   const [status, setStatus] = useState(null);
 
   async function getLocation() {
-    const endPoint = `/location/getAll`;
-    const method = `get`;
-
     try {
-      let response = await serverRequestHandler(endPoint, method);
+      let response = await serverRequestHandler(EndPoint.getLocations, `get`);
       setlocations(response);
       { localStorage.getItem("Showroomstatus") == 'pending' || localStorage.getItem("Showroomstatus") == 'rejected' ? setisReadonly(!true) : setisReadonly(false) }
     } catch (error) {
-
-      Toast(error.message);
-
+      Toast.error(error.message ?? error);
     }
-
-
-
   }
+
   useEffect(() => {
-    getLocation();
+    getLocation();//Check Superadmin ky liye.....
+
     getRequestedShowroom();
   }, [])
 
   const navigateBack = useNavigate();
-  const getRequestedShowroom = () => {
-    getShowrooms();
 
-  }
-  async function getShowrooms() {
-    const Token = localStorage.getItem("Token");
-    const showroomId = location.state?._id ?? location.state?.showroomid ?? '';
-    const endPoint = `/showroom/${showroomId}`;
-    const method = `get`;
-    try {
-      let requestedShowroom = await serverRequestHandler(endPoint, method);
-      setStatus(requestedShowroom.status);
-      { location.pathname == '/showroomowner/notification/addshowroom' ? setshowroomdetails(requestedShowroom) : '' }
-      setsuperAdminShowroom(requestedShowroom);
-      setsuperAdminShowroompic(requestedShowroom.showRoomPicture);
-      Toast("✔ Showroom retrieved successfully!");
-    } catch (error) {
-      Toast(error.message);
+  const getRequestedShowroom = () => {
+    if (location.pathname != '/showroomowner/addshowroom') {
+      getShowrooms();
+      return;
+    }
+
+
+    if (location.pathname != '/showroomowner/showrooms/addshowroom' || localStorage.getItem("Showroomstatus") == 'pending' || localStorage.getItem("Showroomstatus") == "approved") {
+      if (localStorage.getItem("Role") != "user") {
+        getshowroomdetails();
+      }
+
+
+
+
+
+
+      return;
 
     }
 
+
   }
+
+  async function getShowrooms() {
+    const showroomId = location.state?._id ?? location.state.id ?? location.state?.showroomid ?? location.state.data ?? '';
+    try {
+      let requestedShowroom = await serverRequestHandler(EndPoint.getShowroom(showroomId), `get`);
+      setStatus(requestedShowroom.status);
+      {
+        location.pathname == obj.showroomnotification ? setshowroomdetails(requestedShowroom) : ''
+      }
+      console.log(requestedShowroom);
+      setsuperAdminShowroom(requestedShowroom);
+      setsuperAdminShowroompic(requestedShowroom.showRoomPicture);
+      setValue("showRoomPicture", requestedShowroom.showRoomPicture)
+      Toast.success("✔ Showroom retrieved successfully!");
+    } catch (error) {
+      Toast.error(error.message ?? error);
+    }
+
+  }
+
   const [superAdminShowroompic, setsuperAdminShowroompic] = useState(null);
+
   async function Showroomstatus(status) {
-    const endPoint = `/showroom/approve`;
-    const method = `post`;
     const body = {
       showroomId: `${location.state.showroomid}`,
       status: `${status}`,
     }
     try {
-      const rejectShowroom = await serverRequestHandler(endPoint, method, body);
-      console.log("Reject Showroom Response", rejectShowroom);
+      const rejectShowroom = await serverRequestHandler(EndPoint.showroomstatus, `post`, body);
+      Toast.success(`Showroom ${status} successfully!`);
       navigateBack(-1);
     } catch (error) {
-      Toast(error.message);
+      Toast.error(error.message ?? error);
     }
   }
+
+
+
+
+
+
+
+
+
+  async function updateMyShowroom() {
+    let id = localStorage.getItem("Showroomid");
+    let endpoint = `/showroom/${id}`
+    let method = `put`;
+    let body = {
+      'showRoomName': getValues("showRoomName"),
+      'showRoomPicture': getValues("showRoomPicture"),
+      'location': getValues("location"),
+      'phone': getValues("phone"),
+    }
+
+    try {
+
+      let response = await serverRequestHandler(endpoint, method, body);
+
+      setValue("showRoomName", response.showRoomName);
+      setValue("showRoomPicture", response.showRoomPicture);
+      setValue("location", response.location);
+      setValue("phone", response.phone);
+      localStorage.setItem("Showroomid", response._id);
+      navigate(-1);
+      Toast.success("Updated Response");
+      console.log(response);
+    } catch (error) {
+
+    } finally {
+
+    }
+
+
+  }
+
+
+
+
+
+
   return (
     <div id='createshowroomcontainer' className='w-[100%] p-[30px]'>
-      <form onSubmit={(e) => { e.preventDefault() }} id='Parent'>
+      <form onSubmit={handleSubmit(onSubmit)} id='Parent'>
         <h5>Showroom Details</h5>
         <h6>Please enter your info</h6>
         <span id="inputs">
           <label htmlFor="">Showroom Name</label>
-          <InputMask disabled={isReadonly} className='outline-none rounded-lg text-[#B3B9B5] px-[12px] w-[50%] h-[45px]  showroominput' value={showroomdetails?.showRoomName ? showroomdetails?.showRoomName : (location.pathname == '/showroomowner/showrooms/addshowroom' && superAdminShowroom ? superAdminShowroom.showRoomName : (location.pathname == '/showroomowner/notification/addshowroom' ? location.state?.data?.showRoomName : showroomname))} onChange={(e) => { setShowroomname(e.target.value) }} type="text" placeholder="Type here" />
-          <p className='text-sm font-semibold text-red-600'>{showroomnameError}</p>
+          <input
+            disabled={localStorage.getItem("Showroomstatus") == 'pending' || location.pathname === '/showroomowner/showrooms/addshowroom' ? true : (isReadonly ?? '')} className={`outline-none rounded-lg text-[#B3B9B5] px-[12px] w-[50%] h-[45px]  showroominput border-[1px]  ${errors.showRoomName?.type === 'required' || errors.showRoomName?.type === 'pattern' ? 'border-[red]' : 'border-[#eaeaea]'}`}
+            {...register("showRoomName")}
+            defaultValue={showroomdetails?.showRoomName ? showroomdetails?.showRoomName : (location.pathname == obj.superadminshowroom && superAdminShowroom ? superAdminShowroom.showRoomName : (location.pathname == obj.showroomnotification ? location.state?.data?.showRoomName : ''))}
+            placeholder="Type here" />
+          {(errors.showRoomName && <p className='text-[#FC4500] font-semibold text-[12px] '>{errors.showRoomName.message}</p>)}
         </span>
         <span id="inputs">
           <label htmlFor="">Location</label>
-          <select disabled={isReadonly} className='w-[50%] outline-none rounded-lg h-[45px] bg-[#f6f7f9] capitalize px-[10px] showroominput' name="" id="" onChange={(e) => { setShowroomlocation(e.target.value); }}>
-            <option value={location.state?.data?.location ?? showroomlocation ?? 'Select Location'}>{location?.state?.data?.location ?? showroomlocation ?? 'Select Location'}</option>
-            {superAdminShowroom ? <><option className='' value={location.state?.data?.location ?? superAdminShowroom.location}>{superAdminShowroom.location}</option></> : locations?.map(function (locat, idx) {
-              return <option id={idx} className='capitalize' value={locat.name}>{showroomlocation ? showroomlocation : locat.name}</option>
+          <select
+            disabled={localStorage.getItem("Showroomstatus") == 'pending' || location.pathname == '/showroomowner/showrooms/addshowroom' ? true : (isReadonly ?? '')} className={`w-[50%] outline-none rounded-lg h-[45px] border-[1px] bg-[#f6f7f9] capitalize px-[10px] showroominput ${errors.location?.type === 'required' || errors.location?.type === 'pattern' ? "border-[red]" : "border-[#eaeaea]"}`} name="" id=""
+            {...register("location", { required: true })}
+
+          >
+
+
+            {/* <option  value={location.state?.data?.location ?? showroomlocation ?? 'Select Location'}>{location?.state?.data?.location ?? showroomlocation ?? 'Select Location'}</option> */}
+            {superAdminShowroom ? <><option className='' defaultValue={location.state?.data?.location ?? superAdminShowroom.location}>{superAdminShowroom.location}</option></> : locations?.map(function (locat, idx) {
+
+
+
+              return (
+                <option id={idx} className='capitalize' defaultValue={locat.name}>{locat.name}</option>
+              )
             })}
           </select>
         </span>
-        <p className='text-sm font-semibold text-red-600'>{showroomlocationError}</p>
+        <p role='alert' className='text-[12px] font-semibold text-[#FC4500]'>{errors.location?.message ?? ''}</p>
         <span id="inputs">
           <label htmlFor="">Phone</label>
-          <InputMask disabled={isReadonly} mask="9999-9999999" className='outline-none text-[#B3B9B5] rounded-lg px-[12px] w-[50%] h-[45px] showroominput' value={location.pathname == '/showroomowner/showrooms/addshowroom' && superAdminShowroom ? superAdminShowroom.phone : (location.pathname == '/showroomowner/notification/addshowroom' ? location.state?.data?.phone : ownerphonenumber)} onChange={(e) => { setOwnerphonenumber(e.target.value) }} type="text" placeholder="03xxxxxxxxxx" />
+          <input
+            {...register("phone")}
+            disabled={localStorage.getItem("Showroomstatus") == 'pending' || location.pathname === '/showroomowner/showrooms/addshowroom' ? true : (isReadonly ?? '')} className={`outline-none text-[#B3B9B5] rounded-lg px-[12px] w-[50%] h-[45px] showroominput border-[1px]  ${errors.phone?.type === 'required' || errors.phone?.type === 'pattern' ? 'border-[red]' : 'border-[#eaeaea]'}`} defaultValue={location.pathname == obj.superadminshowroom && superAdminShowroom ? superAdminShowroom.phone : (location.pathname == obj.showroomnotification ? location.state?.data?.phone : "")}
+            max='99999999999' placeholder="03xxxxxxxxxx" />
         </span>
-        <p className='text-sm font-semibold text-red-600'>{ownerphonenumberError}</p>
+        <p className='text-[12px] font-semibold text-[#FC4500]'>{(errors.phone?.message ?? '')} </p>
+
         <span id="inputss" className='mt-[20px]'>
-          <label htmlFor="">Showroom Picture</label>
-          <div className='h-[140px] w-[200px] mb-[10px]' onClick={() => { image.current.click(); }}>
-            <img ref={showImage} src={superAdminShowroom ? localhost() + superAdminShowroompic : (location.state && location.data ? localhost() + location.state.data.showRoomPicture : (showroompicture ? localhost() + showroompicture : 'https://cdn-icons-png.flaticon.com/512/3366/3366741.png'))} className='object-cover h-[100%] w-[100%] border-[1px] border-black' alt="" />
-            <input disabled={isReadonly} ref={image} type="file" onChange={(e) => { handleImage(e) }} hidden />
+          <div className='h-[140px] w-[200px] mb-[10px]'>
+            <label className='' htmlFor="upload">Showroom Picture
+
+             <p>{localhost() + getValues("showRoomPicture")}</p>
+
+              <img ref={showImage} src={localhost() + getValues("showRoomPicture")} className={`object-fit h-[100%] w-[100%] border-[1px] ${errors.fileName?.type === 'required' || errors.fileName?.type === 'pattern' ? 'border-[red]' : 'border-black'}`} alt="" />
+            </label>
+            <input disabled={localStorage.getItem("Showroomstatus") == 'pending' || location.pathname === '/showroomowner/showrooms/addshowroom' ? true : (isReadonly ?? '')} type='file'
+              {...register("showRoomPicture")}
+              onChange={(e) => {
+                handleImage(e)
+              }}
+              id='upload' hidden />
           </div>
         </span>
-        {showroomstatus == 'approved' ? <span ref={buttons} className='w-[100%] flex justify-center gap-[4vmin]'>
-          <button className='bg-transparent text-[#FC5C00] border-[1px] border-[#FC5C00]' onClick={() => {
-            (async function deleteShowroom() {
-              const endPoint = `/showroom/${ID}`;
-              const method = `delete`;
-              try {
-                let response = await serverRequestHandler(endPoint, method);
-                Toast("Showroom deleted successfully!");
-                localStorage.setItem("Showroomstatus", 'deleted');
-                localStorage.setItem("Showroomowner", false);
-                navigate(-1);
-              } catch (error) {
-                Toast(error.message);
-              }
-            })();
-          }}>Delete</button>
-          <button onClick={() => { detailsHandler(); }}>Save</button>
-        </span> : (location.pathname == '/showroomowner/showrooms/addshowroom' && superAdminShowroom && status == 'pending' ?
+        <p className='text-[12px] text-[#FC4500] font-semibold my-[10px]'> {errors.showRoomPicture?.type === 'required' ? "PNG, JPEG, JPG format image is required..." : ""}</p>
+        <p className='text-[12px] text-[#000000] font-semibold '>{imageFormat ? "Format :" : " "}  {imageFormat.toUpperCase() ?? ''} {imageSize ? "Size :" : ""} {imageSize ?? ''}{imageSize ? "KB" : ""}</p>
+        {showroomstatus == 'approved' ? <span className='w-[100%] flex justify-center gap-[4vmin]'>
+
+          <input type='submit' className='w-[170px] p-[10px] self-center mt-[30px] text-center bg-[#FC4500] text-white text-[16px] font-medium cursor-pointer' value='Update Showroom' />
+
+        </span> : (location.pathname == obj.superadminshowroom && superAdminShowroom && status == 'pending' ?
           <>
             <div className="flex flex-row w-[100%] items-center justify-center gap-[25px]">
               <button onClick={() => {
@@ -280,12 +329,12 @@ const CreateShowroom = () => {
               </button>
             </div>
           </>
-          : (location.pathname == '/showroomowner/showrooms/addshowroom' && superAdminShowroom && status == 'approved' ? <div id='continue' className='w-[100%] flex flex-row items-center justify-center py-[10px]'> <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>You approved this showroom</p> </div> : (location.pathname == '/showroomowner/showrooms/addshowroom' && superAdminShowroom && status == 'rejected' ? <div id='continue' className='w-[100%] flex flex-row items-center justify-center py-[10px]'> <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>You rejected this showroom</p> </div> : (location.pathname == '/showroomowner/notification/addshowroom' ? '' : (showroomstatus == 'pending' ? <> <div id='continue' className='w-[100%] flex flex-row items-center justify-center py-[10px]'> <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>Your Showroom is pending for approval please wait until we approve it. We will notify you soon
+          : (location.pathname == obj.superadminshowroom && superAdminShowroom && status == 'approved' ? <div id='continue' className='w-[100%] flex flex-row items-center justify-center py-[10px]'> <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>You approved this showroom</p> </div> : (location.pathname == obj.superadminshowroom && superAdminShowroom && status == 'rejected' ? <div id='continue' className='w-[100%] flex flex-row items-center justify-center py-[10px]'> <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>You rejected this showroom</p> </div> : (location.pathname == obj.showroomnotification ? '' : (showroomstatus == 'pending' ? <> <div id='continue' className='w-[100%] flex flex-row items-center justify-center py-[10px]'> <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>Your Showroom is pending for approval please wait until we approve it. We will notify you soon
           </p> </div> </> : (showroomstatus && showroomstatus == 'rejected' ? <div id='continue' className='w-[100%] flex flex-col gap-[10px] items-center justify-center py-[10px]'> <button onClick={() => {
             addShowroom();
           }}>Resubmit</button>
             <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>Your showroom has been rejected update your details and resubmit again</p> </div>
-            : <button className='w-[170px] mt-[30px]' onClick={() => { detailsHandler(); }}>Create Showroom</button>))))))}
+            : <input type='submit' value="Create Showroom" className='w-[170px] p-[10px] self-center mt-[30px] text-center bg-[#FC4500] text-white text-[16px] font-medium cursor-pointer' />))))))}
         {location.state?.data?.isDeleted ? <><div id='continue' className='w-[100%] flex flex-row items-center justify-center py-[10px]'> <p className='text-[#24343d] py-[0.4rem] px-[1rem] text-[0.7rem] border-[1px] border-red-600 rounded-full'>You deleted this showroom</p> </div></> : ''}
       </form>
     </div>

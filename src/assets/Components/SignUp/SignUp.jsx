@@ -1,14 +1,17 @@
 
-import Section from '../Common/Section'
+import { useNavigate } from 'react-router-dom';
+import style from '../../SideBarIcon/Styling'
 import Section_two from '../Sign In/Section_two'
 import Login from './Login'
+import { FaArrowLeft } from "react-icons/fa6";
+import { obj } from '../../Utils/RoutesPaths';
+import Slider from '../Slider/Slider';
 
-const SignUp = (propse) => {
+const SignUp = () => {
   return (
-    <div className='flex flex-row items-center justify-center signup w-[100%]'>
-        {/* <Section/> */}
-        <Section_two/>
-        <Login setData={propse.setData} LoginHandler={propse.LoginHandler}/>
+    <div className='flex flex-row signup w-[100%]'>
+     <Slider/>
+      <Login />
     </div>
   )
 }

@@ -1,16 +1,18 @@
-import SectionFour from '../Reset Password/Email Authentication/SectionFour'
+import { useNavigate } from 'react-router-dom'
+import style from '../../SideBarIcon/Styling'
 import Section_two from '../Sign In/Section_two'
 import UserSelection from './UserSelection'
-
-const SelectionComponent = (propse) => {
+import { FaArrowLeft } from 'react-icons/fa6'
+import { obj } from '../../Utils/RoutesPaths'
+import Slider from '../Slider/Slider'
+const SelectionComponent = (prpse) => {
 
   return (
-    <div className="flex w-[100%] flex-row items-center justify-center selectioncomponent">
-        {/* <SectionFour/> */}
-        <Section_two/>
-        <UserSelection setRole={propse.setRole} setselectUser={propse.setselectUser} setUser={propse.setUser}/>
+    <div className="flex w-[100%] h-[100%] flex-row items-center justify-center selectioncomponent">
+        <Slider/>
+        <UserSelection  />
     </div>
   )
 }
-
+  
 export default SelectionComponent

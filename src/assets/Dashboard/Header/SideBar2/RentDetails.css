@@ -17,9 +17,6 @@
     }
 
 @media (max-width: 620px) {
-   .sidebar2{
-    display: none;
-   }
    .homecars{
     width: 100%;
    }

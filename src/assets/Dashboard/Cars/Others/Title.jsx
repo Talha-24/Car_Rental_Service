@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom";
+import { obj } from "../../../Utils/RoutesPaths";
 
 const 
 
@@ -16,17 +17,17 @@ Title = () => {
   },[location])
 
  const textHandler=()=>{
-  if(location.pathname == '/showroomowner/showroomcars'){
+  if(location.pathname == obj.usershowroomcars){
 
     return setbookedCar('My Cars');
 
   }
-  else if(location.pathname == '/showroomowner/bookedcars'){
+  else if(location.pathname == obj.bookedcars){
     
     return setbookedCar("Booked Cars");
 
   }
-  else if(location.pathname == '/showroomowner/myorders'){
+  else if(location.pathname == obj.myorders){
     return setbookedCar("My Orders");
   }
 
@@ -37,7 +38,7 @@ Title = () => {
 
 
   return (
-    <div id='bookedtext' className='flex flex-row py-[25px]  justify-between px-[0] w-[100%]'>
+    <div id='bookedtext' className='flex flex-row py-[25px]  justify-between px-[40px] w-[100%]'>
       <h6 className='text-[#90A3BF] text-[25px]'>{bookedCar}</h6>
 </div>
   )

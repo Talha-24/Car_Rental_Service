@@ -7,7 +7,6 @@ import CreateShowroom from '../../Components/Create Showrooms/CreateShowroom.jsx
 import { useRef, useState } from 'react'
 
 const HomeCarRent = () => {
-  const location = useLocation();
   return (
     <div className='bg-[#FFFFFF] w-[100%] flex flex-col'>
       <UserHeader />

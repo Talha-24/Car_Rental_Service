@@ -1,35 +1,30 @@
 import axios, { Axios } from "axios"
-import PopularCars from "./PopularCars/PopularCars"
-import ShowRoomCar from "./ShowRoomCar"
-import ShowRoomCar2 from "./ShowRoomCar2"
 import ShowRoomCar3 from "./ShowroomCar3"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { IoMdArrowDropleft } from "react-icons/io";
-import { IoMdArrowDropright } from "react-icons/io";
 import serverRequestHandler from "../../../Utils/http"
 import localhost from "../../../Utils/LocalHost"
-import Toast from "../../../Toaster/Toaster"
-import SearchBar from "../../Header/Header Components/SearchBar"
+import {Toast} from "../../../Utils/Toasthot"
+import Pagenation from "../../../Pagenation/Pagenation";
+import { EndPoint, obj } from "../../../Utils/RoutesPaths";
 
 const HomeCars = () => {
 
 
   const [showroomdata, setshowroomData] = useState('');
-  const [totalData, settotalData] = useState();
   const [currentPage, setcurrentPage] = useState(1);
   const [carsPerPage, setcarsPerPage] = useState(8);
   const [totalPages, settotalPages] = useState();
+
   const totalButtons = Math.ceil(totalPages / carsPerPage);
-  async function showroomcars() {
-    const endPoint = `/showroom/getAll?page=${currentPage}?&pageSize=${carsPerPage}`;
-    const method = 'get'
+async function showroomcars() {
     try {
-      const showroomresponse = await serverRequestHandler(endPoint, method);
+      const showroomresponse = await serverRequestHandler(EndPoint.showroomcars(currentPage, carsPerPage).link, `get`);
       settotalPages(showroomresponse.totalCount);
       setshowroomData(showroomresponse.data);
+      Toast.success("Showrooms retrieved successfully!",3000);
     } catch (error) {
-      Toast(error.message);
+      Toast.error(error.message??error);
     }
   }
 
@@ -39,15 +34,13 @@ const HomeCars = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='w-[100%] px-[8vmin] pt-[5vmin] flex flex-col  items-center justify-center homecars  h-[100%]'>
+    <div className='w-[100%] pt-[5vmin] flex flex-col  items-center justify-center homecars mx-[10px] h-[100%]'>
       <div id="NavCarDetails" className="w-[100%] h-[280px] bg-[#Fc4500] p-[20px] rounded-[10px]">
         <div id="text" className="w-[80%] h-[260px] flex flex-col gap-[3vmin] pt-[10px]">
           <h3 className="text-[25px] font-semibold  text-[#f5f2f2]">Easy way to rent a car at a low price</h3>
           <p className="text-[15px]   text-[#FFFFFF]">Providing cheap car rental services and safe and comfortable facilities.</p>
-          <p className="border-[1px] self-start border-[#FFFFFF] text-[white] py-[8px] px-[12px] rounded-[0.5vmin] font-normal text-[1rem] w-[100px] mt-[10px] cursor-pointer "> Rental Car</p>
+          <p className="border-[1px] self-start border-[#FFFFFF] text-[white] py-[8px] px-[12px] rounded-[0.5vmin] font-normal text-[1rem] mt-[10px] cursor-pointer"> Rental Car</p>
         </div>
-        {/* <img id='NavCarDetails' className="min-w-[98%] max-h-fit rounded-[1vmin] items-start" src="src\assets\Dashboard\Dashboard 3\Navbar\Ads 2.svg" alt="" /> */}
-        {/* <img  className="w-[400px] h-[280px]" src="https://s3-alpha-sig.figma.com/img/702f/356e/48fe531e6fd2626c5d1041dbfcde3341?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=OI5M9Rq66nfXUkiFAwslaUEahMsBqRmo9LBq9IiDWlZi~bQHdVMVwUArn9PZI3WdpM9BTqHLvDmItixD7P5Er5P5~d837G5mqI89UeiDAyuKoAgTjdqeExheqkRo4l7SEFz~bD6gYkuh4oiVtO9veOh4ERLh~rS68T3nObmGIYxcM2g7h0P4iJi9ui5zsed4qBQuNKa~wJEc9wqewFS-9jJMvfYv6ZZF3KvHV9Y9kwLKmjYuJc-aiVBTqN3o-ETAwyGSazjFQkeb5v5z~kDJBWgq~Kq7pJLjjJz0bUjX1tMnAEZ-~LPh2bX7MIQgjq~siQ6BrpGjSkFC6BNuViZvdg__" alt="" /> */}
       </div>
       <div className="my-[16px] align-start w-[100%]">
         <div id='searchbar' className='w-[378px] bg-white rounded-full'>
@@ -59,28 +52,31 @@ const HomeCars = () => {
           </div>
         </div>
       </div>
-      <div className="w-[100%] flex text-center text-[#000000] font-semibold text-[2.5vmin] py-[2vmin]">
+      <div className="w-[100%] flex text-center justify-between items-center text-[#000000] font-semibold text-[2.5vmin] py-[2vmin]">
         <p id='popular' className='text-[20px] text-[#27282d] font-normal'>Recent Cars</p>
+        <p onClick={() => {
+          navigate(obj.recentcar);
+        }} className="text-[#0000FF] cursor-pointer text-[16px] font-normal ">View All</p>
       </div>
       <ShowRoomCar3 />
       <div className="w-[100%] flex text-center text-[#000000] font-semibold text-[2.5vmin] py-[2vmin]">
         <p id='showroom' className='text-[20px] font-normal text-[#27282d]'>Showrooms</p>
       </div>
       <div className='py-[1vmin] px-[6vmin] w-[100%]' id='carcontainer' >
-        <div className='flex flex-row items-center w-[100%] gap-[10px] flex-wrap'>
+        <div className='flex flex-row flex-wrap items-center gap-[10px]  w-[100%]'>
           {showroomdata ? showroomdata.map(function (showroom, key) {
             const id = showroom._id;
             const showroompicture = showroom.showRoomPicture;
             return (
-              <div key={key} className='text-black max-w-[262px] max-h-[369px] bg-[#FFFFFF] rounded-lg flex flex-col  justify-between p-[18.64px]'>
-                <img className="w-[253px] h-[136px] object-cover border-[1px] border-black" src={showroompicture ? localhost() + showroompicture : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'} alt="" />
+              <div key={key} className='text-black w-[262px]  max-h-fit  rounded-lg flex flex-col  justify-between p-[18.64px]  bg-white showroom'>
+                <img className="w-[100%] h-[146px] object-cover border-[1px] border-black" src={showroompicture ? localhost() + showroompicture : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'} alt="" />
                 <div id="carinfo" className='flex flex-col items-start w-[100%]'>
                   <div className='w-[100%]'>
-                    <p className=' text-[17px] my-[7px] font-medium  text-[#000000]'>{showroom.showRoomName}</p>
+                    <p className=' text-[17px] my-[7px] font-medium  text-[#000000] showroomname'>{showroom.showRoomName}</p>
                   </div>
                   <div className='flex flex-row flex-wrap items-center justify-between w-[100%]'>
                     <p className='font-thin text-[0.9rem] text-[#111111]'>Location </p>
-                    <p className="text-[#90A3BF] capitalize text-[#86D9FA]">{showroom.location}</p>
+                    <p className="capitalize text-[#86D9FA]">{showroom.location}</p>
                   </div>
                   <div className='flex flex-row items-center justify-between w-[100%]'>
                     <p className='font-thin text-[0.9rem] text-[#111111]'>Available Cars</p>
@@ -96,46 +92,13 @@ const HomeCars = () => {
                   </div>
                 </div>
                 <div className='flex flex-col  w-[100%] items-end'>
-                  <button onClick={() => {
-                    navigate('showroomCars', { state: { showroomid: id } });
-                  }
-                  } className='bg-[#FF4500] h-[40px] w-[65px] rounded-sm text-white font-semibold text-[1rem] self-end w-[100px]'>View</button>
+                  <button onClick={() => {navigate(obj.showroomcarstwo, { state: { showroomid: id } });}} className='bg-[#FF4500] h-[40px] rounded-sm text-white font-semibold text-[1rem] self-end w-[100px]'>View</button>
                 </div>
               </div>
             )
           }) : ''}
         </div>
-        <div id="pagination" className="flex flex-row items-center justify-end w-[100%] ">
-          <div className="flex flex-row items-center mr-[8px]">
-            <span className="flex flex-row">
-              <IoMdArrowDropleft fontSize={'1.4rem'} color="#D4D4D5" />
-              <p className="text-[#D4D4D5]">Previous</p>
-            </span>
-          </div>
-          {Array.from({ length: totalButtons }, (_, idx) => {
-            return <button onClick={() => {
-              setcurrentPage(idx + 1);
-            }} className="mr-[2px] p-[2px] w-[24px] font-normal rounded">{idx + 1}</button>
-          })}
-          <div className="flex flex-row items-center ml-[8px]">
-            <p className="text-[#D4D4D5]">Next</p>
-            <span className="flex flex-row items-center">
-              <IoMdArrowDropright color="#D4D4D5" fontSize={'1.4rem'} />
-            </span>
-          </div>
-          <select onChange={(e) => {
-            setcarsPerPage(e.target.value);
-          }} name="" id="" className="border-[1px] border-[#FC5500] rounded-sm">
-            <option value="8">8</option>
-            <option value="16">16</option>
-            <option value="24">24</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-            <option value="200">200</option>
-            <option value="300">300</option>
-          </select>
-
-        </div>
+        <Pagenation pageno={currentPage} setpageno={setcurrentPage} setnoofcars={setcarsPerPage} totalpages={totalButtons} />
       </div>
     </div>
   )

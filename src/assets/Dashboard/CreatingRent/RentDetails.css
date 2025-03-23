@@ -11,6 +11,7 @@
 
     }
 }
+
 #imagecontainer{
     display: flex;
     flex-direction: row;
@@ -38,3 +39,4 @@
     top: 4%;
     cursor: pointer;
 }
+

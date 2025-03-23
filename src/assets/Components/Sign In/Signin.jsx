@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import Registeration from './Registeration'
-import Section_two from './Section_two'
-
-const Signin = (propse) => {
+import { FaArrowLeft } from 'react-icons/fa6'
+import { useNavigate } from 'react-router-dom'
+import Slider from '../Slider/Slider'
+const Signin = () => {
+  
   return (
     <div className='flex flex-row w-[100%] signin items-center justify-center'>
-      <Section_two />
-      <Registeration role={propse.role} setUser={propse.setUser} />
-
+      <Slider/>
+      <Registeration />
     </div>
   )
 }

@@ -17,7 +17,7 @@ const navigateTo=useNavigate();
 
 
   return (
-    <div className='w-[254px] h-[370px] border-[1px]  border-[#dadada]  text-black rounded-lg flex flex-col justify-between p-[10px]'>
+    <div className='w-[254px] h-[370px] border-[1px]  border-[#dadada]  text-black rounded-lg flex flex-col justify-between p-[10px] carthree'>
       <div>
     <b className='text-[22px] font-normal capitalize'>{Car.title}</b>
    <p className='font-normal w-[100%] inline-block  text-[20px]'> Rs.{Car.discountedPrice}/day</p>

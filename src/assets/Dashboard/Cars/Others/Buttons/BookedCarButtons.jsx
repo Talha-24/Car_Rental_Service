@@ -4,7 +4,7 @@ const BookedCarButtons = ({ setFilter }) => {
 
     return (
         <>
-            <div id="btns" className="w-[100%]  gap-[20px] px-[20px] pb-[40px]">
+            <div id="btns" className="w-[100%]  py-[50px] gap-[20px] px-[20px] pb-[40px]">
                 <div className="flex flex-row flex-wrap items-center gap-[20px]">
                     <button onClick={() => {
                         let accepted = document.querySelector("#accepted");

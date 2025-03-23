@@ -5,67 +5,47 @@ import Car1 from "../../Cars/CarComponents/Carsss/Car1";
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoMdArrowDropleft } from "react-icons/io";
 import serverRequestHandler from "../../../Utils/http";
+import Pagenation from "../../../Pagenation/Pagenation";
+import { EndPoint } from "../../../Utils/RoutesPaths";
+import { Toast } from "../../../Utils/Toasthot";
 const ShowRoomCar3 = () => {
     const [carsData, setcarsData] = useState([]);
+    const [noofcars,setnoofcars]=useState(3);
+    const [pageNo,setpageno]=useState(1);
+    const [totalPages,settotalpages]=useState('');
+  
+
+
+
     async function getData() {
-        const endPoint = `/car/getAll`;
+
+        const endPoint = EndPoint.showroomcars(pageNo,noofcars).recentcar;
         const method = 'get';
+
         try {
             const response = await serverRequestHandler(endPoint, method);
             setcarsData(response.data);
+            settotalpages(response.totalCount/noofcars);
+            Toast.success("Recommended cars retrieved successfully!");
         } catch (error) {
-
+            Toast.error(error?.message??error??"Recommended Cars Could not retrieved");
         }
-
 
     }
     useEffect(() => {
         getData();
-    }, [])
+    }, [noofcars,pageNo])
 
 
-
-
-    const [carsPerPage, setcarsPerPage] = useState(3);
-    const [currentPage, setcurrentPage] = useState(1);
-    const lastIndex = (currentPage * carsPerPage);
-    const firstIndex = (lastIndex - carsPerPage);
-    const totalPages = Math.ceil(carsData?.length / carsPerPage);
-
-    const itemsonpage = carsData?.slice(firstIndex, lastIndex);
 
 
     return (
         <>
-            <div id='recentcars' className='flex flex-row flex-wrap items-center justify-between min-h-[300px] my-[30px]'>
-                {itemsonpage?.map(function (car, idx) {
+            <div id='recentcars' className='flex flex-row flex-wrap items-center flex-grow min-h-[300px] my-[30px]'>
+                {carsData?.map(function (car, idx) {
                     return <Car1 isRentNow={true} key={idx} car={car} />
                 })}
-            </div>
-            <div id="pagination" className="flex flex-row items-center justify-end w-[100%] ">
-                <div className="flex flex-row items-center mr-[8px]">
-                    <span className="flex flex-row">
-                        <IoMdArrowDropleft fontSize={'1.4rem'} color="#D4D4D5" />
-                        <p className="text-[#D4D4D5]">Previous</p>
-
-                    </span>
-                </div>
-
-                {Array.from({ length: totalPages - 1 }, (_, idx) => {
-                    return <button onClick={() => {
-                        setcurrentPage(idx + 1);
-                    }} className="mr-[2px] p-[2px] w-[24px] font-normal rounded">{idx + 1}</button>
-                })}
-                <div className="flex flex-row items-center ml-[8px]">
-
-                    <p className="text-[#D4D4D5]">Next</p>
-                    <span className="flex flex-row items-center">
-                        <IoMdArrowDropright color="#D4D4D5" fontSize={'1.4rem'} />
-                    </span>
-
-                </div>
-
-            </div>
+            </div>            
         </>
     )
 }

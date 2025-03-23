@@ -1,5 +1,5 @@
 import axios from "axios";
-import swal from "sweetalert";
+import { FaWindowClose } from "react-icons/fa";
 // export default function httpRequestHandler(endpoint, reqType, body) {
 //   // const cookies = new Cookies();
 //   const token=localStorage.getItem("Token");
@@ -48,7 +48,6 @@ import swal from "sweetalert";
 
 
 
-
 // export default function httpRequestHandler(endpoint, reqType, body) {
 //   console.log("In Js Function")
 
@@ -92,15 +91,13 @@ import swal from "sweetalert";
 //     }
 
 
-
 export default function serverRequestHandler(endPoint, reqType, body) {
-  const token = localStorage.getItem("Token");
 
+  const token = localStorage.getItem("Token") || null;
   const headers = {
     Authorization: `Bearer ${token}`,
     'content-type': 'application/json',
   }
-
   const baseUrl = `http://localhost:5000/api`;
   let url = baseUrl + endPoint;
   let apiresponse = '';
@@ -124,53 +121,15 @@ export default function serverRequestHandler(endPoint, reqType, body) {
       })
         .catch((error) => {
           reject(error.response.data);
-          // swal(error);
-          // swal('Promise Rejection',error.response.data.message);
+          console.log("Error in catch", error);
+          if (error.status??'' == 401) {
+          }
         })
     } catch (error) {
     }
   })
 }
 
-
-
-
-// export function uploadImage(endPoint, f, method) {
-
-//   let baseUrl = 'http://localhost:500/api'
-//   let url = baseUrl + endPoint;
-//   let apiResponse = '';
-
-//   return new Promise((resolve, rejected) => {
-
-//     try {
-
-//       if (method == 'post') {
-//         apiResponse = axios.post(url, f);
-//       }
-
-//       else if (method == 'get') {
-//         apiResponse = axios.get(url, f);
-//       }
-
-//       apiResponse.then((response) => {
-//         console.log("RR",response);
-//         resolve(response);
-
-//       })
-//         .catch((error) => {
-//           rejected(error);
-
-//         })
-//     } catch (error) {
-
-//     }
-
-//   })
-
-
-
-// }
 
 
 

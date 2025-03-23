@@ -26,8 +26,7 @@
     font-weight: 500;
 }
 #inputs input{
-    border: 1px solid #dadada;
-    padding: 20px 20px;
+    /* padding: 20px 20px; */
 
 }
 #inputss label{
@@ -62,5 +61,11 @@ h5{
 }
 #inputs .showroominput::placeholder{
     color: #6d6d6d;
+
+}
+#inputss #ptext{
+     font-size: 16px;
+     display: block;
+     margin-bottom: 12px;
 
 }

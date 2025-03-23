@@ -2,18 +2,13 @@ import Footer from '../Footer/Footer'
 import BookingImage from './BookingImage'
 import UserHeader from '../Header/UserHeader'
 import { useNavigate } from 'react-router-dom'
+import { obj } from '../../Utils/RoutesPaths'
 
-const BookingPending = (propse) => {
+const BookingPending = () => {
 
+  const moveTo = useNavigate();
 
-
-  const moveTo = useNavigate('');
-
-
-
-
-
-
+  
   return (
     <>
       <div className='flex items-center justify-start flex-col w-[100%] h-[100%]   bg-[#FFFFFF]'>
@@ -25,18 +20,10 @@ const BookingPending = (propse) => {
               <h3 className='text-black font-bold text-center  text-[3vmin]'>is</h3>
               <h3 className='text-black font-bold text-center  text-[3vmin]'>processed..</h3>
             </div>
-
-
           </div>
           <div className='flex flex-row gap-[20px] w-[100%] justify-center'>
-            <button onClick={() => {
-              moveTo(-2);
-            }} className='bg-[#FF4500] text-white rounded text-[0.8rem] h-[33px] w-[90px]'>Go Home</button>
-            <button onClick={() => { 
-
-              moveTo("/showroomowner/bookedcars");
-
-            }} className='bg-[#FF4500] text-white rounded text-[0.8rem] h-[33px] w-[120px]'>View Booking</button>
+            <button onClick={() => { moveTo(-2);}} className='bg-[#FF4500] text-white rounded text-[0.8rem] h-[33px] w-[90px]'>Go Home</button>
+            <button onClick={() => { moveTo(obj.bookedcars);}} className='bg-[#FF4500] text-white rounded text-[0.8rem] h-[33px] w-[120px]'>View Booking</button>
           </div>
         </div>
       </div>

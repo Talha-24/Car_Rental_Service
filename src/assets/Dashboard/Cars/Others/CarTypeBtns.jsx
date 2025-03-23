@@ -1,149 +1,170 @@
-import axios from 'axios';
-import Availabletext from './Title'
 import Buttons from './Buttons'
 import { useEffect, useState } from 'react';
 import Car1 from '../CarComponents/Carsss/Car1';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Car5 from '../CarComponents/Carsss/Car5';
 import serverRequestHandler from '../../../Utils/http';
-import Toast from '../../../Toaster/Toaster';
 import localhost from '../../../Utils/LocalHost';
 import Title from './Title';
+import Pagenation from '../../../Pagenation/Pagenation';
+import { EndPoint, obj } from '../../../Utils/RoutesPaths';
+import { Toast } from '../../../Utils/Toasthot';
+
+
+
+
 const CarTypeBtns = () => {
-  const [totalCount, settotalCount] = useState([]);
+  const [totalCount, settotalCount] = useState(0);
   const [carsData, setcarsData] = useState('');
   const [filter, setFilter] = useState('pending');
   const [superadminShowrooms, setsuperAdminShowrooms] = useState('');
-  const moveTo = useNavigate('');
+  const moveTo = useNavigate();
   const location = useLocation();
+  const [currentPage, setcurrentpage] = useState(1);
+  const [totalnoofcars, settotanoofcars] = useState(3);
+
+
+
+
+
   async function getBookedCars() {
-    const endPoint=`/booking/getAll?page=1&pageSize=10&status=${filter}`;
-    const method=`get`;
     try {
-      let response = await serverRequestHandler(endPoint,method);
-      settotalCount(response.totalCount);
+      let response = await serverRequestHandler(EndPoint.showroomcars(currentPage, totalnoofcars, filter).bookedcars, `get`);
+      settotalCount(response.totalCount / 3);
       setcarsData(response.data);
+      Toast.success("Booked Cars loaded successfully",2000);
     } catch (error) {
-      Toast(error.message);
+      Toast.error(error.message ?? error,2000);
     }
 
   }
 
-  useEffect(() => {    
+  useEffect(() => {
     getSuperAdminShowrooms();
     getSuperAdminCars();
     carsHandler();
-  }, [filter, location])
+  }, [filter, location, currentPage, totalnoofcars])
 
 
 
   const carsHandler = () => {
 
-    if (location.pathname != '/showroomowner/showroomcars') {return getBookedCars();}
-    else {return getmyshowroomcars();}
-  }
-  const getSuperAdminShowrooms = () => {
-    if (localStorage.getItem("Showroomowner") == 'superAdmin') {
-      return getShowrooms();
+    if (location.pathname != obj.usershowroomcars && location.pathname != obj.myorders && location.pathname != obj.superadminhome && location.pathname != obj.superadmincars ) {
+      return getBookedCars();
     }
-    if(location.pathname == '/showroomowner/myorders'){
+
+    else if (location.pathname == obj.myorders) {
       return getMyOrders();
     }
+
+    else if(location.pathname != "/showroomowner/showroomcar/rentcar" && location.pathname != obj.superadminhome && location.pathname != obj.superadmincars) {
+      return getmyshowroomcars();
+    }
+  }
+
+  
+  const getSuperAdminShowrooms = () => {
+    if (localStorage.getItem("Showroomowner") == 'superAdmin' && location.pathname !='/showroomowner/cars') {
+      return getShowrooms();
+    }
+
   }
   const getSuperAdminCars = () => {
-    if (localStorage.getItem("Showroomowner") == 'superAdmin' || location.pathname == '/showroomowner/cars') {
-
+    if (location.pathname == obj.superadmincars) {
       return getCars();
     }
   }
 
   const [superAdminCars, setsuperAdminCars] = useState([]);
+  const [superAdmintotal, setsuperAdmintotal] = useState();
   async function getShowrooms() {
-    const endPoint=`/showroom/getAll?page=1&pageSize=10&status=${filter}`;
-    const method=`get`;
-    try {
-      let getResponse = await serverRequestHandler(endPoint,method);
-      setsuperAdminShowrooms(getResponse.data);
-    } catch (error) {
 
+    const endPoint = EndPoint.superAdminShowroom(currentPage, totalnoofcars, filter);
+
+    try {
+      let getResponse = await serverRequestHandler(endPoint, `get`);
+
+      setsuperAdminShowrooms(getResponse.data);
+      settotalCount(getResponse.totalCount ?? '');
+      setsuperAdmintotal(getResponse.totalCount);
+      Toast.success("Showrooms retrieved successfully",2000);
+    } catch (error) {
+      Toast.error(error ?? error.message ?? "Showroom retrieval failed",3000);
     }
 
   }
 
   async function getCars() {
-    const endPoint=`/car/getall?pageSize=10&page=1&status=${filter}`;
-    const  method=`get`;
     try {
-      const cars = await serverRequestHandler(endPoint,method);
+      const cars = await serverRequestHandler(EndPoint.showroomcars(totalnoofcars, currentPage, filter).getCars, `get`);
       setsuperAdminCars(cars.data);
-
-      toast.info(cars.data.message, {
-        autoClose: 1000,
-        theme: 'dark',
-      })
+      settotalCount(Math.round(cars.totalCount / 3));
+      Toast.success(cars?.data?.message ?? "Car Retrieved Successfully",2000);
     } catch (error) {
+      Toast.error(error?.message ?? error,3000);
     }
 
   }
-  const movetocreatecar = useNavigate('');//Navigation
+  const movetocreatecar = useNavigate('');
+
   async function getmyshowroomcars() {
-    const endPoint=`/car/getAll?showroomId=${localStorage.getItem("Showroomid")}&page=1pageSize=10&status=${filter}`
-    const method=`get`;
+
     try {
-      const response = await serverRequestHandler(endPoint,method);
+      const response = await serverRequestHandler(EndPoint.showroomcars(currentPage, totalnoofcars, filter).myshowroomcars, `get`);
       settotalCount(response.totalCount);
       setcarsData(response.data);
+      Toast.success("Showroom Cars retrieved Successfully",2000);
+     
     } catch (error) {
-      Toast(error.message);
+      Toast.error(error.message ?? error,3000);
     }
 
   }
 
+
+  const [myorders, setmyorders] = useState();
+  const [totalCars, settotalcars] = useState();
 
 
   async function getMyOrders() {
-    const showroomId=localStorage.getItem('Showroomid');
-    // const URL = `http://locahost:5000/api/booking/getAll?status=${filter}&showRoom=${showroomId}&page=1&pageSize=10`;
-    const Token = localStorage.getItem("Token");
-    const endPoint=`/booking/getAll?status=${filter}&showRoom=${showroomId}&page=1&pageSize=10`;
-    const method=`get`;
     try {
-
-      const orderedCars = await serverRequestHandler(endPoint,method);
-
-          } catch (error) {
+      const orderedCars = await serverRequestHandler(EndPoint.showroomcars(currentPage, totalnoofcars, filter, localStorage.getItem('Showroomid')).myorders, `get`);
+      setmyorders(orderedCars.data);
+      settotalcars(Math.round(orderedCars.totalCount / 3));
+      Toast.success("My Orders loaded successfully",2000);
+    } catch (error) {
+      Toast.error(error.message ?? error,3000);
     }
   }
 
 
+
+
   return (
-    <div className='px-[60px] w-[100%]'>
+    <div className='px-[10px] w-[100%]'>
       {localStorage.getItem("Showroomowner") == 'false' || localStorage.getItem("Showroomowner") == 'true' ? <>
-        <Title/>
+        <Title />
       </> : ''}
-      {location.pathname == '/showroomowner/showroomcars' ? <div className="w-[100%] flex flex-row items-center justify-end pr-[10vmin] pb-[3vmin]">
+      {location.pathname == obj.usershowroomcars ? <div className="w-[100%] flex flex-row items-center justify-end pr-[10vmin] pb-[3vmin]">
         <button onClick={() => {
           movetocreatecar('rentcar');
           localStorage.setItem("UpdateCar", false);
         }} className='py-[1vmin] px-[1vmin] w-[120px] bg-[#FC4500]'>Upload Cars</button>
       </div> : ''}
       <Buttons setFilter={setFilter} />
-      {location.pathname == '/showroomowner/showrooms' ? <>
+      {location.pathname == obj.superadminhome ? <>
         <h3 className='text-[20px] py-[4px]'>Showrooms</h3>
       </> : ''}
-      {location.pathname == '/showroomowner/cars' ? <>
+      {location.pathname == obj.superadmincars ? <>
         <h3 className='text-[20px] py-[20px]'>Cars</h3>
       </> : ''}
       <div className='flex flex-row flex-wrap gap-[25px]'>
-        {location.pathname == '/showroomowner/cars' && superAdminCars ? superAdminCars.map(function (Car, key) {
-          return <Car5 key={key} Car={Car} filter={filter}  />
+        {location.pathname == obj.superadmincars && superAdminCars ? superAdminCars.map(function (Car, key) {
+
+          return <Car5 key={key} Car={Car} filter={filter} />
         })
-        : ''}
-
-
-
-        {location.pathname == '/showroomowner/showrooms' && superadminShowrooms ? <>
+          : ''}
+        {location.pathname == obj.superadminhome && superadminShowrooms ? <>
           {superadminShowrooms.map(function (showroom, key) {
             return (<div key={key} className='w-[272px] min-h-[308px]    text-black bg-[#FFFFFF] rounded-lg flex flex-col justify-between p-[10px] border-[1px] border-[#bdbebe]'>
               <img className="w-[253px] h-[176px] object-cover rounded-lg border-[1px] border-[#90A3BF]" src={showroom.showRoomPicture ? localhost() + showroom.showRoomPicture : ''} alt="" />
@@ -177,11 +198,31 @@ const CarTypeBtns = () => {
           })}
         </> : ''}
         {carsData ? carsData.map(function (car, idx) {
+
+          console.log("Booked Cars",car);
+
           return (<>
+          
             <Car1 getbookedCars={getBookedCars} isRentNow={true} key={idx} car={car} bookedCar={car.Car} filter={filter} detailsid={car ? car._id ?? '' : ''} carid={car ? car?.Car?._id : ''} />
+          
+          
           </>);
-        }) : <h6 className='absolute top-[60%] left-[50%] font-bold translate-x-[-50%] translate-y-[-50%] text-[#CBCDCF] text-3xl'>No Bookings</h6>}
+        }) : (myorders && location.pathname == obj.myorders ?
+          <>
+            {myorders.map(function (car, idx) {
+              localStorage.setItem("orderStatus", car.status);
+
+              return (
+                <Car1 key={idx} car={car.Car??''} bookingId={car._id??""} myorders={getMyOrders} />
+              )
+            })}
+
+
+
+          </> :'')}
       </div>
+
+      <Pagenation setpageno={setcurrentpage} setnoofcars={settotanoofcars} totalpages={totalCount} />
     </div>
   )
 }

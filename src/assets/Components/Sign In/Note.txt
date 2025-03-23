@@ -1,0 +1,12 @@
+                                    onChange={(e) => { setuserData({ ...userData, firstName: e.target.value }) }} value={userData.firstName}
+
+
+
+
+onChange={(e) => { setuserData({ ...userData, lastName: e.target.value }) }} value={userData.lastName} 
+
+
+ onChange={(e) => { setuserData({ ...userData, email: e.target.value }) }} value={userData.email} 
+
+
+ onChange={(e) => { setuserData({ ...userData, password: e.target.value }) }} value={userData.password}

@@ -1,13 +1,11 @@
-import Section_two from '../../Sign In/Section_two'
-import SectionFour from '../Email Authentication/SectionFour'
+import { useNavigate } from 'react-router-dom'
 import NewPassword from './NewPassword'
-
+import Slider from '../../Slider/Slider'
 const RetakingAuthority = () => {
   return (
     <div className='flex flex-row w-[100%] items-center justify-center reenterpassword'>
-        {/* <SectionFour/> */}
-        <Section_two/>
-        <NewPassword/>
+      <Slider/>
+      <NewPassword />
     </div>
   )
 }

@@ -15,16 +15,14 @@ import { FaCarTunnel} from 'react-icons/fa6'
 import { FaHeadset } from 'react-icons/fa6'
 import { IoMdSettings } from "react-icons/io";
 import NavIcons from "../../../Components/../Dashboard/Icons/NavIcons.jsx"
+import Icons from '../../Header/Header Components/Icons/Icons.jsx'
+import style from '../../../SideBarIcon/Styling.js'
 
 
 
 const NavBar = () => {
 
-    const navigate = useNavigate();
-    const showroomownerbuttonone = useRef(null);
-    const showroomownerbuttontwo = useRef(null);
     const navbar = useRef(null);
-    const location = useLocation();
    const [showroomtext,setshowroomtext]=useState('Add Showroom');
    useEffect(()=>{
     setshowroomtext(localStorage.getItem("Showroomstatus") == 'approved' && localStorage.getItem("Showroomowner") == 'true' || localStorage.getItem("Showroomowner") == true ? 'My Showroom' : 'Add Showroom');
@@ -60,23 +58,55 @@ const NavBar = () => {
 
     }]
 
+
+
+ const styleHandler=()=>{
+    if(style().width <= 850){
+        navbar.current.style.top='0';
+    }
+    return;
+ }
+ useEffect(()=>{
+    styleHandler();
+ },[window.innerWidth]);
+
+
+
+
+
+ const homebutton=[
+    {
+        label: 'Home',
+        icon: <TiHome fontSize='22px'  className='inactive' />,
+        to: '/',
+    },
+]
     return (
         <>
             <span ref={navbar} id='navbar' className="px-[30px]  w-[334px] min-h-[700px]  flex flex-col bg-[#FFFFFF] sidebar2">
                 <div id='mainmenu' className="w-[100%] flex flex-col justify-start gap-[10%] h-[100%]">
                     <div className='w-[100%] flex flex-col gap-[8px]'>
-                    <NavIcons/>
-                        {localStorage.getItem("Showroomowner") == 'true' || localStorage.getItem("Showroomowner") == 'false' ? <>
+                    {style().width < 850 ? <NavIcons/> : ''}
+                    {!localStorage.getItem("Token")? <>
+                    {homebutton.map(function(btn,key){
+                        return(
+                            <NavButton key={key} to={btn.to} label={btn.label} icon={btn.icon} />
+                        )
+
+                    })}
+                    </>: ''}
+                        { (localStorage.getItem("Showroomowner") == 'true' || localStorage.getItem("Showroomowner") == 'false' || localStorage.getItem("Role") != "superAdmin"  ) && localStorage.getItem("Token")  ? <>
                             {ButtonData.map(function(btn,key){
                                 return(
                             <NavButton key={key} to={btn.to} label={btn.label} icon={btn.icon} />
                                 )
 
                             })}
+                           
 
 
                         </> : ''}
-                        {localStorage.getItem("Showroomowner") == 'true' && localStorage.getItem("Showroomstatus") == 'approved' ? <Showroomownerbuttons /> : ''}
+                        {localStorage.getItem("Showroomowner") == 'true' && (localStorage.getItem("Showroomstatus") == 'pending' || localStorage.getItem("Showroomstatus") == 'approved') ? <Showroomownerbuttons /> : ''}
                         {localStorage.getItem("Showroomowner") == 'superAdmin' ? <SuperAdminBtn /> : ''}
                         {localStorage.getItem("Showroomowner") == 'superAdmin'|| localStorage.getItem("Showroomowner") == 'false' || localStorage.getItem("Showroomowner") == 'true'? <>
                            {details.map(function(btn,key){
