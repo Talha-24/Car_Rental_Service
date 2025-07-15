@@ -134,3 +134,22 @@ export default function serverRequestHandler(endPoint, reqType, body) {
 
 
 
+
+
+
+
+   /*This will automatically , attaches the baseURL/URL with every api request,we can say instead of adding axios.get("http://localhost:500/api/product") it will work like  api api.get("/products"):Why(becase the baseLink is already attached by the instance we have made eerlier..)
+       const api=axios.create({
+       baseURL: 'http://localhost:5000',
+       })
+      2.If the server did not responsd after 10s, then it throws an error 
+      const api=axios.create({
+      baseURL: 'http://localhost:500';
+      timeout: 10000;
+      })
+      the second key timeout; means the axios waits for 10s for the server to send data , if it not it throws an error
+      */
+
+       //This line say: "Hello Axios, before sending the request to the URL, please run this function :callback:parameter hay, 
+    // Parameter we have in this callBack,is the actual request object which has our body,request body {method: "post",url: '/products', timeout: '', headers: {}}"
+    /*Interceptors: are the middleman, just between or code and HTML request, it allows us to modify the request(link) before sending it to the server, and also allows to make modification in our code before receiving the response */
